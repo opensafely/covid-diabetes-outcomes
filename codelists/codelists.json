@@ -1,3 +1,34 @@
 {
-  "files": {}
+  "files": {
+    "opensafely-type-1-diabetes.csv": {
+      "id": "opensafely/type-1-diabetes/2020-06-29",
+      "url": "https://codelists.opensafely.org/codelist/opensafely/type-1-diabetes/2020-06-29/",
+      "downloaded_at": "2021-10-18 22:23:01.735373Z",
+      "sha": "dc4ce0fbdb8500cc7dc6288e8eec9c783e31de57"
+    },
+    "opensafely-type-2-diabetes.csv": {
+      "id": "opensafely/type-2-diabetes/2020-06-29",
+      "url": "https://codelists.opensafely.org/codelist/opensafely/type-2-diabetes/2020-06-29/",
+      "downloaded_at": "2021-10-18 22:23:02.032585Z",
+      "sha": "21a0fd8e041c19abd876970d75b389b6904dc901"
+    },
+    "opensafely-diabetes-unknown-type.csv": {
+      "id": "opensafely/diabetes-unknown-type/2020-06-29",
+      "url": "https://codelists.opensafely.org/codelist/opensafely/diabetes-unknown-type/2020-06-29/",
+      "downloaded_at": "2021-10-18 22:23:02.355286Z",
+      "sha": "eaaa1867e6bbcb436df91e8b75189d7ff1ca4b0c"
+    },
+    "opensafely-type-1-diabetes-secondary-care.csv": {
+      "id": "opensafely/type-1-diabetes-secondary-care/2020-09-27",
+      "url": "https://codelists.opensafely.org/codelist/opensafely/type-1-diabetes-secondary-care/2020-09-27/",
+      "downloaded_at": "2021-10-18 22:23:02.653038Z",
+      "sha": "e51303ce0e7eb6ac9e0d1763bd23e49b0f273429"
+    },
+    "opensafely-covid-identification.csv": {
+      "id": "opensafely/covid-identification/2020-06-03",
+      "url": "https://codelists.opensafely.org/codelist/opensafely/covid-identification/2020-06-03/",
+      "downloaded_at": "2021-10-18 22:18:11.292118Z",
+      "sha": "124db6929439379b7dacd55ba26ae4f2ed9370bc"
+    }
+  }
 }

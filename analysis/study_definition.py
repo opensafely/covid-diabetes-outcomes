@@ -5,6 +5,7 @@ from cohortextractor import (
     codelist_from_csv,
     combine_codelists,
 )
+
 from common_variables import generate_common_variables
 from codelists import *
 
@@ -22,9 +23,7 @@ study = StudyDefinition(
             has_follow_up
         AND (age >=18 AND age <= 110)
         AND (sex = "M" OR sex = "F")
-        AND imd > 0
         AND exposure_hospitalisation
-        AND NOT stp = ""
         """,
         has_follow_up=patients.registered_with_one_practice_between(
             "patient_index_date - 1 year", "patient_index_date"

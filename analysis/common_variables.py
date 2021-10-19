@@ -4,13 +4,6 @@ from datetime import datetime, timedelta
 
 def generate_common_variables(index_date_variable):
     common_variables = dict(
-        previous_diabetes=patients.with_these_clinical_events(
-            combine_codelists(
-                diabetes_t1_codes, diabetes_t2_codes, diabetes_unknown_codes
-            ),
-            on_or_before=f"{index_date_variable}",
-            return_expectations={"incidence": 0.05},
-        ),
         age=patients.age_as_of(
             f"{index_date_variable}",
             return_expectations={

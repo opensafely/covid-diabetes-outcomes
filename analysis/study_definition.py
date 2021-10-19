@@ -21,12 +21,20 @@ study = StudyDefinition(
     population=patients.satisfying(
         """
             has_follow_up
+        AND prior_diabetes
         AND (age >=18 AND age <= 110)
         AND (sex = "M" OR sex = "F")
         AND exposure_hospitalisation
         """,
         has_follow_up=patients.registered_with_one_practice_between(
             "patient_index_date - 1 year", "patient_index_date"
+        ),
+        prior_diabetes=patients.with_these_clinical_events(
+            combine_codelists(
+                diabetes_t1_codes, diabetes_t2_codes, diabetes_unknown_codes
+            ),
+            on_or_before=("patient_index_date"),
+            return_expectations={"incidence": 0.05},
         ),
     ),
     index_date="2020-02-01",

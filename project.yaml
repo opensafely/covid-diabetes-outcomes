@@ -5,8 +5,14 @@ expectations:
 
 actions:
 
-  generate_study_population:
-    run: cohortextractor:latest generate_cohort --study-definition study_definition
+  generate_covid_with_diabetes_cohort:
+    run: cohortextractor:latest generate_cohort --study-definition study_definition_covid_with_diabetes
     outputs:
       highly_sensitive:
-        cohort: output/input.csv
+        cohort: output/input_covid_with_diabetes.csv
+
+  generate_covid_without_diabetes_cohort:
+    run: cohortextractor:latest generate_cohort --study-definition study_definition_covid_without_diabetes
+    outputs:
+      highly_sensitive:
+        cohort: output/input_covid_without_diabetes.csv

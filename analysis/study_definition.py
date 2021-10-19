@@ -23,7 +23,7 @@ study = StudyDefinition(
             has_follow_up
         AND (age >=18 AND age <= 110)
         AND (sex = "M" OR sex = "F")
-        AND prior_diabetes
+        AND diabetes_diagnosis
         AND exposure_hospitalisation
         """,      
     ),
@@ -34,17 +34,23 @@ study = StudyDefinition(
         on_or_after="index_date",
         date_format="YYYY-MM-DD",
         find_first_match_in_period=True,
-        return_expectations={"date": {"earliest": "index_date"}},
+        return_expectations={
+            "date": {"earliest": "index_date"},
+            "incidence": 1,
+        },
     ),
     has_follow_up=patients.registered_with_one_practice_between(
         "patient_index_date - 1 year", "patient_index_date"
     ),
-    prior_diabetes=patients.with_these_clinical_events(
+    diabetes_diagnosis=patients.with_these_clinical_events(
         combine_codelists(
             diabetes_t1_codes, diabetes_t2_codes, diabetes_unknown_codes
         ),
-        on_or_before=("patient_index_date"),
-        return_expectations={"incidence": 0.05},
+        on_or_before="patient_index_date",
+        returning="date",
+        return_first_date_in_period=True,
+        date_format="YYYY-MM-DD",
+        return_expectations={"incidence": 1},
     ),
     exposure_hospitalisation=patients.admitted_to_hospital(
         returning="date_admitted",

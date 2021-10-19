@@ -23,7 +23,7 @@ study = StudyDefinition(
             has_follow_up
         AND (age >=18 AND age <= 110)
         AND (sex = "M" OR sex = "F")
-        AND NOT diabetes_diagnosis
+        AND NOT prior_diabetes
         AND exposure_hospitalisation
         """,      
     ),
@@ -42,7 +42,7 @@ study = StudyDefinition(
     has_follow_up=patients.registered_with_one_practice_between(
         "patient_index_date - 1 year", "patient_index_date"
     ),
-    diabetes_diagnosis=patients.with_these_clinical_events(
+    prior_diabetes=patients.with_these_clinical_events(
         combine_codelists(
             diabetes_t1_codes, diabetes_t2_codes, diabetes_unknown_codes
         ),

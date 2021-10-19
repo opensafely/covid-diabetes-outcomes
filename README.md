@@ -1,6 +1,6 @@
-# covid-diabetes-outcomes
+# Direct and indirect effects of the COVID-19 pandemic on people with diabetes
 
-This is the code and configuration for covid-diabetes-outcomes.
+This is the code and configuration for the project, "Direct and indirect effects of the COVID-19 pandemic on people with diabetes".
 
 You can run this project via [Gitpod](https://gitpod.io) in a web browser by clicking on this badge: [![Gitpod ready-to-code](https://img.shields.io/badge/Gitpod-ready--to--code-908a85?logo=gitpod)](https://gitpod.io/#https://github.com/opensafely/covid-diabetes-outcomes)
 

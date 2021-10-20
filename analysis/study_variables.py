@@ -44,7 +44,7 @@ def generate_study_variables(index_date_variable):
                 },
             },
         ),
-        # Diabetes
+        # Diabetes dates
         # Date of first (any diabetes diagnosis) in primary care
         diabetes_diagnosis=patients.with_these_clinical_events(
             combine_codelists(
@@ -58,8 +58,7 @@ def generate_study_variables(index_date_variable):
                 "incidence": 0.05
             },
         ),
-        # For stratifying on type of diabetes (at discharge)
-        # And for identifying 'new onset' diabetes 
+        # For stratifying on type of diabetes (at discharge) and identifying 'new onset' diabetes 
         t1dm_gp_first=patients.with_these_clinical_events(
             diabetes_t1_codes,
             on_or_before=f"{index_date_variable} + 30 days",
@@ -152,11 +151,29 @@ def generate_study_variables(index_date_variable):
             date_format="YYYY-MM-DD",
             return_expectations={"date": {"earliest": "2015-01-01"}},
         ),
-        
-        #### covid_diagnosis=
-
-        #### pneum_diagnosis=
-
+        # COVID dates
+        covid_test=patients.with_test_result_in_sgss(
+	        pathogen="SARS-CoV-2",
+	        test_result="positive",
+	        find_first_match_in_period=True,
+	        returning="date",
+	        date_format="YYYY-MM-DD",
+	        return_expectations={"date": {"earliest": "2020-02-01"}},
+        ),
+        covid_hospital=patients.admitted_to_hospital(
+	        with_these_diagnoses=covid_codelist,
+	        find_first_match_in_period=True,
+	        returning="date_admitted",
+	        date_format="YYYY-MM-DD",
+	        return_expectations={"date": {"earliest": "2020-02-01"}},
+        ),
+        covid_icu=patients.admitted_to_icu(
+	        find_first_match_in_period=True,
+	        returning="date_admitted",
+	        date_format="YYYY-MM-DD",
+	        return_expectations={"date": {"earliest": "2020-02-01"}},
+        ),
+        # Censoring dates
         deregistered=patients.date_deregistered_from_all_supported_practices(
             date_format="YYYY-MM-DD"
         ),

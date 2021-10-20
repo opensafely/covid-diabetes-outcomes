@@ -10,7 +10,7 @@ from study_variables import generate_study_variables
 from codelists import *
 
 dummy_data_date = "2020-02-01"
-study_variables = generate_study_variables(index_date_variable="patient_index_date")
+study_variables = generate_study_variables(index_date_variable="date_patient_index")
 
 study = StudyDefinition(
     default_expectations={
@@ -20,11 +20,11 @@ study = StudyDefinition(
     },
     population=patients.satisfying(
         """
-           discharged_covid
-        OR discharged_pneum
+           date_discharged_covid
+        OR date_discharged_pneum
         """,    
     ),
-    discharged_covid=patients.admitted_to_hospital(	
+    date_discharged_covid=patients.admitted_to_hospital(	
 	    with_these_diagnoses=covid_codelist,
 	    on_or_before="today",
 	    find_first_match_in_period=True,
@@ -35,7 +35,7 @@ study = StudyDefinition(
 		    "incidence": 0.5,
 	    },
     ),
-    discharged_pneum=patients.admitted_to_hospital(	
+    date_discharged_pneum=patients.admitted_to_hospital(	
 	    with_these_diagnoses=pneumonia_codelist,
 	    on_or_before="today",
 	    find_first_match_in_period=True,
@@ -46,7 +46,7 @@ study = StudyDefinition(
 		    "incidence": 0.5,
 	    },
     ),
-    patient_index_date=patients.admitted_to_hospital(
+    date_patient_index=patients.admitted_to_hospital(
         with_these_diagnoses=combine_codelists(covid_codelist, pneumonia_codelist),
         on_or_before="today",
 	    find_first_match_in_period=True,
@@ -58,7 +58,7 @@ study = StudyDefinition(
 	    },
     ),
     has_follow_up=patients.registered_with_one_practice_between(
-        "patient_index_date - 1 year", "patient_index_date"
+        "date_patient_index - 1 year", "date_patient_index"
     ),
     **study_variables
 )

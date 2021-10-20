@@ -57,5 +57,8 @@ study = StudyDefinition(
 		    "incidence": 0.5,
 	    },
     ),
+    has_follow_up=patients.registered_with_one_practice_between(
+        "patient_index_date - 1 year", "patient_index_date"
+    ),
     **study_variables
 )

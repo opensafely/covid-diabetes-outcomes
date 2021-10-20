@@ -53,9 +53,11 @@ def generate_study_variables(index_date_variable):
             on_or_before="today",
             return_first_date_in_period=True,
             date_format="YYYY-MM-DD",
-            return_expectations={"incidence": 0.05},
+            return_expectations={
+                "date": {"earliest": "2015-01-01"},
+                "incidence": 0.05
+            },
         ),
-
         # For stratifying on type of diabetes (at discharge)
         # And for identifying 'new onset' diabetes 
         t1dm_gp_first=patients.with_these_clinical_events(
@@ -65,7 +67,7 @@ def generate_study_variables(index_date_variable):
             date_format="YYYY-MM-DD",
             return_expectations={
                 "date": {"earliest": "2015-01-01"},
-                "incidence": 0.01
+                "incidence": 0.0075
             },
         ),
         t1dm_gp_last=patients.with_these_clinical_events(
@@ -75,7 +77,7 @@ def generate_study_variables(index_date_variable):
             date_format="YYYY-MM-DD",
             return_expectations={
                 "date": {"earliest": "2015-01-01"},
-                "incidence": 0.01
+                "incidence": 0.0075
             },
         ),
         t2dm_gp_first=patients.with_these_clinical_events(
@@ -85,7 +87,7 @@ def generate_study_variables(index_date_variable):
             date_format="YYYY-MM-DD",
             return_expectations={
                 "date": {"earliest": "2015-01-01"},
-                "incidence": 0.01
+                "incidence": 0.0425
             },
         ),
         t2dm_gp_last=patients.with_these_clinical_events(
@@ -95,7 +97,7 @@ def generate_study_variables(index_date_variable):
             date_format="YYYY-MM-DD",
             return_expectations={
                 "date": {"earliest": "2015-01-01"},
-                "incidence": 0.01
+                "incidence": 0.0425
             },
         ),
         unknown_diabetes_gp_first=patients.with_these_clinical_events(
@@ -105,7 +107,7 @@ def generate_study_variables(index_date_variable):
             date_format="YYYY-MM-DD",
             return_expectations={
                 "date": {"earliest": "2015-01-01"},
-                "incidence": 0.01
+                "incidence": 0.005
             },
         ),
         unknown_diabetes_gp_last=patients.with_these_clinical_events(
@@ -115,12 +117,44 @@ def generate_study_variables(index_date_variable):
             date_format="YYYY-MM-DD",
             return_expectations={
                 "date": {"earliest": "2015-01-01"},
-                "incidence": 0.01
+                "incidence": 0.005
             },
+        ),
+        t1dm_hospital_first=patients.admitted_to_hospital(
+            with_these_diagnoses=diabetes_t1_codes_hospital,
+            on_or_before=f"{index_date_variable}",
+            find_first_match_in_period=True,
+            returning="date_admitted",
+            date_format="YYYY-MM-DD",
+            return_expectations={"date": {"earliest": "2015-01-01"}},
+        ),
+        t1dm_hospital_last=patients.admitted_to_hospital(
+            with_these_diagnoses=diabetes_t1_codes_hospital,
+            on_or_before=f"{index_date_variable}",
+            find_last_match_in_period=True,
+            returning="date_admitted",
+            date_format="YYYY-MM-DD",
+            return_expectations={"date": {"earliest": "2015-01-01"}},
+        ),
+        t2dm_hospital_first=patients.admitted_to_hospital(
+            with_these_diagnoses=diabetes_t2_codes_hospital,
+            on_or_before=f"{index_date_variable}",
+            find_first_match_in_period=True,
+            returning="date_admitted",
+            date_format="YYYY-MM-DD",
+            return_expectations={"date": {"earliest": "2015-01-01"}},
+        ),
+        t2dm_hospital_last=patients.admitted_to_hospital(
+            with_these_diagnoses=diabetes_t2_codes_hospital,
+            on_or_before=f"{index_date_variable}",
+            find_last_match_in_period=True,
+            returning="date_admitted",
+            date_format="YYYY-MM-DD",
+            return_expectations={"date": {"earliest": "2015-01-01"}},
         ),
         
         #### covid_diagnosis=
-        
+
         #### pneum_diagnosis=
 
         deregistered=patients.date_deregistered_from_all_supported_practices(

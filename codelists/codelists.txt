@@ -3,3 +3,4 @@ opensafely/type-2-diabetes/2020-06-29
 opensafely/diabetes-unknown-type/2020-06-29
 opensafely/type-1-diabetes-secondary-care/2020-09-27
 opensafely/covid-identification/2020-06-03
+opensafely/pneumonia-secondary-care/2020-10-05

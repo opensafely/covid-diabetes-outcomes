@@ -29,6 +29,12 @@
       "url": "https://codelists.opensafely.org/codelist/opensafely/covid-identification/2020-06-03/",
       "downloaded_at": "2021-10-18 22:18:11.292118Z",
       "sha": "124db6929439379b7dacd55ba26ae4f2ed9370bc"
+    },
+    "opensafely-pneumonia-secondary-care.csv": {
+      "id": "opensafely/pneumonia-secondary-care/2020-10-05",
+      "url": "https://codelists.opensafely.org/codelist/opensafely/pneumonia-secondary-care/2020-10-05/",
+      "downloaded_at": "2021-10-20 09:44:15.506418Z",
+      "sha": "866ab4f0ff144330c1a0ea28116c9d2073cf379a"
     }
   }
 }

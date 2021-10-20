@@ -12,7 +12,7 @@ diabetes_unknown_codes = codelist_from_csv(
 )
 diabetes_t1_codes_hospital = codelist_from_csv(
     "codelists/opensafely-type-1-diabetes-secondary-care.csv",
-   system="icd10",
+    system="icd10",
     column="icd10_code",
 )
 diabetes_t2_codes_hospital = codelist(
@@ -25,4 +25,11 @@ covid_codelist = codelist_from_csv(
     "codelists/opensafely-covid-identification.csv",
     system="icd10",
     column="icd10_code",
+)
+
+# Pneumonia (secondary care) code list
+pneumonia_codelist = codelist_from_csv(
+    "codelists/opensafely-pneumonia-secondary-care.csv",
+    system="icd10",
+    column="ICD code",
 )

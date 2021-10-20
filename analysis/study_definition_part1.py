@@ -31,7 +31,7 @@ study = StudyDefinition(
 	    returning="date_discharged",
 	    date_format="YYYY-MM-DD",
 	    return_expectations={
-            "date": {"latest": "today"},
+            "date": {"earliest": "2020-02-01"},
 		    "incidence": 0.5,
 	    },
     ),
@@ -42,7 +42,7 @@ study = StudyDefinition(
 	    returning="date_discharged",
 	    date_format="YYYY-MM-DD",
 	    return_expectations={
-		    "date": {"latest": "today"},
+		    "date": {"earliest": "2018-02-01"},
 		    "incidence": 0.5,
 	    },
     ),
@@ -53,8 +53,8 @@ study = StudyDefinition(
 	    returning="date_discharged",
 	    date_format="YYYY-MM-DD",
 	    return_expectations={
-		    "date": {"latest": "today"},
-		    "incidence": 0.5,
+		    "date": {"earliest": "2018-02-01"},
+		    "incidence": 1,
 	    },
     ),
     has_follow_up=patients.registered_with_one_practice_between(

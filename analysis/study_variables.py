@@ -21,7 +21,7 @@ def generate_study_variables(index_date_variable):
             f"{index_date_variable}",
             returning="pseudo_id",
             return_expectations={
-                "int": {"distribution": "normal", "mean": 1000, "stddev": 100},
+                "int": {"distribution": "normal", "mean": 50, "stddev": 5},
                 "incidence": 1,
             },
         ),

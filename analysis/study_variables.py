@@ -125,7 +125,10 @@ def generate_study_variables(index_date_variable):
             find_first_match_in_period=True,
             returning="date_admitted",
             date_format="YYYY-MM-DD",
-            return_expectations={"date": {"earliest": "2015-01-01"}},
+            return_expectations={
+                "date": {"earliest": "2015-01-01"},
+                "incidence": 0.005
+            },
         ),
         date_t1dm_hospital_last=patients.admitted_to_hospital(
             with_these_diagnoses=diabetes_t1_codes_hospital,
@@ -133,7 +136,10 @@ def generate_study_variables(index_date_variable):
             find_last_match_in_period=True,
             returning="date_admitted",
             date_format="YYYY-MM-DD",
-            return_expectations={"date": {"earliest": "2015-01-01"}},
+            return_expectations={
+                "date": {"earliest": "2015-01-01"},
+                "incidence": 0.005
+            },
         ),
         date_t2dm_hospital_first=patients.admitted_to_hospital(
             with_these_diagnoses=diabetes_t2_codes_hospital,
@@ -141,7 +147,10 @@ def generate_study_variables(index_date_variable):
             find_first_match_in_period=True,
             returning="date_admitted",
             date_format="YYYY-MM-DD",
-            return_expectations={"date": {"earliest": "2015-01-01"}},
+            return_expectations={
+                "date": {"earliest": "2015-01-01"},
+                "incidence": 0.02
+            },
         ),
         date_t2dm_hospital_last=patients.admitted_to_hospital(
             with_these_diagnoses=diabetes_t2_codes_hospital,
@@ -149,7 +158,10 @@ def generate_study_variables(index_date_variable):
             find_last_match_in_period=True,
             returning="date_admitted",
             date_format="YYYY-MM-DD",
-            return_expectations={"date": {"earliest": "2015-01-01"}},
+            return_expectations={
+                "date": {"earliest": "2015-01-01"},
+                "incidence": 0.02
+            },
         ),
         # COVID dates
         date_covid_test=patients.with_test_result_in_sgss(
@@ -175,7 +187,11 @@ def generate_study_variables(index_date_variable):
         ),
         # Censoring dates
         date_deregistered=patients.date_deregistered_from_all_supported_practices(
-            date_format="YYYY-MM-DD"
+            date_format="YYYY-MM-DD",
+            return_expectations={
+                "date": {"earliest": "2020-02-01"},
+                "incidence": 0.05,
+            },
         ),
         date_of_death=patients.died_from_any_cause(
             returning="date_of_death",

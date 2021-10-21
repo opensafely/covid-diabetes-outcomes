@@ -8,6 +8,7 @@ def generate_study_variables(index_date_variable):
             "YYYY-MM",
             return_expectations={
                 "date": {"earliest": "1950-01-01", "latest": "today"},
+                "incidence": 1
             },
         ),
         sex=patients.sex(

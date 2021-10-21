@@ -17,3 +17,10 @@ actions:
     outputs:
       highly_sensitive:
         analysis_dataset: output/input_part1_clean.dta
+
+  matching_groups_1_and_2:
+    run: stata-mp:latest analysis/002_matching_groups_1_and_2.do
+    needs: [data_cleaning]
+    outputs:
+      highly_sensitive:
+        analysis_dataset: output/matched_groups_1_and_2.dta

@@ -1,3 +1,8 @@
+clear
+do `c(pwd)'/analysis/000_filepaths.do
+
+use $outdir/input_part1_clean.dta
+
 set more off
 
 **// Specify the maximum number of controls per case
@@ -17,7 +22,7 @@ gen case_id=_n if case==1
 count if case==1
 local numcases=r(N)
 
-**// Matching each case with up to k comparators
+**// Matching each case with up to `maxcontrols' comparators
 set seed 76518273
 gen setid=.
 
@@ -45,3 +50,5 @@ forvalues j=1(1)`numcases' {
 drop if setid==.
 gsort setid -case patient_id
 compress
+
+save $outdir/matched_groups_1_and_2.dta, replace

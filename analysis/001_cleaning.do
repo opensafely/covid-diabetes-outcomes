@@ -1,3 +1,8 @@
+clear
+do `c(pwd)'/analysis/global.do
+
+import delimited $outdir/input_part1.csv
+
 replace date_of_birth=date_of_birth+"-15"
 
 describe date_*, varlist
@@ -24,3 +29,5 @@ replace group=4 if date_discharged_covid> date_discharged_pneum &  date_diabetes
 
 label define grouplab 1 "Covid with diabetes" 2 "Covid without diabetes" 3 "Pneumonia with diabetes" 4 "Pneumonia without diabetes"
 label values group grouplab
+
+save $outdir/input_part1_clean.dta, replace

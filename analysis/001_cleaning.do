@@ -1,5 +1,5 @@
 clear
-do `c(pwd)'/analysis/global.do
+do `c(pwd)'/analysis/000_filepaths.do
 
 import delimited $outdir/input_part1.csv
 

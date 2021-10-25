@@ -33,7 +33,7 @@ actions:
         analysis_dataset: output/matched_groups_1_and_3.dta
 
   matching_groups_3_and_4:
-    run: stata-mp:latest analysis/022_matching_groups_3_and_4.do
+    run: stata-mp:latest analysis/023_matching_groups_3_and_4.do
     needs: [data_cleaning]
     outputs:
       highly_sensitive:

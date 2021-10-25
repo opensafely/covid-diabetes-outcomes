@@ -8,24 +8,15 @@ set more off
 **// Specify the maximum number of controls per case
 local maxcontrols=5
 
-**// Retain relevant groups of cases (group 1) and potential comparators (group 3)
-keep if (group==1 | group==3)
+**// Retain relevant groups of cases (group 1) and potential comparators (group 2)
+keep if (group==3 | group==4)
 
 **// Generate a case indicator
-gen case=(group==1)
+gen case=(group==3)
 
 **// Create unique case IDs
 gsort -case date_patient_index
 gen case_id=_n if case==1
-
-**// Create pseudo-index dates
-gen actual_date_index=date_patient_index if group==3
-gen temp_year=year(date_patient_index)-2
-gen temp_month=month(date_patient_index)
-gen temp_day=day(date_patient_index)
-replace temp_day=28 if temp_day==29 & temp_month==2
-replace date_patient_index=mdy(temp_month,temp_day,temp_year)
-drop temp_*
 
 **// Count the number of cases
 count if case==1
@@ -58,8 +49,6 @@ forvalues j=1(1)`numcases' {
 }
 drop if setid==.
 gsort setid -case patient_id
-replace date_patient_index=actual_date_index if group==3
-drop actual_date_index
 compress
 
-save $outdir/matched_groups_1_and_3.dta, replace
+save $outdir/matched_groups_3_and_4.dta, replace

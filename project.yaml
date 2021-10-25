@@ -31,3 +31,17 @@ actions:
     outputs:
       highly_sensitive:
         analysis_dataset: output/matched_groups_1_and_3.dta
+
+  matching_groups_3_and_4:
+    run: stata-mp:latest analysis/022_matching_groups_3_and_4.do
+    needs: [data_cleaning]
+    outputs:
+      highly_sensitive:
+        analysis_dataset: output/matched_groups_3_and_4.dta
+
+  analyses_table1:
+    run: stata-mp:latest analysis/031_analyses_table1.do
+    needs: [data_cleaning]
+    outputs:
+      highly_sensitive:
+        analysis_dataset: output/table1_demographics.dta

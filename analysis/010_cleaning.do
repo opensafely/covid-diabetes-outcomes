@@ -22,10 +22,10 @@ replace date_patient_index=min(date_discharged_covid, date_discharged_pneum)
 drop if (has_follow_up!=1 | min(date_deregistered, date_of_death)<=date_patient_index)
 
 gen group=.
-replace group=1 if date_discharged_covid<=date_discharged_pneum & (date_diabetes_diagnosis<=(date_patient_index+30) | min(date_t1dm_hospital_first, date_t1dm_hospital_last)<=date_patient_index)
-replace group=2 if date_discharged_covid<=date_discharged_pneum &  date_diabetes_diagnosis> (date_patient_index+30) & min(date_t1dm_hospital_first, date_t1dm_hospital_last)> date_patient_index
-replace group=3 if date_discharged_covid> date_discharged_pneum & (date_diabetes_diagnosis<=(date_patient_index+30) | min(date_t1dm_hospital_first, date_t1dm_hospital_last)<=date_patient_index)
-replace group=4 if date_discharged_covid> date_discharged_pneum &  date_diabetes_diagnosis> (date_patient_index+30) & min(date_t1dm_hospital_first, date_t1dm_hospital_last)> date_patient_index
+replace group=1 if date_discharged_covid<=date_discharged_pneum & (date_diabetes_diagnosis<=(date_patient_index+30) | min(date_t1dm_hospital_first, date_t2dm_hospital_first)<=date_patient_index)
+replace group=2 if date_discharged_covid<=date_discharged_pneum &  date_diabetes_diagnosis> (date_patient_index+30) & min(date_t1dm_hospital_first, date_t2dm_hospital_first)> date_patient_index
+replace group=3 if date_discharged_covid> date_discharged_pneum & (date_diabetes_diagnosis<=(date_patient_index+30) | min(date_t1dm_hospital_first, date_t2dm_hospital_first)<=date_patient_index)
+replace group=4 if date_discharged_covid> date_discharged_pneum &  date_diabetes_diagnosis> (date_patient_index+30) & min(date_t1dm_hospital_first, date_t2dm_hospital_first)> date_patient_index
 
 label define grouplab 1 "Covid with diabetes" 2 "Covid without diabetes" 3 "Pneumonia with diabetes" 4 "Pneumonia without diabetes"
 label values group grouplab

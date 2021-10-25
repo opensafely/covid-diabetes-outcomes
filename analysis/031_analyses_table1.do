@@ -23,6 +23,6 @@ tempname demographics
 postclose `demographics'
 
 **// Convert to csv
-use $resultsdir/table1_demographics.dta, replace		
+use $resultsdir/table1_demographics.dta, clear		
 export delimited using $resultsdir/table1_demographics.csv, replace
 * erase $resultsdir/table1_demographics.dta

@@ -43,5 +43,5 @@ actions:
     run: stata-mp:latest analysis/031_analyses_table1.do
     needs: [data_cleaning]
     outputs:
-      highly_sensitive:
-        analysis_dataset: output/table1_demographics.dta
+      moderately_sensitive:
+        analysis_dataset: output/part1/table1_demographics.dta

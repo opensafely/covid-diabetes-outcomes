@@ -35,6 +35,12 @@
       "url": "https://codelists.opensafely.org/codelist/opensafely/pneumonia-secondary-care/2020-10-05/",
       "downloaded_at": "2021-10-20 09:44:15.506418Z",
       "sha": "866ab4f0ff144330c1a0ea28116c9d2073cf379a"
+    },
+    "opensafely-ethnicity.csv": {
+      "id": "opensafely/ethnicity/2020-04-27",
+      "url": "https://codelists.opensafely.org/codelist/opensafely/ethnicity/2020-04-27/",
+      "downloaded_at": "2021-10-26 21:56:55.208101Z",
+      "sha": "3d2f3998b71863a80b24d60f6f4282e14191ae13"
     }
   }
 }

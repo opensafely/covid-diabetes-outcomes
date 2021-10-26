@@ -33,3 +33,11 @@ pneumonia_codelist = codelist_from_csv(
     system="icd10",
     column="ICD code",
 )
+
+# Ethnicity (as recorded in primary care)
+ethnicity_codes = codelist_from_csv(
+	"codelists/opensafely-ethnicity.csv",
+	system="ctv3",
+	column="Code",
+	category_column="Grouping_6",
+)

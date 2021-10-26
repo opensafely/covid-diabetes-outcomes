@@ -7,7 +7,7 @@ def generate_study_variables(index_date_variable):
         date_of_birth=patients.date_of_birth(
             "YYYY-MM",
             return_expectations={
-                "date": {"earliest": "1950-01-01", "latest": "today"},
+                "date": {"earliest": "1911-01-01", "latest": "today"},
                 "incidence": 1
             },
         ),
@@ -16,6 +16,16 @@ def generate_study_variables(index_date_variable):
                 "rate": "universal",
                 "category": {"ratios": {"M": 0.49, "F": 0.51}},
             },
+        ),
+        ethnicity=patients.with_these_clinical_events(
+	        ethnicity_codes,	
+	        returning="category",
+	        find_last_match_in_period=True,
+	        on_or_before="today",
+	        return_expectations={
+		        "category": {"ratios": {"1": 0.8, "5": 0.1, "3": 0.1}},
+		        "incidence": 0.8,
+	        },
         ),
         practice_id=patients.registered_practice_as_of(
             f"{index_date_variable}",
@@ -42,6 +52,28 @@ def generate_study_variables(index_date_variable):
                         "South East": 0.1,
                         "South West": 0.1,
                     },
+                },
+            },
+        ),
+        imd=patients.address_as_of(
+            f"{index_date_variable}",
+            returning="index_of_multiple_deprivation",
+            round_to_nearest=100,
+            return_expectations={
+                "rate": "universal",
+                "category": {
+                    "ratios": {
+                        "100": 0.1,
+                        "200": 0.1,
+                        "300": 0.1,
+                        "400": 0.1,
+                        "500": 0.1,
+                        "600": 0.1,
+                        "700": 0.1,
+                        "800": 0.1,
+                        "900": 0.1,
+                        "1000": 0.1,
+                    }
                 },
             },
         ),

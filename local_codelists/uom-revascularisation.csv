@@ -1,0 +1,289 @@
+﻿Code,Term,Type
+K401,Saphenous vein graft replacement of one coronary artery,CABG
+K402,Saphenous vein graft replacement of two coronary arteries,CABG
+K403,Saphenous vein graft replacement of three coronary arteries,CABG
+K404,Saphenous vein graft replacement of four or more coronary arteries,CABG
+K408,Other specified saphenous vein graft replacement of coronary artery,CABG
+K409,Unspecified saphenous vein graft replacement of coronary artery,CABG
+K411,Autograft replacement of one coronary artery NEC,CABG
+K412,Autograft replacement of two coronary arteries NEC,CABG
+K413,Autograft replacement of three coronary arteries NEC,CABG
+K414,Autograft replacement of four or more coronary arteries NEC,CABG
+K418,Other specified other autograft replacement of coronary artery,CABG
+K419,Unspecified other autograft replacement of coronary artery,CABG
+K421,Allograft replacement of one coronary artery,CABG
+K422,Allograft replacement of two coronary arteries,CABG
+K423,Allograft replacement of three coronary arteries,CABG
+K424,Allograft replacement of four or more coronary arteries,CABG
+K428,Other specified allograft replacement of coronary artery,CABG
+K429,Unspecified allograft replacement of coronary artery,CABG
+K431,Prosthetic replacement of one coronary artery,CABG
+K432,Prosthetic replacement of two coronary arteries,CABG
+K433,Prosthetic replacement of three coronary arteries,CABG
+K434,Prosthetic replacement of four or more coronary arteries,CABG
+K438,Other specified prosthetic replacement of coronary artery,CABG
+K439,Unspecified prosthetic replacement of coronary artery,CABG
+K441,Replacement of coronary arteries using multiple methods,CABG
+K442,Revision of replacement of coronary artery,CABG
+K448,Other specified other replacement of coronary artery,CABG
+K449,Unspecified other replacement of coronary artery,CABG
+K451,Double anastomosis of mammary arteries to coronary arteries,CABG
+K452,Double anastomosis of thoracic arteries to coronary arteries NEC,CABG
+K453,Anastomosis of mammary artery to left anterior descending coronary artery,CABG
+K454,Anastomosis of mammary artery to coronary artery NEC,CABG
+K455,Anastomosis of thoracic artery to coronary artery NEC,CABG
+K468,Other specified other bypass of coronary artery,CABG
+K469,Unspecified other bypass of coronary artery,CABG
+K483,Open angioplasty of coronary artery,angioplasty
+K488,Other specified other open operations on coronary artery,CABG
+K489,Unspecified other open operations on coronary artery,CABG
+K491,Percutaneous transluminal balloon angioplasty of one coronary artery,angioplasty
+K492,Percutaneous transluminal balloon angioplasty of multiple coronary arteries,angioplasty
+K493,Percutaneous transluminal balloon angioplasty of bypass graft of coronary artery,angioplasty
+K494,Percutaneous transluminal cutting balloon angioplasty of coronary artery,angioplasty
+K498,Other specified transluminal balloon angioplasty of coronary artery,angioplasty
+K499,Unspecified transluminal balloon angioplasty of coronary artery,angioplasty
+K501,Percutaneous transluminal laser coronary angioplasty,angioplasty
+K508,Other specified other therapeutic transluminal operations on coronary artery,angioplasty
+K509,Unspecified other therapeutic transluminal operations on coronary artery,angioplasty
+K518,Other specified diagnostic transluminal operations on coronary artery,angioplasty
+K519,Unspecified diagnostic transluminal operations on coronary artery,angioplasty
+K561,Transluminal insertion of pulsation balloon into aorta,aortic & peripheral
+K585,Transluminal intracardiac echocardiography,Imaging
+K751,Percutaneous transluminal balloon angioplasty and insertion of 1-2 drug-eluting stents into coronary artery,angioplasty
+K752,Percutaneous transluminal balloon angioplasty and insertion of 3 or more drug-eluting stents into coronary artery,angioplasty
+K753,Percutaneous transluminal balloon angioplasty and insertion of 1-2 stents into coronary artery,angioplasty
+K754,Percutaneous transluminal balloon angioplasty and insertion of 3 or more stents into coronary artery NEC,angioplasty
+K758,Other specified percutaneous transluminal balloon angioplasty and insertion of stent into coronary artery,angioplasty
+K759,Unspecified percutaneous transluminal balloon angioplasty and insertion of stent into coronary artery,angioplasty
+L161,Emergency bypass of aorta by anastomosis of axillary artery to femoral artery,aortic & peripheral
+L162,Bypass of aorta by anastomosis of axillary artery to femoral artery NEC,aortic & peripheral
+L163,Bypass of aorta by anastomosis of axillary artery to bilateral femoral arteries,aortic & peripheral
+L168,Other specified extra-anatomic bypass of aorta,aortic & peripheral
+L169,Unspecified extra-anatomic bypass of aorta,aortic & peripheral
+L181,Emergency replacement of aneurysmal segment of ascending aorta by anastomosis of aorta to aorta,aortic & peripheral
+L182,Emergency replacement of aneurysmal segment of thoracic aorta by anastomosis of aorta to aorta NEC,aortic & peripheral
+L183,Emergency replacement of aneurysmal segment of suprarenal abdominal aorta by anastomosis of aorta to aorta,aortic & peripheral
+L184,Emergency replacement of aneurysmal segment of infrarenal abdominal aorta by anastomosis of aorta to aorta,aortic & peripheral
+L185,Emergency replacement of aneurysmal segment of abdominal aorta by anastomosis of aorta to aorta NEC,aortic & peripheral
+L186,Emergency replacement of aneurysmal bifurcation of aorta by anastomosis of aorta to iliac artery,aortic & peripheral
+L188,Other specified emergency replacement of aneurysmal segment of aorta,aortic & peripheral
+L189,Unspecified emergency replacement of aneurysmal segment of aorta,aortic & peripheral
+L191,Replacement of aneurysmal segment of ascending aorta by anastomosis of aorta to aorta NEC,aortic & peripheral
+L192,Replacement of aneurysmal segment of thoracic aorta by anastomosis of aorta to aorta NEC,aortic & peripheral
+L193,Replacement of aneurysmal segment of suprarenal abdominal aorta by anastomosis of aorta to aorta NEC,aortic & peripheral
+L194,Replacement of aneurysmal segment of infrarenal abdominal aorta by anastomosis of aorta to aorta NEC,aortic & peripheral
+L195,Replacement of aneurysmal segment of abdominal aorta by anastomosis of aorta to aorta NEC,aortic & peripheral
+L196,Replacement of aneurysmal bifurcation of aorta by anastomosis of aorta to iliac artery NEC,aortic & peripheral
+L198,Other specified other replacement of aneurysmal segment of aorta,aortic & peripheral
+L199,Unspecified other replacement of aneurysmal segment of aorta,aortic & peripheral
+L201,Emergency bypass of segment of ascending aorta by anastomosis of aorta to aorta NEC,aortic & peripheral
+L202,Emergency bypass of segment of thoracic aorta by anastomosis of aorta to aorta NEC,aortic & peripheral
+L203,Emergency bypass of segment of suprarenal abdominal aorta by anastomosis of aorta to aorta NEC,aortic & peripheral
+L204,Emergency bypass of segment of infrarenal abdominal aorta by anastomosis of aorta to aorta NEC,aortic & peripheral
+L205,Emergency bypass of segment of abdominal aorta by anastomosis of aorta to aorta NEC,aortic & peripheral
+L206,Emergency bypass of bifurcation of aorta by anastomosis of aorta to iliac artery NEC,aortic & peripheral
+L208,Other specified other emergency bypass of segment of aorta,aortic & peripheral
+L209,Unspecified other emergency bypass of segment of aorta,aortic & peripheral
+L211,Bypass of segment of ascending aorta by anastomosis of aorta to aorta NEC,aortic & peripheral
+L212,Bypass of segment of thoracic aorta by anastomosis of aorta to aorta NEC,aortic & peripheral
+L213,Bypass of segment of suprarenal abdominal aorta by anastomosis of aorta to aorta NEC,aortic & peripheral
+L214,Bypass of segment of infrarenal abdominal aorta by anastomosis of aorta to aorta NEC,aortic & peripheral
+L215,Bypass of segment of abdominal aorta by anastomosis of aorta to aorta NEC,aortic & peripheral
+L216,Bypass of bifurcation of aorta by anastomosis of aorta to iliac artery NEC,aortic & peripheral
+L218,Other specified other bypass of segment of aorta,aortic & peripheral
+L219,Unspecified other bypass of segment of aorta,aortic & peripheral
+L221,Revision of prosthesis of thoracic aorta,aortic & peripheral
+L222,Revision of prosthesis of bifurcation of aorta,aortic & peripheral
+L223,Revision of prosthesis of abdominal aorta NEC,aortic & peripheral
+L231,Plastic repair of aorta and end to end anastomosis of aorta,aortic & peripheral
+L232,Plastic repair of aorta using subclavian flap,aortic & peripheral
+L233,Plastic repair of aorta using patch graft,aortic & peripheral
+L235,Revision of plastic repair of aorta,aortic & peripheral
+L236,Plastic repair of aorta and insertion of tube graft,aortic & peripheral
+L238,Other specified plastic repair of aorta,aortic & peripheral
+L239,Unspecified plastic repair of aorta,aortic & peripheral
+L258,Other specified other open operations on aorta,aortic & peripheral
+L259,Unspecified other open operations on aorta,aortic & peripheral
+L261,Percutaneous transluminal balloon angioplasty of aorta,aortic & peripheral
+L262,Percutaneous transluminal angioplasty of aorta NEC,aortic & peripheral
+L265,Percutaneous transluminal insertion of stent into aorta,aortic & peripheral
+L266,Transluminal aortic stent graft with fenestration NEC,aortic & peripheral
+L267,Transluminal aortic branched stent graft NEC,aortic & peripheral
+L268,Other specified transluminal operations on aorta,aortic & peripheral
+L269,Unspecified transluminal operations on aorta,aortic & peripheral
+L271,Endovascular insertion of stent graft for infrarenal abdominal aortic aneurysm,aortic & peripheral
+L272,Endovascular insertion of stent graft for suprarenal aortic aneurysm,aortic & peripheral
+L273,Endovascular insertion of stent graft for thoracic aortic aneurysm,aortic & peripheral
+L274,Endovascular insertion of stent graft for aortic dissection in any position,aortic & peripheral
+L275,Endovascular insertion of stent graft for aortic aneurysm of bifurcation NEC,aortic & peripheral
+L276,Endovascular insertion of stent graft for aorto-uniiliac aneurysm,aortic & peripheral
+L278,Other specified transluminal insertion of stent graft for aneurysmal segment of aorta,aortic & peripheral
+L279,Unspecified transluminal insertion of stent graft for aneurysmal segment of aorta,aortic & peripheral
+L281,Endovascular insertion of stent for infrarenal abdominal aortic aneurysm,aortic & peripheral
+L282,Endovascular insertion of stent for suprarenal aortic aneurysm,aortic & peripheral
+L283,Endovascular insertion of stent for thoracic aortic aneurysm,aortic & peripheral
+L284,Endovascular insertion of stent for aortic dissection in any position,aortic & peripheral
+L285,Endovascular insertion of stent for aortic aneurysm of bifurcation NEC,aortic & peripheral
+L286,Endovascular insertion of stent for aorto-uniiliac aneurysm,aortic & peripheral
+L288,Other specified transluminal operations on aneurysmal segment of aorta,aortic & peripheral
+L289,Unspecified transluminal operations on aneurysmal segment of aorta,aortic & peripheral
+L291,Replacement of carotid artery using graft,carotid
+L292,Intracranial bypass to carotid artery NEC,carotid
+L293,Bypass to carotid artery NEC,carotid
+L294,Endarterectomy of carotid artery and patch repair of carotid artery,carotid
+L296,High-flow interposition extracranial to intracranial bypass from external carotid artery to middle cerebral artery,carotid
+L297,Bypass of carotid artery by anastomosis of superficial temporal artery to middle cerebral artery,carotid
+L298,Other specified reconstruction of carotid artery,carotid
+L299,Unspecified reconstruction of carotid artery,carotid
+L301,Repair of carotid artery NEC,carotid
+L308,Other specified other open operations on carotid artery,carotid
+L309,Unspecified other open operations on carotid artery,carotid
+L311,Percutaneous transluminal angioplasty of carotid artery,carotid
+L314,Percutaneous transluminal insertion of stent into carotid artery,carotid
+L318,Other specified transluminal operations on carotid artery,carotid
+L319,Unspecified transluminal operations on carotid artery,carotid
+L341,Reconstruction of cerebral artery,carotid
+L348,Other specified other open operations on cerebral artery,carotid
+L349,Unspecified other open operations on cerebral artery,carotid
+L353,Percutaneous transluminal insertion of stent into cerebral artery,carotid
+L358,Other specified transluminal operations on cerebral artery,carotid
+L359,Unspecified transluminal operations on cerebral artery,carotid
+L371,Bypass of subclavian artery NEC,aortic & peripheral
+L373,Endarterectomy of subclavian artery and patch repair of subclavian artery,aortic & peripheral
+L378,Other specified reconstruction of subclavian artery,aortic & peripheral
+L379,Unspecified reconstruction of subclavian artery,aortic & peripheral
+L388,Other specified other open operations on subclavian artery,aortic & peripheral
+L389,Unspecified other open operations on subclavian artery,aortic & peripheral
+L391,Percutaneous transluminal angioplasty of subclavian artery,aortic & peripheral
+L395,Percutaneous transluminal insertion of stent into subclavian artery,aortic & peripheral
+L398,Other specified transluminal operations on subclavian artery,aortic & peripheral
+L399,Unspecified transluminal operations on subclavian artery,aortic & peripheral
+L411,Plastic repair of renal artery and end to end anastomosis of renal artery,aortic & peripheral
+L412,Bypass of renal artery,aortic & peripheral
+L416,Patch angioplasty of renal artery,aortic & peripheral
+L418,Other specified reconstruction of renal artery,aortic & peripheral
+L419,Unspecified reconstruction of renal artery,aortic & peripheral
+L424,Operations on aneurysm of renal artery,aortic & peripheral
+L428,Other specified other open operations on renal artery,aortic & peripheral
+L429,Unspecified other open operations on renal artery,aortic & peripheral
+L431,Percutaneous transluminal angioplasty of renal artery,aortic & peripheral
+L435,Percutaneous transluminal insertion of stent into renal artery,aortic & peripheral
+L438,Other specified transluminal operations on renal artery,aortic & peripheral
+L439,Unspecified transluminal operations on renal artery,aortic & peripheral
+L451,Bypass of visceral branch of abdominal aorta NEC,aortic & peripheral
+L471,Percutaneous transluminal angioplasty of visceral branch of abdominal aorta NEC,aortic & peripheral
+L474,Percutaneous transluminal insertion of stent into visceral branch of abdominal aorta NEC,aortic & peripheral
+L481,Emergency replacement of aneurysmal common iliac artery by anastomosis of aorta to common iliac artery,aortic & peripheral
+L482,Emergency replacement of aneurysmal iliac artery by anastomosis of aorta to external iliac artery,aortic & peripheral
+L483,Emergency replacement of aneurysmal artery of leg by anastomosis of aorta to common femoral artery,aortic & peripheral
+L484,Emergency replacement of aneurysmal artery of leg by anastomosis of aorta to superficial femoral artery,aortic & peripheral
+L485,Emergency replacement of aneurysmal iliac artery by anastomosis of iliac artery to iliac artery,aortic & peripheral
+L486,Emergency replacement of aneurysmal artery of leg by anastomosis of iliac artery to femoral artery,aortic & peripheral
+L488,Other specified emergency replacement of aneurysmal iliac artery,aortic & peripheral
+L489,Unspecified emergency replacement of aneurysmal iliac artery,aortic & peripheral
+L491,Replacement of aneurysmal common iliac artery by anastomosis of aorta to common iliac artery NEC,aortic & peripheral
+L492,Replacement of aneurysmal iliac artery by anastomosis of aorta to external iliac artery NEC,aortic & peripheral
+L493,Replacement of aneurysmal artery of leg by anastomosis of aorta to common femoral artery NEC,aortic & peripheral
+L494,Replacement of aneurysmal artery of leg by anastomosis of aorta to superficial femoral artery NEC,aortic & peripheral
+L495,Replacement of aneurysmal iliac artery by anastomosis of iliac artery to iliac artery NEC,aortic & peripheral
+L496,Replacement of aneurysmal artery of leg by anastomosis of iliac artery to femoral artery NEC,aortic & peripheral
+L498,Other specified other replacement of aneurysmal iliac artery,aortic & peripheral
+L499,Unspecified other replacement of aneurysmal iliac artery,aortic & peripheral
+L501,Emergency bypass of common iliac artery by anastomosis of aorta to common iliac artery NEC,aortic & peripheral
+L502,Emergency bypass of iliac artery by anastomosis of aorta to external iliac artery NEC,aortic & peripheral
+L503,Emergency bypass of artery of leg by anastomosis of aorta to common femoral artery NEC,aortic & peripheral
+L504,Emergency bypass of artery of leg by anastomosis of aorta to deep femoral artery NEC,aortic & peripheral
+L505,Emergency bypass of iliac artery by anastomosis of iliac artery to iliac artery NEC,aortic & peripheral
+L506,Emergency bypass of artery of leg by anastomosis of iliac artery to femoral artery NEC,aortic & peripheral
+L508,Other specified other emergency bypass of iliac artery,aortic & peripheral
+L509,Unspecified other emergency bypass of iliac artery,aortic & peripheral
+L511,Bypass of common iliac artery by anastomosis of aorta to common iliac artery NEC,aortic & peripheral
+L512,Bypass of iliac artery by anastomosis of aorta to external iliac artery NEC,aortic & peripheral
+L513,Bypass of artery of leg by anastomosis of aorta to common femoral artery NEC,aortic & peripheral
+L514,Bypass of artery of leg by anastomosis of aorta to deep femoral artery NEC,aortic & peripheral
+L515,Bypass of iliac artery by anastomosis of iliac artery to iliac artery NEC,aortic & peripheral
+L516,Bypass of artery of leg by anastomosis of iliac artery to femoral artery NEC,aortic & peripheral
+L518,Other specified other bypass of iliac artery,aortic & peripheral
+L519,Unspecified other bypass of iliac artery,aortic & peripheral
+L528,Other specified reconstruction of iliac artery,aortic & peripheral
+L529,Unspecified reconstruction of iliac artery,aortic & peripheral
+L531,Repair of iliac artery NEC,aortic & peripheral
+L533,Operations on aneurysm of iliac artery NEC,aortic & peripheral
+L538,Other specified other open operations on iliac artery,aortic & peripheral
+L539,Unspecified other open operations on iliac artery,aortic & peripheral
+L541,Percutaneous transluminal angioplasty of iliac artery,aortic & peripheral
+L544,Percutaneous transluminal insertion of stent into iliac artery,aortic & peripheral
+L548,Other specified transluminal operations on iliac artery,aortic & peripheral
+L549,Unspecified transluminal operations on iliac artery,aortic & peripheral
+L561,Emergency replacement of aneurysmal femoral artery by anastomosis of femoral artery to femoral artery,aortic & peripheral
+L562,Emergency replacement of aneurysmal femoral artery by anastomosis of femoral artery to popliteal artery using prosthesis,aortic & peripheral
+L563,Emergency replacement of aneurysmal femoral artery by anastomosis of femoral artery to popliteal artery using vein graft,aortic & peripheral
+L564,Emergency replacement of aneurysmal femoral artery by anastomosis of femoral artery to tibial artery using prosthesis,aortic & peripheral
+L565,Emergency replacement of aneurysmal femoral artery by anastomosis of femoral artery to tibial artery using vein graft,aortic & peripheral
+L566,Emergency replacement of aneurysmal femoral artery by anastomosis of femoral artery to peroneal artery using prosthesis,aortic & peripheral
+L567,Emergency replacement of aneurysmal femoral artery by anastomosis of femoral artery to peroneal artery using vein graft,aortic & peripheral
+L568,Other specified emergency replacement of aneurysmal femoral artery,aortic & peripheral
+L569,Unspecified emergency replacement of aneurysmal femoral artery,aortic & peripheral
+L571,Replacement of aneurysmal femoral artery by anastomosis of femoral artery to femoral artery NEC,aortic & peripheral
+L572,Replacement of aneurysmal femoral artery by anastomosis of femoral artery to popliteal artery using prosthesis NEC,aortic & peripheral
+L573,Replacement of aneurysmal femoral artery by anastomosis of femoral artery to popliteal artery using vein graft NEC,aortic & peripheral
+L574,Replacement of aneurysmal femoral artery by anastomosis of femoral artery to tibial artery using prosthesis NEC,aortic & peripheral
+L575,Replacement of aneurysmal femoral artery by anastomosis of femoral artery to tibial artery using vein graft NEC,aortic & peripheral
+L576,Replacement of aneurysmal femoral artery by anastomosis of femoral artery to peroneal artery using prosthesis NEC,aortic & peripheral
+L577,Replacement of aneurysmal femoral artery by anastomosis of femoral artery to peroneal artery using vein graft NEC,aortic & peripheral
+L578,Other specified other replacement of aneurysmal femoral artery,aortic & peripheral
+L579,Unspecified other replacement of aneurysmal femoral artery,aortic & peripheral
+L581,Emergency bypass of femoral artery by anastomosis of femoral artery to femoral artery NEC,aortic & peripheral
+L582,Emergency bypass of femoral artery by anastomosis of femoral artery to popliteal artery using prosthesis NEC,aortic & peripheral
+L583,Emergency bypass of femoral artery by anastomosis of femoral artery to popliteal artery using vein graft NEC,aortic & peripheral
+L584,Emergency bypass of femoral artery by anastomosis of femoral artery to tibial artery using prosthesis NEC,aortic & peripheral
+L585,Emergency bypass of femoral artery by anastomosis of femoral artery to tibial artery using vein graft NEC,aortic & peripheral
+L586,Emergency bypass of femoral artery by anastomosis of femoral artery to peroneal artery using prosthesis NEC,aortic & peripheral
+L587,Emergency bypass of femoral artery by anastomosis of femoral artery to peroneal artery using vein graft NEC,aortic & peripheral
+L588,Other specified other emergency bypass of femoral artery,aortic & peripheral
+L589,Unspecified other emergency bypass of femoral artery,aortic & peripheral
+L591,Bypass of femoral artery by anastomosis of femoral artery to femoral artery NEC,aortic & peripheral
+L592,Bypass of femoral artery by anastomosis of femoral artery to popliteal artery using prosthesis NEC,aortic & peripheral
+L593,Bypass of femoral artery by anastomosis of femoral artery to popliteal artery using vein graft NEC,aortic & peripheral
+L594,Bypass of femoral artery by anastomosis of femoral artery to tibial artery using prosthesis NEC,aortic & peripheral
+L595,Bypass of femoral artery by anastomosis of femoral artery to tibial artery using vein graft NEC,aortic & peripheral
+L596,Bypass of femoral artery by anastomosis of femoral artery to peroneal artery using prosthesis NEC,aortic & peripheral
+L597,Bypass of femoral artery by anastomosis of femoral artery to peroneal artery using vein graft NEC,aortic & peripheral
+L598,Other specified other bypass of femoral artery,aortic & peripheral
+L599,Unspecified other bypass of femoral artery,aortic & peripheral
+L603,Profundoplasty of femoral artery and patch repair of deep femoral artery,aortic & peripheral
+L621,Repair of femoral artery NEC,aortic & peripheral
+L631,Percutaneous transluminal angioplasty of femoral artery,aortic & peripheral
+L635,Percutaneous transluminal insertion of stent into femoral artery,aortic & peripheral
+L638,Other specified transluminal operations on femoral artery,aortic & peripheral
+L639,Unspecified transluminal operations on femoral artery,aortic & peripheral
+L651,Revision of reconstruction involving aorta,aortic & peripheral
+L652,Revision of reconstruction involving iliac artery,aortic & peripheral
+L653,Revision of reconstruction involving femoral artery,aortic & peripheral
+L658,Other specified revision of reconstruction of artery,aortic & peripheral
+L659,Unspecified revision of reconstruction of artery,aortic & peripheral
+L662,Percutaneous transluminal stent reconstruction of artery,aortic & peripheral
+L663,Percutaneous transluminal occlusion of artery,aortic & peripheral
+L664,Percutaneous transluminal balloon test occlusion of artery,aortic & peripheral
+L665,Percutaneous transluminal balloon angioplasty of artery,aortic & peripheral
+L667,Percutaneous transluminal placement of peripheral stent in artery,aortic & peripheral
+L683,Repair of artery using prosthesis NEC,aortic & peripheral
+L684,Repair of artery using vein graft NEC,aortic & peripheral
+L711,Percutaneous transluminal angioplasty of artery,aortic & peripheral
+L761,Endovascular placement of one metallic stent,aortic & peripheral
+L762,Endovascular placement of one plastic stent,aortic & peripheral
+L763,Endovascular placement of two metallic stents,aortic & peripheral
+L764,Endovascular placement of two plastic stents,aortic & peripheral
+L765,Endovascular placement of three or more metallic stents,aortic & peripheral
+L766,Endovascular placement of three or more plastic stents,aortic & peripheral
+L767,Endovascular placement of metallic stent with mechanical embolic protection,aortic & peripheral
+L768,Other specified endovascular placement of stent,aortic & peripheral
+L769,Unspecified endovascular placement of stent,aortic & peripheral
+O201,Endovascular placement of one branched stent graft,aortic & peripheral
+O202,Endovascular placement of one fenestrated stent graft,aortic & peripheral
+O203,Endovascular placement of one stent graft NEC,aortic & peripheral
+O204,Endovascular placement of two stent grafts,aortic & peripheral
+O205,Endovascular placement of three or more stent grafts,aortic & peripheral
+O208,Other specified endovascular placement of stent graft,aortic & peripheral
+O209,Unspecified endovascular placement of stent graft,aortic & peripheral

@@ -5,3 +5,17 @@ opensafely/type-1-diabetes-secondary-care/2020-09-27
 opensafely/covid-identification/2020-06-03
 opensafely/pneumonia-secondary-care/2020-10-05
 opensafely/ethnicity/2020-04-27
+opensafely/smoking-clear/2020-04-29
+opensafely/smoking-unclear/2020-04-29
+opensafely/hazardous-alcohol-drinking/6364474b
+opensafely/chronic-cardiac-disease/2020-04-08
+opensafely/cardiac-surgery-opcs-4-codes
+opensafely/renal-replacement-therapy/2020-04-14
+opensafely/incident-non-traumatic-stroke/0be6efb3
+opensafely/stroke-secondary-care/2020-10-05
+opensafely/myocardial-infarction-2/2020-07-09
+opensafely/chronic-liver-disease/2020-06-02
+opensafely/other-organ-transplant/2020-07-15
+opensafely/depression/2020-07-09
+opensafely/first-generation-antipsychotics-excluding-long-acting-depots-dmd/1e9b227c
+opensafely/selective-serotonin-reuptake-inhibitors-dmd/6a572e55

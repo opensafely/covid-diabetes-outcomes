@@ -1,5 +1,13 @@
 from cohortextractor import codelist, codelist_from_csv
 
+# Ethnicity (as recorded in primary care)
+ethnicity_codes = codelist_from_csv(
+	"codelists/opensafely-ethnicity.csv",
+	system="ctv3",
+	column="Code",
+	category_column="Grouping_6",
+)
+
 # Diabetes code lists
 diabetes_t1_codes = codelist_from_csv(
    "codelists/opensafely-type-1-diabetes.csv", system="ctv3", column="CTV3ID"
@@ -34,10 +42,16 @@ pneumonia_codelist = codelist_from_csv(
     column="ICD code",
 )
 
-# Ethnicity (as recorded in primary care)
-ethnicity_codes = codelist_from_csv(
-	"codelists/opensafely-ethnicity.csv",
-	system="ctv3",
-	column="Code",
-	category_column="Grouping_6",
+# Stroke (primary care)
+# Replace this list with our own???
+stroke_codes = codelist_from_csv(
+    "codelists/opensafely-stroke-updated.csv",
+    system="ctv3",
+	column="CTV3ID",
+)
+# Stroke (SUS/ONS)
+stroke_codes_hospital = codelist_from_csv(
+    "codelists/opensafely-stroke-secondary-care.csv",
+    system="icd10",
+    column="icd",
 )

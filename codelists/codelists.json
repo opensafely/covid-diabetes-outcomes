@@ -41,6 +41,18 @@
       "url": "https://codelists.opensafely.org/codelist/opensafely/ethnicity/2020-04-27/",
       "downloaded_at": "2021-10-26 21:56:55.208101Z",
       "sha": "3d2f3998b71863a80b24d60f6f4282e14191ae13"
+    },
+    "opensafely-stroke-updated.csv": {
+      "id": "opensafely/stroke-updated/2020-06-02",
+      "url": "https://codelists.opensafely.org/codelist/opensafely/stroke-updated/2020-06-02/",
+      "downloaded_at": "2021-11-01 12:38:58.522335Z",
+      "sha": "e62a8af49698022220de1e1e438d6b6c611e666e"
+    },
+    "opensafely-stroke-secondary-care.csv": {
+      "id": "opensafely/stroke-secondary-care/2020-10-05",
+      "url": "https://codelists.opensafely.org/codelist/opensafely/stroke-secondary-care/2020-10-05/",
+      "downloaded_at": "2021-11-01 12:38:58.820692Z",
+      "sha": "04aeb4b87dcf27651e34c287fdffe023bce38591"
     }
   }
 }

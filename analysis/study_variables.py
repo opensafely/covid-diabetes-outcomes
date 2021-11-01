@@ -4,7 +4,7 @@ from datetime import datetime, timedelta
 
 def generate_study_variables(index_date_variable):
     study_variables = dict(
-        date_of_birth=patients.date_of_birth(
+        date_birth=patients.date_of_birth(
             "YYYY-MM",
             return_expectations={
                 "date": {"earliest": "1911-01-01", "latest": "today"},
@@ -26,6 +26,14 @@ def generate_study_variables(index_date_variable):
 		        "category": {"ratios": {"1": 0.8, "5": 0.1, "3": 0.1}},
 		        "incidence": 0.8,
 	        },
+        ),
+        bmi=patients.most_recent_bmi(
+            on_or_before=f"{index_date_variable}",
+            minimum_age_at_measurement=18,   
+            return_expectations={
+                "float": {"distribution": "normal", "mean": 28, "stddev": 8},
+                "incidence": 0.80,
+            }
         ),
         practice_id=patients.registered_practice_as_of(
             f"{index_date_variable}",
@@ -75,8 +83,10 @@ def generate_study_variables(index_date_variable):
                         "1000": 0.1,
                     }
                 },
+                "incidence": 0.9,
             },
         ),
+        
         # Diabetes dates
         # Date of first (any diabetes diagnosis) in primary care
         date_diabetes_diagnosis=patients.with_these_clinical_events(
@@ -196,6 +206,7 @@ def generate_study_variables(index_date_variable):
                 "incidence": 0.02
             },
         ),
+
         # COVID dates
         date_covid_test=patients.with_test_result_in_sgss(
 	        pathogen="SARS-CoV-2",
@@ -218,6 +229,33 @@ def generate_study_variables(index_date_variable):
 	        date_format="YYYY-MM-DD",
 	        return_expectations={"date": {"earliest": "2020-02-01"}},
         ),
+    
+        # Outcome dates
+        # Stroke
+        date_stroke_gp=patients.with_these_clinical_events(
+            stroke_codes,
+            between=[f"{index_date_variable} - 3 months", "today"],
+            return_first_date_in_period=True,
+            date_format="YYYY-MM-DD",
+            return_expectations={"date": {"earliest": "2015-01-01"}},
+        ),
+        date_stroke_hospital=patients.admitted_to_hospital(
+            with_these_diagnoses=stroke_codes_hospital,
+            between=[f"{index_date_variable} - 3 months", "today"],
+            find_first_match_in_period=True,
+            returning="date_admitted",
+            date_format="YYYY-MM-DD",
+            return_expectations={"date": {"earliest": "2015-01-01"}},
+        ),
+        date_stroke_ons=patients.with_these_codes_on_death_certificate(
+            stroke_codes_hospital,
+            match_only_underlying_cause=False,
+            on_or_before="today",
+            returning="date_of_death",
+            date_format="YYYY-MM-DD",
+            return_expectations={"date": {"earliest": "2020-02-01"}},
+        ),
+
         # Censoring dates
         date_deregistered=patients.date_deregistered_from_all_supported_practices(
             date_format="YYYY-MM-DD",
@@ -226,7 +264,7 @@ def generate_study_variables(index_date_variable):
                 "incidence": 0.05,
             },
         ),
-        date_of_death=patients.died_from_any_cause(
+        date_death=patients.died_from_any_cause(
             returning="date_of_death",
             date_format="YYYY-MM-DD",
             return_expectations={
@@ -234,5 +272,16 @@ def generate_study_variables(index_date_variable):
                 "incidence": 0.1,
             },
         ),
+        date_admitted_pneum=patients.admitted_to_hospital(	
+	    with_these_diagnoses=pneumonia_codelist,
+	    on_or_before="today",
+	    find_first_match_in_period=True,
+	    returning="date_admitted",
+	    date_format="YYYY-MM-DD",
+	    return_expectations={
+		    "date": {"earliest": "2018-02-01"},
+		    "incidence": 0.05,
+	    },
+    ),
     )
     return study_variables

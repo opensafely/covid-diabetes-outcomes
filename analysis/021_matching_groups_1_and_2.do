@@ -6,7 +6,7 @@ use $outdir/input_part1_clean.dta
 set more off
 
 **// Specify the maximum number of controls per case
-local maxcontrols=5
+local maxcontrols=1
 
 **// Retain relevant groups of cases (group 1) and potential comparators (group 2)
 keep if (group==1 | group==2)
@@ -30,7 +30,7 @@ forvalues j=1(1)`numcases' {
 	gen     incl=1 if case_id==`j'
 	replace incl=2 if case_id==. & setid==.
 	sort incl
-	gen age_diff_days=((date_of_birth-date_of_birth[1])^2)^0.5
+	gen age_diff_days=((date_birth-date_birth[1])^2)^0.5
 	gen index_diff_days=((date_patient_index-date_patient_index[1])^2)^0.5
 	replace incl=. if sex!=sex[1]
 	replace incl=. if practice_id!=practice_id[1]
@@ -44,7 +44,7 @@ forvalues j=1(1)`numcases' {
 	**// Enforce random selection from equally viable neighbours
 	gen rand=runiform() 
 	sort incl D rand
-	replace setid=`j' if incl!=. & _n<=(`maxcontrols'+1) 
+	replace setid=patient_id[1] if incl!=. & _n<=(`maxcontrols'+1) 
 	drop incl age_diff_days index_diff_days D rand
 }
 drop if setid==.

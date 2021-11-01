@@ -44,22 +44,22 @@ actions:
     needs: [data_cleaning]
     outputs:
       moderately_sensitive:
-        table: output/part1/option1_table1_demographics.dta
-        table: output/part1/option1_table1_demographics.csv
+        table1: output/part1/option1_table1_demographics.dta
+        table2: output/part1/option1_table1_demographics.csv
 
   analyses_option1_table2:
     run: stata-mp:latest analysis/120_analyses_option1_table2_rates.do
     needs: [data_cleaning]
     outputs:
       moderately_sensitive:
-        table: output/part1/option1_table2_rates.dta
-        table: output/part1/option1_table2_rates.csv
+        table1: output/part1/option1_table2_rates.dta
+        table2: output/part1/option1_table2_rates.csv
 
   analyses_option1_table3:
     run: stata-mp:latest analysis/130_analyses_option1_table3_hazardratios.do
     needs: [data_cleaning]
     outputs:
       moderately_sensitive:
-        table: output/part1/option1_table3_hazardratios.dta
-        table: output/part1/option1_table3_hazardratios.csv
+        table1: output/part1/option1_table3_hazardratios.dta
+        table2: output/part1/option1_table3_hazardratios.csv
       

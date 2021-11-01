@@ -34,7 +34,7 @@ actions:
 
   matching_groups_1_2_and_3:
     run: stata-mp:latest analysis/023_matching_groups_1_2_and_3.do
-    needs: [matching_groups_1_and_3]
+    needs: [matching_groups_1_and_2, matching_groups_1_and_3]
     outputs:
       highly_sensitive:
         analysis_dataset: output/matched_groups_1_2_and_3.dta
@@ -44,7 +44,8 @@ actions:
     needs: [data_cleaning]
     outputs:
       moderately_sensitive:
-        analysis_dataset: output/part1/option1_table1_demographics.dta
+        table: output/part1/option1_table1_demographics.dta
+        table: output/part1/option1_table1_demographics.csv
 
   analyses_option1_table2:
     run: stata-mp:latest analysis/120_analyses_option1_table2_rates.do
@@ -52,6 +53,7 @@ actions:
     outputs:
       moderately_sensitive:
         table: output/part1/option1_table2_rates.dta
+        table: output/part1/option1_table2_rates.csv
 
   analyses_option1_table3:
     run: stata-mp:latest analysis/130_analyses_option1_table3_hazardratios.do
@@ -59,3 +61,5 @@ actions:
     outputs:
       moderately_sensitive:
         table: output/part1/option1_table3_hazardratios.dta
+        table: output/part1/option1_table3_hazardratios.csv
+      

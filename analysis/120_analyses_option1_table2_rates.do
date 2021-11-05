@@ -1,7 +1,9 @@
-**// Outcome rate comparisons - groups 1,2 and 3
+local mypath="`c(pwd)'/analysis/"
+do `mypath'/000_filepaths.do
 
-clear
-do `c(pwd)'/analysis/000_filepaths.do
+
+**// Outcome rates - groups 1,2 and 3
+**//////////////////////////////////////////////
 
 use $outdir/input_part1_clean.dta, clear
 
@@ -12,82 +14,64 @@ local grouplabel3="Pneumonia with diabetes"
 set more off
 
 tempname rates
-	postfile `rates' outindex groupindex str31(mytype) str30(outcome) str30(group) person_time numevents str30(rate) using $resultsdir/option1_table2_rates.dta, replace
-	
-	local outindex=0
-	
+	postfile `rates' outindex groupindex str30(outcome) str30(group) person_time numevents rate rate_lo rate_hi using $resultsdir/option1_table2_rates.dta, replace
 	**// Outcomes
-	foreach outcome in "stroke" "death" {
-		
+	local outindex=0
+	foreach outcome in "stroke" "death" {	
 		local outindex=`outindex'+1
-		
-		if "`outcome'"=="stroke" | "`outcome'"=="mi" | "`outcome'"=="dvt" | "`outcome'"=="pe" | "`outcome'"=="heart_failure" {
-			local mytypetxt="Cardiovascular"
-		}
-		if "`outcome'"=="aki" {
-			local mytypetxt="Renal"
-		}
-		if "`outcome'"=="liver_failure" | "`outcome'"=="chronic_liver"{
-			local mytypetxt="Hepatic"
-		}
-		if "`outcome'"=="anxiety" | "`outcome'"=="depression" | "`outcome'"=="psychosis" | "`outcome'"=="psych_meds" | {
-			local mytypetxt="Mental illness"
-		}
-		if "`outcome'"=="insomnia" | "`outcome'"=="hypersomnia" | "`outcome'"=="sleep_apnoea" | "`outcome'"=="sleep_meds" | "`outcome'"=="fatigue_syndr" {
-			local mytypetxt="Symptoms of post-COVID syndrome"
-		}
-		if "`outcome'"=="death" {
-			local mytypetxt="Death from any cause"
-		}
-		
 		gen myend=(min(date_`outcome', date_censor)-date_patient_index)/(365.25/12)
 		gen myselect=(myend>0)
 		gen delta=(date_`outcome'==min(date_`outcome', date_censor))
 		stset myend, f(delta) id(patient_id)
-		
 		forvalues k=1(1)3 {
-			stptime if group==`k' & myselect==1, title(person-months) per(10000) dd(1)
-			local myrate=int((10*`r(rate)')+0.5)/10
-			local myrate="`myrate'"	
-			if strpos("`myrate'",".")==1 {
-				local myrate="0"+"`myrate'"
-			}
-			if strpos("`myrate'",".")==0 {
-				local myrate="`myrate'"+".0"
-			}
-			local mylb=int((10*`r(lb)')+0.5)/10
-			local mylb="`mylb'"
-			if strpos("`mylb'",".")==1 {
-				local mylb="0"+"`mylb'"
-			}
-			if strpos("`mylb'",".")==0 {
-				local mylb="`mylb'"+".0"
-			}
-			local myub=int((10*`r(ub)')+0.5)/10
-			local myub="`myub'"
-			if strpos("`myub'",".")==1 {
-				local myub="0"+"`myub'"
-			}
-			if strpos("`myub'",".")==0 {
-				local myub="`myub'"+".0"
-			}		
-			local myrate="`myrate' ("+"`mylb', "+"`myub')"
-			post `rates' (`outindex') (`k') ("`mytypetxt'") ("`outcome'") ("`grouplabel`k''") (`r(ptime)') (`r(failures)') ("`myrate'")
+			stptime if group==`k' & myselect==1, title(person-months) per(10000)
+			post `rates' (`outindex') (`k') ("`outcome'") ("`grouplabel`k''") (`r(ptime)') (`r(failures)') (`r(rate)') (`r(lb)') (`r(ub)')
 		}
-		
 		drop myselect myend delta _st _d _t _t0
 	}
-	
 postclose `rates'
 
-**// Tidy and convert to csv
 use $resultsdir/option1_table2_rates.dta, clear
+
+**// Labelling
+gen type=""
+order type, before(outcome)
+do `mypath'/003_outlab.do
+do `mypath'/004_typelab.do
+
+**// Tidy
 sort outindex groupindex
-gen temp1=1 if mytype==mytype[_n-1]
-replace mytype="" if temp1==1
+gen temp1=1 if type==type[_n-1]
+replace type="" if temp1==1
 gen temp2=1 if outcome==outcome[_n-1]
-replace outcome="" if (temp2==1 | outcome=="death")
+replace outcome="" if (temp2==1 | lower(outcome)=="death")
 drop outindex groupindex temp1 temp2
-rename mytype type
+
+describe type-group, varlist
+foreach myvar in `r(varlist)' {
+	gen str=strlen(`myvar')
+	summ str
+	format `myvar' %-`r(max)'s
+	drop str
+}
+
+format person_time %12.1fc
+format numevents %12.0fc
+
+format rate* %12.1fc
+tostring rate,    gen(temp1) force usedisplayformat
+tostring rate_lo, gen(temp2) force usedisplayformat
+tostring rate_hi, gen(temp3) force usedisplayformat
+gen rate_ci=temp1+" ("+temp2+", "+temp3+")"
+drop rate rate_lo rate_hi temp*
+rename rate_ci rate
+
+gen str=strlen(rate)
+summ str
+format rate %`r(max)'s
+drop str
+
 save $resultsdir/option1_table2_rates.dta, replace
+
+**// Convert to csv
 export delimited using $resultsdir/option1_table2_rates.csv, replace

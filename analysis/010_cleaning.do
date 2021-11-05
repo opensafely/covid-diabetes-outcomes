@@ -29,18 +29,20 @@ replace group=1 if date_discharged_covid<=date_discharged_pneum & (date_diabetes
 replace group=2 if date_discharged_covid<=date_discharged_pneum &  date_diabetes_diagnosis> date_patient_index & min(date_t1dm_hospital_first, date_t2dm_hospital_first)> date_patient_index
 replace group=3 if date_discharged_covid> date_discharged_pneum & (date_diabetes_diagnosis<=date_patient_index | min(date_t1dm_hospital_first, date_t2dm_hospital_first)<=date_patient_index)
 replace group=4 if date_discharged_covid> date_discharged_pneum &  date_diabetes_diagnosis> date_patient_index & min(date_t1dm_hospital_first, date_t2dm_hospital_first)> date_patient_index
-label define grouplab 1 "Covid with diabetes" 2 "Covid without diabetes" 3 "Pneumonia with diabetes" 4 "Pneumonia without diabetes"
+label define grouplab 1 "COVID-19 with diabetes" 2 "COVID-19 without diabetes" 3 "Pneumonia with diabetes" 4 "Pneumonia without diabetes"
 label values group grouplab
 
 **// Censoring
 gen date_first_covid=min(date_covid_test, date_covid_hospital, date_covid_icu)
 gen date_censor=date_admitted_pneum if (group==1 | group==2)
 replace date_censor=date_first_covid if (group==3 | group==4)
-replace date_censor=min(date_deregistered, date_death, date_studyend)
+replace date_censor=min(date_deregistered, date_death, date_studyend) if min(date_deregistered, date_death, date_studyend)<date_censor
 
 **// Sex
-gen cat_sex=0 if sex=="F"
-replace cat_sex=1 if sex=="M"
+gen cat_sex=1 if sex=="F"
+replace cat_sex=2 if sex=="M"
+label define cat_sexlab 1 "Female" 2 "Male"
+label values cat_sex cat_sexlab
 
 **// Age group
 gen age=(date_patient_index-date_birth)/365.25
@@ -50,6 +52,7 @@ replace cat_age=2 if age>=50
 replace cat_age=3 if age>=60
 replace cat_age=4 if age>=70
 replace cat_age=5 if age>=80
+drop if cat_age==.
 label define cat_agelab 1 "18-49" 2 "50-59" 3 "60-69" 4 "70-79" 5 "80+"
 label values cat_age cat_agelab
 
@@ -67,7 +70,7 @@ if _rc==0 {
 	egen cat_imd=cut(imd), group(5) icodes
 	replace cat_imd=cat_imd+1
 	replace cat_imd=. if imd==-1
-	recode cat_imd 5=1 4=2 3=3 2=4 1=5
+	replace cat_imd=6-cat_imd
 	label define cat_imdlab 1 "1 (least deprived)" 2 "2" 3 "3" 4 "4" 5 "5 (most deprived)" .u "Unknown"
 	label values cat_imd cat_imdlab
 	order cat_imd, after(imd)

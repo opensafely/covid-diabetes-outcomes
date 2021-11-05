@@ -1,0 +1,5 @@
+replace demographic="Sex" 				if demographic=="sex"
+replace demographic="Age" 				if demographic=="age"
+replace demographic="Ethnicity"			if demographic=="ethnic"
+replace demographic="IMD" 				if demographic=="imd"
+replace demographic="BMI"               if demographic=="bmi"

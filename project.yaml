@@ -44,22 +44,37 @@ actions:
     needs: [data_cleaning]
     outputs:
       moderately_sensitive:
-        table1: output/part1/option1_table1_demographics.dta
-        table2: output/part1/option1_table1_demographics.csv
+        table1: output/results/option1_table1_demographics.dta
+        table2: output/results/option1_table1_demographics.csv
 
   analyses_option1_table2:
     run: stata-mp:latest analysis/120_analyses_option1_table2_rates.do
     needs: [data_cleaning]
     outputs:
       moderately_sensitive:
-        table1: output/part1/option1_table2_rates.dta
-        table2: output/part1/option1_table2_rates.csv
+        table1: output/results/option1_table2_rates.dta
+        table2: output/results/option1_table2_rates.csv
 
   analyses_option1_table3:
     run: stata-mp:latest analysis/130_analyses_option1_table3_hazardratios.do
     needs: [data_cleaning]
     outputs:
       moderately_sensitive:
-        table1: output/part1/option1_table3_hazardratios.dta
-        table2: output/part1/option1_table3_hazardratios.csv
-      
+        table1: output/results/option1_table3_hazardratios.dta
+        table2: output/results/option1_table3_hazardratios.csv
+
+  analyses_option1_table4:
+    run: stata-mp:latest analysis/140_analyses_option1_table4_stratified_rates.do
+    needs: [data_cleaning]
+    outputs:
+      moderately_sensitive:
+        table1: output/results/option1_table4_stratified_rates.dta
+        table2: output/results/option1_table4_stratified_rates.csv 
+
+  analyses_option1_table5:
+    run: stata-mp:latest analysis/150_analyses_option1_table5_stratified_hazardratios.do
+    needs: [data_cleaning]
+    outputs:
+      moderately_sensitive:
+        table1: output/results/option1_table5_stratified_hazardratios.dta
+        table2: output/results/option1_table5_stratified_hazardratios.csv     

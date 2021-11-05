@@ -43,7 +43,7 @@ pneumonia_codelist = codelist_from_csv(
 )
 
 # Stroke (primary care)
-# Replace this list with our own???
+# >>> [Replace this list with our own?] <<<
 stroke_codes = codelist_from_csv(
     "codelists/opensafely-stroke-updated.csv",
     system="ctv3",

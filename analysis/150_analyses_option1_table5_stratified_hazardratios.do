@@ -1,0 +1,152 @@
+local mypath="`c(pwd)'/analysis/"
+do `mypath'/000_filepaths.do
+
+
+**// Stratified hazard ratios - comparing groups 1,2 and 1,3
+**///////////////////////////////////////////////////////////////////
+
+set more off
+		
+use $outdir/input_part1_clean.dta, clear
+
+local refgroup2="COVID-19 without diabetes"
+local refgroup3="Pneumonia with diabetes"
+
+**// Loop over each outcome
+foreach outcome in "stroke" "death" {
+	use $outdir/input_part1_clean.dta, clear
+	gen expos=(group==1)
+	gen myend=(min(date_`outcome', date_censor)-date_patient_index)/(365.25/12)
+	gen myselect=(myend>0)
+	gen delta=(date_`outcome'==min(date_`outcome', date_censor))
+	stset myend, f(delta) id(patient_id)
+	local demogindex=0
+	**// Loop over each demographic/characteristic
+	foreach demog in "sex" "age" "ethnic" "imd" {
+		local demogindex=`demogindex'+1
+		summ cat_`demog'
+		local numcat_`demog'=r(max)
+		**// Loop over categories of the demographic/characteristic
+		forvalues catindex=1(1)`numcat_`demog'' {
+			capture erase $resultsdir/hr_`outcome'_`demog'_`catindex'.dta
+			**// Estimate hazard ratios and post
+			preserve
+			keep if cat_`demog'==`catindex'
+			tempname hazardratios
+				postfile `hazardratios' demogindex catindex groupindex str20(demographic) str25(refgroup) ///
+				`outcome'_hr1 `outcome'_hr1_lo `outcome'_hr1_hi ///
+				`outcome'_hr2 `outcome'_hr2_lo `outcome'_hr2_hi ///
+				`outcome'_hr3 `outcome'_hr3_lo `outcome'_hr3_hi ///
+				using $resultsdir/hr_`outcome'_`demog'_`catindex'.dta, replace
+				forvalues k=2(1)3 {
+					count if group==1
+					local mycounta=r(N)
+					count if group==`k'
+					local mycountb=r(N)
+					if `mycounta'>0 & `mycountb'>0 {
+						forvalues m=1(1)3 {
+							if `m'==1 {
+								stcox expos if (group==1 | group==`k') & myselect==1
+							}
+							if `m'==2 {
+								stcox expos i.cat_sex i.cat_age if (group==1 | group==`k') & myselect==1
+							}
+							if `m'==3 {
+								stcox expos i.cat_* if (group==1 | group==`k') & myselect==1
+							}				
+							matrix M1=e(b)
+							matrix M2=e(V)
+							local hr`m'   =exp(M1[1,1])
+							local hr`m'_lo=exp(M1[1,1]-1.96*(M2[1,1]^0.5))
+							local hr`m'_hi=exp(M1[1,1]+1.96*(M2[1,1]^0.5))	
+						}
+						post `hazardratios' (`demogindex') (`catindex') (`k') ("`demog'") ("`refgroup`k''") ///
+						(`hr1') (`hr1_lo') (`hr1_hi') (`hr2') (`hr2_lo') (`hr2_hi') (`hr3') (`hr3_lo') (`hr3_hi')
+					}
+					else {
+						post `hazardratios' (`demogindex') (`catindex') (`k') ("`demog'") ("`refgroup`k''") (.) (.) (.) (.) (.) (.) (.) (.) (.)
+					}
+				}							
+			postclose `hazardratios' 	
+			restore
+		}
+	}
+}
+
+**// Append categories within each demographic for each outcome
+foreach outcome in "stroke" "death" {
+	foreach demog in "sex" "age" "ethnic" "imd" {
+		clear
+		set obs 0
+		forvalues catindex=1(1)`numcat_`demog'' {
+			append using $resultsdir/hr_`outcome'_`demog'_`catindex'.dta
+			erase $resultsdir/hr_`outcome'_`demog'_`catindex'.dta
+		}
+		tostring catindex, gen(category) force
+		order category, after(demographic)
+		do `mypath'/002_catlab.do
+		save $resultsdir/hr_`outcome'_`demog'.dta, replace
+	}
+}
+
+**// Append demographics within each outcome
+foreach outcome in "stroke" "death" {
+	clear
+	set obs 0
+	foreach demog in "sex" "age" "ethnic" "imd" {
+		append using $resultsdir/hr_`outcome'_`demog'.dta
+		erase $resultsdir/hr_`outcome'_`demog'.dta
+	}
+	sort demogindex catindex groupindex
+	**// Tidy presentation of hazard ratios
+	describe `outcome'_hr*, varlist
+	foreach myvar in `r(varlist)' {
+		format `myvar' %12.1f
+		tostring `myvar', replace force usedisplayformat
+		
+	}
+	forvalues m=1(1)3 {
+		gen newvar`m'=`outcome'_hr`m'+" ("+`outcome'_hr`m'_lo+", "+`outcome'_hr`m'_hi+")"
+		replace newvar`m'="-" if newvar`m'==". (., .)"
+		drop `outcome'_hr`m'*
+		rename newvar`m' `outcome'_hr`m'
+	}
+	save $resultsdir/hr_`outcome'.dta, replace
+}
+
+**// Merge outcomes
+use $resultsdir/hr_stroke.dta, clear
+foreach outcome in "death" {
+	capture merge 1:1 demogindex catindex groupindex using $resultsdir/hr_`outcome'.dta
+	if _rc==0 {
+	   drop _merge
+	   erase $resultsdir/hr_`outcome'.dta
+	}
+}
+erase $resultsdir/hr_stroke.dta	
+sort demogindex catindex groupindex
+
+**// Labelling
+do `mypath'/001_demoglab.do
+
+**// Tidy
+gen temp1=1 if demographic==demographic[_n-1]
+replace demographic="" if temp1==1
+gen temp2=1 if category==category[_n-1]
+replace category="" if temp2==1
+drop temp1 temp2
+
+describe, varlist
+foreach myvar in `r(varlist)' {
+	capture gen str=strlen(`myvar')
+	if _rc==0 {
+		summ str
+		format `myvar' %-`r(max)'s
+		drop str			
+	}
+}
+drop demogindex catindex groupindex
+save $resultsdir/option1_table5_stratified_hazardratios.dta, replace
+	
+**// Convert to csv
+export delimited $resultsdir/option1_table5_stratified_hazardratios.csv, replace

@@ -46,19 +46,26 @@ foreach outcome in "stroke" "death" {
 					if `mycounta'>0 & `mycountb'>0 {
 						forvalues m=1(1)3 {
 							if `m'==1 {
-								stcox expos if (group==1 | group==`k') & myselect==1
+								capture stcox expos if (group==1 | group==`k') & myselect==1
 							}
 							if `m'==2 {
-								stcox expos i.cat_sex i.cat_age if (group==1 | group==`k') & myselect==1
+								capture stcox expos i.cat_sex i.cat_age if (group==1 | group==`k') & myselect==1
 							}
 							if `m'==3 {
-								stcox expos i.cat_* if (group==1 | group==`k') & myselect==1
+								capture stcox expos i.cat_* if (group==1 | group==`k') & myselect==1
 							}				
-							matrix M1=e(b)
-							matrix M2=e(V)
-							local hr`m'   =exp(M1[1,1])
-							local hr`m'_lo=exp(M1[1,1]-1.96*(M2[1,1]^0.5))
-							local hr`m'_hi=exp(M1[1,1]+1.96*(M2[1,1]^0.5))	
+							if _rc==0 {
+								matrix M1=e(b)
+								matrix M2=e(V)
+								local hr`m'   =exp(M1[1,1])
+								local hr`m'_lo=exp(M1[1,1]-1.96*(M2[1,1]^0.5))
+								local hr`m'_hi=exp(M1[1,1]+1.96*(M2[1,1]^0.5))
+							}
+							if _rc==0 {
+								local hr`m'   =.
+								local hr`m'_lo=.
+								local hr`m'_hi=.								
+							}
 						}
 						post `hazardratios' (`demogindex') (`catindex') (`k') ("`demog'") ("`refgroup`k''") ///
 						(`hr1') (`hr1_lo') (`hr1_hi') (`hr2') (`hr2_lo') (`hr2_hi') (`hr3') (`hr3_lo') (`hr3_hi')

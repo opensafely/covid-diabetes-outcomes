@@ -40,7 +40,7 @@ actions:
         analysis_dataset: output/matched_groups_1_2_and_3.dta
 
   analyses_option1_table1:
-    run: stata-mp:latest analysis/110_analyses_option1_table1_demog.do
+    run: stata-mp:latest analysis/110_analyses_option1_table1_demographics.do
     needs: [data_cleaning]
     outputs:
       moderately_sensitive:

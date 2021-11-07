@@ -13,7 +13,7 @@ def generate_study_variables(index_date_variable):
         sex=patients.sex(
             return_expectations={"rate": "universal", "category": {"ratios": {"M": 0.49, "F": 0.51}}},
         ),
-        ethnicity_clinical=patients.with_these_clinical_events(
+        ethnicity_gp=patients.with_these_clinical_events(
 	        ethnicity_codes,	
 	        returning="category",
 	        find_last_match_in_period=True,
@@ -282,7 +282,7 @@ def generate_study_variables(index_date_variable):
             date_format="YYYY-MM-DD",
             return_expectations={"date": {"earliest": "2020-02-01"}, "incidence": 0.05}, 
         ),
-        date_pneum_hospital=patients.admitted_to_hospital(
+        date_admitted_pneum=patients.admitted_to_hospital(
 	        with_these_diagnoses=pneumonia_codelist,
 	        find_first_match_in_period=True,
 	        returning="date_admitted",
@@ -297,21 +297,21 @@ def generate_study_variables(index_date_variable):
         ### OUTCOMES
         ## Cardiovascular
         # Stroke
-        stroke_gp=patients.with_these_clinical_events(
+        date_stroke_gp=patients.with_these_clinical_events(
             stroke_codes,
             on_or_after=f"{index_date_variable} - 3 months",
             return_first_date_in_period=True,
             date_format="YYYY-MM-DD",
             return_expectations={"date": {"earliest": "2019-11-01"}},
         ),
-        stroke_gp_2=patients.with_these_clinical_events(
+        date_stroke_gp_2=patients.with_these_clinical_events(
             stroke_codes_2,
             on_or_after=f"{index_date_variable} - 3 months",
             return_first_date_in_period=True,
             date_format="YYYY-MM-DD",
             return_expectations={"date": {"earliest": "2019-11-01"}},
         ),
-        stroke_hospital=patients.admitted_to_hospital(
+        date_stroke_hospital=patients.admitted_to_hospital(
             with_these_diagnoses=stroke_codes_hospital,
             on_or_after=f"{index_date_variable} - 3 months",
             find_first_match_in_period=True,
@@ -319,7 +319,7 @@ def generate_study_variables(index_date_variable):
             date_format="YYYY-MM-DD",
             return_expectations={"date": {"earliest": "2019-11-01"}},
         ),
-        stroke_ons=patients.with_these_codes_on_death_certificate(
+        date_stroke_ons=patients.with_these_codes_on_death_certificate(
             stroke_codes_hospital,
             on_or_after=f"{index_date_variable}",
             match_only_underlying_cause=False,
@@ -328,14 +328,14 @@ def generate_study_variables(index_date_variable):
             return_expectations={"date": {"earliest": "2020-02-01"}},
         ),
         # Myocardial Infarction (MI)
-        mi_gp=patients.with_these_clinical_events(
+        date_mi_gp=patients.with_these_clinical_events(
             mi_codes,
             on_or_after=f"{index_date_variable} - 3 months",
             return_first_date_in_period=True,
             date_format="YYYY-MM-DD",
             return_expectations={"date": {"earliest": "2019-11-01"}},
         ),
-        mi_hospital=patients.admitted_to_hospital(
+        date_mi_hospital=patients.admitted_to_hospital(
             with_these_diagnoses=mi_codes_hospital,
             on_or_after=f"{index_date_variable} - 3 months",
             find_first_match_in_period=True,
@@ -343,7 +343,7 @@ def generate_study_variables(index_date_variable):
             date_format="YYYY-MM-DD",
             return_expectations={"date": {"earliest": "2019-11-01"}},
         ),
-        mi_ons=patients.with_these_codes_on_death_certificate(
+        date_mi_ons=patients.with_these_codes_on_death_certificate(
             mi_codes_hospital,
             on_or_after=f"{index_date_variable}",
             match_only_underlying_cause=False,
@@ -352,14 +352,14 @@ def generate_study_variables(index_date_variable):
             return_expectations={"date": {"earliest": "2020-02-01"}},
         ),
         # Deep Vein Thrombosis (DVT)
-        dvt_gp=patients.with_these_clinical_events(
+        date_dvt_gp=patients.with_these_clinical_events(
             dvt_codes,
             on_or_after=f"{index_date_variable} - 3 months",
             return_first_date_in_period=True,
             date_format="YYYY-MM-DD",
             return_expectations={"date": {"earliest": "2019-11-01"}},
         ),
-        dvt_hospital=patients.admitted_to_hospital(
+        date_dvt_hospital=patients.admitted_to_hospital(
             with_these_diagnoses=dvt_codes_hospital,
             on_or_after=f"{index_date_variable} - 3 months",
             find_first_match_in_period=True,
@@ -367,7 +367,7 @@ def generate_study_variables(index_date_variable):
             date_format="YYYY-MM-DD",
             return_expectations={"date": {"earliest": "2019-11-01"}},
         ),
-        dvt_ons=patients.with_these_codes_on_death_certificate(
+        date_dvt_ons=patients.with_these_codes_on_death_certificate(
             dvt_codes_hospital,
             on_or_after=f"{index_date_variable}",
             match_only_underlying_cause=False,
@@ -376,14 +376,14 @@ def generate_study_variables(index_date_variable):
             return_expectations={"date": {"earliest": "2020-02-01"}},
         ),
         # Pulmonary Embolism (PE)
-        pe_gp=patients.with_these_clinical_events(
+        date_pe_gp=patients.with_these_clinical_events(
             pe_codes,
             on_or_after=f"{index_date_variable} - 3 months",
             return_first_date_in_period=True,
             date_format="YYYY-MM-DD",
             return_expectations={"date": {"earliest": "2019-11-01"}},
         ),
-        pe_hospital=patients.admitted_to_hospital(
+        date_pe_hospital=patients.admitted_to_hospital(
             with_these_diagnoses=pe_codes_hospital,
             on_or_after=f"{index_date_variable} - 3 months",
             find_first_match_in_period=True,
@@ -391,7 +391,7 @@ def generate_study_variables(index_date_variable):
             date_format="YYYY-MM-DD",
             return_expectations={"date": {"earliest": "2019-11-01"}},
         ),
-        pe_ons=patients.with_these_codes_on_death_certificate(
+        date_pe_ons=patients.with_these_codes_on_death_certificate(
             pe_codes_hospital,
             on_or_after=f"{index_date_variable}",
             match_only_underlying_cause=False,
@@ -400,14 +400,14 @@ def generate_study_variables(index_date_variable):
             return_expectations={"date": {"earliest": "2020-02-01"}},
         ),
         # Heart Failure (HF)
-        hf_gp=patients.with_these_clinical_events(
+        date_hf_gp=patients.with_these_clinical_events(
             hf_codes,
             on_or_after=f"{index_date_variable} - 3 months",
             return_first_date_in_period=True,
             date_format="YYYY-MM-DD",
             return_expectations={"date": {"earliest": "2019-11-01"}},
         ),
-        hf_hospital=patients.admitted_to_hospital(
+        date_hf_hospital=patients.admitted_to_hospital(
             with_these_diagnoses=hf_codes_hospital,
             on_or_after=f"{index_date_variable} - 3 months",
             find_first_match_in_period=True,
@@ -415,7 +415,7 @@ def generate_study_variables(index_date_variable):
             date_format="YYYY-MM-DD",
             return_expectations={"date": {"earliest": "2019-11-01"}},
         ),
-        hf_ons=patients.with_these_codes_on_death_certificate(
+        date_hf_ons=patients.with_these_codes_on_death_certificate(
             hf_codes_hospital,
             on_or_after=f"{index_date_variable}",
             match_only_underlying_cause=False,

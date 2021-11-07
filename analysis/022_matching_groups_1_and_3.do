@@ -1,6 +1,7 @@
+clear
 do `c(pwd)'/analysis/000_filepaths.do
 
-use $outdir/input_part1_clean.dta, clear
+use $outdir/input_part1_clean.dta
 
 set more off
 

@@ -57,7 +57,7 @@ label define cat_agelab 1 "18-49" 2 "50-59" 3 "60-69" 4 "70-79" 5 "80+"
 label values cat_age cat_agelab
 
 **// Ethnicity
-capture rename ethnicity cat_ethnic
+capture rename ethnicity_gp cat_ethnic
 if _rc==0 {
 	recode cat_ethnic .=6
 	label define cat_ethniclab 1 "White" 2 "Mixed" 3 "Asian/Asian British" 4 "Black" 5 "Other" 6 "Unknown"

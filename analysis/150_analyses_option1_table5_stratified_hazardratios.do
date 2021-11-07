@@ -1,4 +1,5 @@
 local mypath="`c(pwd)'/analysis/"
+
 do `mypath'/000_filepaths.do
 
 
@@ -61,7 +62,7 @@ foreach outcome in "stroke" "death" {
 								local hr`m'_lo=exp(M1[1,1]-1.96*(M2[1,1]^0.5))
 								local hr`m'_hi=exp(M1[1,1]+1.96*(M2[1,1]^0.5))
 							}
-							if _rc==0 {
+							if _rc!=0 {
 								local hr`m'   =.
 								local hr`m'_lo=.
 								local hr`m'_hi=.								

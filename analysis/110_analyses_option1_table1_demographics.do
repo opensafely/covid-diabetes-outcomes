@@ -1,4 +1,5 @@
 local mypath="`c(pwd)'/analysis/"
+
 do `mypath'/000_filepaths.do
 
 

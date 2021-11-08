@@ -41,7 +41,7 @@ forvalues j=1(1)`numcases' {
 	sort incl
 	gen age_diff_days=((date_birth-date_birth[1])^2)^0.5
 	gen index_diff_days=((date_patient_index-date_patient_index[1])^2)^0.5
-	replace incl=. if sex!=sex[1]
+	replace incl=. if cat_sex!=cat_sex[1]
 	replace incl=. if practice_id!=practice_id[1]
 	replace incl=. if age_diff_days>(365.25*3)
 	replace incl=. if index_diff_days>21

@@ -202,6 +202,7 @@ def generate_study_variables(index_date_variable):
         haz_alcohol_lastyear=patients.with_these_clinical_events(
             hazardous_alcohol_codes,
             between=[f"{index_date_variable} - 1 year", f"{index_date_variable}"],
+            return_expectations={"incidence": 0.1},
         ),
         # HbA1c
         hba1c=patients.with_these_clinical_events(

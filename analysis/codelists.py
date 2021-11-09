@@ -21,6 +21,13 @@ diabetes_t2_codes_hospital = codelist(
     ["E11", "E110", "E112", "E113", "E114", "E115", "E116", "E118", "E119"],
     system="icd10",
 )
+# Diabetes medications
+antidiabetic_codes = codelist_from_csv(
+    "codelists/opensafely-antidiabetic-drugs.csv", system="snomed", column="id"
+)
+insulin_codes = codelist_from_csv(
+    "codelists/opensafely-insulin-medication.csv", system="snomed", column="id"
+)
 
 # COVID
 covid_codelist = codelist_from_csv(

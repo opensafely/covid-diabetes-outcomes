@@ -1,5 +1,11 @@
 {
   "files": {
+    "opensafely-antidiabetic-drugs.csv": {
+      "id": "opensafely/antidiabetic-drugs/2020-07-16",
+      "url": "https://codelists.opensafely.org/codelist/opensafely/antidiabetic-drugs/2020-07-16/",
+      "downloaded_at": "2021-11-09 11:51:23.976586Z",
+      "sha": "f0b93b0054d673e8dcfbeba8fea0cd54239f0725"
+    },
     "opensafely-chronic-cardiac-disease.csv": {
       "id": "opensafely/chronic-cardiac-disease/2020-04-08",
       "url": "https://codelists.opensafely.org/codelist/opensafely/chronic-cardiac-disease/2020-04-08/",
@@ -54,6 +60,12 @@
       "downloaded_at": "2021-11-07 15:43:25.040607Z",
       "sha": "0ab55320f1c9251bda2712164927dd40debfea9f"
     },
+    "opensafely-insulin-medication.csv": {
+      "id": "opensafely/insulin-medication/2020-04-26",
+      "url": "https://codelists.opensafely.org/codelist/opensafely/insulin-medication/2020-04-26/",
+      "downloaded_at": "2021-11-09 11:51:26.619286Z",
+      "sha": "9d4c57c0b8738962da04b32ab43b7659cd64d774"
+    },
     "opensafely-myocardial-infarction-2.csv": {
       "id": "opensafely/myocardial-infarction-2/2020-07-09",
       "url": "https://codelists.opensafely.org/codelist/opensafely/myocardial-infarction-2/2020-07-09/",
@@ -66,17 +78,17 @@
       "downloaded_at": "2021-11-07 15:43:25.759380Z",
       "sha": "4056def5f0cdd93230d4f24f74b8f46337b83df1"
     },
-    "opensafely-psychosis-schizophrenia-bipolar-affective-disease.csv": {
-      "id": "opensafely/psychosis-schizophrenia-bipolar-affective-disease/2020-07-09",
-      "url": "https://codelists.opensafely.org/codelist/opensafely/psychosis-schizophrenia-bipolar-affective-disease/2020-07-09/",
-      "downloaded_at": "2021-11-07 15:43:26.059404Z",
-      "sha": "c7c23c83a155cab15a41b21e10e26f33ca17bc3f"
-    },
     "opensafely-pneumonia-secondary-care.csv": {
       "id": "opensafely/pneumonia-secondary-care/2020-10-05",
       "url": "https://codelists.opensafely.org/codelist/opensafely/pneumonia-secondary-care/2020-10-05/",
       "downloaded_at": "2021-10-20 09:44:15.506418Z",
       "sha": "866ab4f0ff144330c1a0ea28116c9d2073cf379a"
+    },
+    "opensafely-psychosis-schizophrenia-bipolar-affective-disease.csv": {
+      "id": "opensafely/psychosis-schizophrenia-bipolar-affective-disease/2020-07-09",
+      "url": "https://codelists.opensafely.org/codelist/opensafely/psychosis-schizophrenia-bipolar-affective-disease/2020-07-09/",
+      "downloaded_at": "2021-11-07 15:43:26.059404Z",
+      "sha": "c7c23c83a155cab15a41b21e10e26f33ca17bc3f"
     },
     "opensafely-renal-replacement-therapy.csv": {
       "id": "opensafely/renal-replacement-therapy/2020-04-14",
@@ -114,17 +126,17 @@
       "downloaded_at": "2021-11-01 12:38:58.522335Z",
       "sha": "e62a8af49698022220de1e1e438d6b6c611e666e"
     },
-    "opensafely-type-1-diabetes.csv": {
-      "id": "opensafely/type-1-diabetes/2020-06-29",
-      "url": "https://codelists.opensafely.org/codelist/opensafely/type-1-diabetes/2020-06-29/",
-      "downloaded_at": "2021-10-18 22:23:01.735373Z",
-      "sha": "dc4ce0fbdb8500cc7dc6288e8eec9c783e31de57"
-    },
     "opensafely-type-1-diabetes-secondary-care.csv": {
       "id": "opensafely/type-1-diabetes-secondary-care/2020-09-27",
       "url": "https://codelists.opensafely.org/codelist/opensafely/type-1-diabetes-secondary-care/2020-09-27/",
       "downloaded_at": "2021-10-18 22:23:02.653038Z",
       "sha": "e51303ce0e7eb6ac9e0d1763bd23e49b0f273429"
+    },
+    "opensafely-type-1-diabetes.csv": {
+      "id": "opensafely/type-1-diabetes/2020-06-29",
+      "url": "https://codelists.opensafely.org/codelist/opensafely/type-1-diabetes/2020-06-29/",
+      "downloaded_at": "2021-10-18 22:23:01.735373Z",
+      "sha": "dc4ce0fbdb8500cc7dc6288e8eec9c783e31de57"
     },
     "opensafely-type-2-diabetes.csv": {
       "id": "opensafely/type-2-diabetes/2020-06-29",

@@ -160,6 +160,17 @@ def generate_study_variables(index_date_variable):
             date_format="YYYY-MM-DD",
             return_expectations={"date": {"earliest": "2015-01-01"}, "incidence": 0.02},
         ),
+        ## Diabetes medications
+        antidiabetic_lastyear=patients.with_these_medications(
+            antidiabetic_codes,
+            between=[f"{index_date_variable} - 1 year", f"{index_date_variable}"],
+            return_expectations={"incidence": 0.05},
+        ),
+        insulin_lastyear=patients.with_these_medications(
+            insulin_codes,
+            between=[f"{index_date_variable} - 1 year", f"{index_date_variable}"],
+            return_expectations={"incidence": 0.05},
+        ),
         ## COVID dates
         date_covid_test=patients.with_test_result_in_sgss(
 	        pathogen="SARS-CoV-2",
@@ -277,6 +288,79 @@ def generate_study_variables(index_date_variable):
             rrt_codes, 
             on_or_before=f"{index_date_variable}",
             return_expectations={"incidence": 0.1},
+        ),
+        # COVID Vaccination
+        # First COVID vaccination (GP record)
+        date_vaccin_gp_first=patients.with_tpp_vaccination_record(
+            target_disease_matches="SARS-2 CORONAVIRUS",
+            on_or_after="2020-12-01",
+            find_first_match_in_period=True,
+            returning="date",
+            date_format="YYYY-MM-DD",
+            return_expectations={"date": {"earliest": "2020-12-08"},  "incidence": 0.9},
+        ),
+        # Last COVID vaccination (GP record)
+        date_vaccin_gp_last=patients.with_tpp_vaccination_record(
+            target_disease_matches="SARS-2 CORONAVIRUS",
+            on_or_after="2020-12-01",
+            find_last_match_in_period=True,
+            returning="date",
+            date_format="YYYY-MM-DD",
+            return_expectations={"date": {"earliest": "2020-12-08"},  "incidence": 0.8},
+        ),
+        # First COVID vaccination (Pfizer BioNTech)
+        date_vaccin_pfizer_first=patients.with_tpp_vaccination_record(
+            product_name_matches="COVID-19 mRNA Vaccine Comirnaty 30micrograms/0.3ml dose conc for susp for inj MDV (Pfizer)",
+            on_or_after="2020-12-01", 
+            find_first_match_in_period=True,
+            returning="date",
+            date_format="YYYY-MM-DD",
+            return_expectations={"date": {"earliest": "2020-12-08"},  "incidence": 0.9},
+        ),
+        # Last COVID vaccination (Pfizer BioNTech)
+        date_vaccin_pfizer_last=patients.with_tpp_vaccination_record(
+            product_name_matches="COVID-19 mRNA Vaccine Comirnaty 30micrograms/0.3ml dose conc for susp for inj MDV (Pfizer)",
+            on_or_after="2020-12-01", 
+            find_last_match_in_period=True,
+            returning="date",
+            date_format="YYYY-MM-DD",
+            return_expectations={"date": {"earliest": "2020-12-08"},  "incidence": 0.9},
+        ),
+        # First COVID vaccination (Oxford AZ)
+        date_vaccin_oxford_first=patients.with_tpp_vaccination_record(
+            product_name_matches="COVID-19 Vac AstraZeneca (ChAdOx1 S recomb) 5x10000000000 viral particles/0.5ml dose sol for inj MDV",
+            on_or_after="2020-12-01",
+            find_first_match_in_period=True,
+            returning="date",
+            date_format="YYYY-MM-DD",
+            return_expectations={"date": {"earliest": "2021-01-04"},  "incidence": 0.7},
+        ),
+        # Last COVID vaccination (Oxford AZ)
+        date_vaccin_oxford_last=patients.with_tpp_vaccination_record(
+            product_name_matches="COVID-19 Vac AstraZeneca (ChAdOx1 S recomb) 5x10000000000 viral particles/0.5ml dose sol for inj MDV",
+            on_or_after="2020-12-01",
+            find_last_match_in_period=True,
+            returning="date",
+            date_format="YYYY-MM-DD",
+            return_expectations={"date": {"earliest": "2021-01-04"},  "incidence": 0.7},
+        ),
+        # First COVID vaccination (Moderna)
+        date_vaccin_moderna_first=patients.with_tpp_vaccination_record(
+            product_name_matches="COVID-19 mRNA (nucleoside modified) Vaccine Moderna 0.1mg/0.5mL dose dispersion for inj MDV",
+            on_or_after="2020-12-01",
+            find_first_match_in_period=True,
+            returning="date",
+            date_format="YYYY-MM-DD",
+            return_expectations={"date": {"earliest": "2021-04-01"},  "incidence": 0.4},
+        ),
+        # Last COVID vaccination (Moderna)
+        date_vaccin_moderna_last=patients.with_tpp_vaccination_record(
+            product_name_matches="COVID-19 mRNA (nucleoside modified) Vaccine Moderna 0.1mg/0.5mL dose dispersion for inj MDV",
+            on_or_after="2020-12-01",
+            find_last_match_in_period=True,
+            returning="date",
+            date_format="YYYY-MM-DD",
+            return_expectations={"date": {"earliest": "2021-04-01"},  "incidence": 0.4},
         ),
         ### CENSORING
         date_deregistered=patients.date_deregistered_from_all_supported_practices(

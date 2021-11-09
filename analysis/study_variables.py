@@ -289,6 +289,26 @@ def generate_study_variables(index_date_variable):
             on_or_before=f"{index_date_variable}",
             return_expectations={"incidence": 0.1},
         ),
+        # Type of treatment for COVID-19 (during hospitalisation)
+        resp_support_basic=patients.admitted_to_icu(
+            on_or_after="2020-02-01",
+            find_first_match_in_period=True,
+            returning="had_basic_respiratory_support",
+            return_expectations={"date": {"earliest" : "2020-02-01"}, "rate" : "exponential_increase"},
+        ),
+        resp_support_advanced=patients.admitted_to_icu(
+            on_or_after="2020-02-01",
+            find_first_match_in_period=True,
+            returning="had_advanced_respiratory_support",
+            return_expectations={"date": {"earliest" : "2020-02-01"}, "rate" : "exponential_increase"},
+        ),
+        date_icu=patients.admitted_to_icu(
+            on_or_after="2020-02-01",
+            find_first_match_in_period=True,
+            returning="date_admitted",
+            date_format="YYYY-MM-DD",
+            return_expectations={"date": {"earliest" : "2020-02-01"}, "rate" : "exponential_increase"},
+        ),
         # COVID Vaccination
         # First COVID vaccination (GP record)
         date_vaccin_gp_first=patients.with_tpp_vaccination_record(

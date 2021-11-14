@@ -18,7 +18,7 @@ tempname rates
 	postfile `rates' outindex groupindex str30(outcome) str30(group) person_time numevents rate rate_lo rate_hi using $resultsdir/option1_table2_rates.dta, replace
 	**// Outcomes
 	local outindex=0
-	foreach outcome in "stroke" "death" {	
+	foreach outcome in "stroke" "mi" "dvt" "pe" "hf" "any_cvd" "aki" "anxiety" "depression" "psychosis" "death" {	
 		local outindex=`outindex'+1
 		gen myend=(min(date_`outcome', date_censor)-date_patient_index)/(365.25/12)
 		gen myselect=(myend>0)

@@ -180,10 +180,11 @@ aki_codes_hospital = codelist(["N17", "N170", "N171", "N172", "N178", "N179"], s
 ## Mental illness
 
 # Anxiety 
-# Need to create CTV3 (and ICD?) code lists
+# Need to update CTV3 list and add ICD-10 list
 anxiety_codes = codelist(["X00Sc", "E200z", "E2000", "E2004", "E2002", "X00Sb", "X00RP", "XE1Y7", "XaMFU", "XE1YA", "E2005", "E2920", "Eu41y"], system="ctv3")
 
 # Depression
+# Need to update CTV3 list and add ICD-10 list
 depression_codes = codelist_from_csv(
     "codelists/opensafely-depression.csv",
     system="ctv3",
@@ -191,6 +192,7 @@ depression_codes = codelist_from_csv(
 )
 
 # Affective/non-affective psychosis
+# Need to update CTV3 list and add ICD-10 list
 psychosis_codes = codelist_from_csv(
     "codelists/opensafely-psychosis-schizophrenia-bipolar-affective-disease.csv",
     system="ctv3",
@@ -198,5 +200,7 @@ psychosis_codes = codelist_from_csv(
 )
 
 # Psychotropic medications
+# >>> Here
 
 ## Symptoms of post-COVID syndrome outcome
+# >>> Here

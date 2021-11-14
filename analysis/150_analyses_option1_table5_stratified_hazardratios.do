@@ -14,7 +14,7 @@ local refgroup2="COVID-19 without diabetes"
 local refgroup3="Pneumonia with diabetes"
 
 **// Loop over each outcome
-foreach outcome in "stroke" "death" {
+foreach outcome in "stroke" "mi" "dvt" "pe" "hf" "any_cvd" "aki" "anxiety" "depression" "psychosis" "death" {
 	use $outdir/input_part1_clean.dta, clear
 	gen expos=(group==1)
 	gen myend=(min(date_`outcome', date_censor)-date_patient_index)/(365.25/12)
@@ -23,7 +23,7 @@ foreach outcome in "stroke" "death" {
 	stset myend, f(delta) id(patient_id)
 	local demogindex=0
 	**// Loop over each demographic/characteristic
-	foreach demog in "sex" "age" "ethnic" "imd" {
+	foreach demog in "sex" "age" "ethnic" "imd" "hist_cvd" "hist_renal" "treatment" "vaccin" "smoking" "alcohol" "bmi" "hba1c" {
 		local demogindex=`demogindex'+1
 		summ cat_`demog'
 		local numcat_`demog'=r(max)
@@ -40,11 +40,11 @@ foreach outcome in "stroke" "death" {
 				`outcome'_hr3 `outcome'_hr3_lo `outcome'_hr3_hi ///
 				using $resultsdir/hr_`outcome'_`demog'_`catindex'.dta, replace
 				forvalues k=2(1)3 {
-					count if group==1
+					count if group==1 & delta==1
 					local mycounta=r(N)
-					count if group==`k'
+					count if group==`k' & delta==1
 					local mycountb=r(N)
-					if `mycounta'>0 & `mycountb'>0 {
+					if `mycounta'>=10 & `mycountb'>=10 {
 						forvalues m=1(1)3 {
 							if `m'==1 {
 								capture stcox expos if (group==1 | group==`k') & myselect==1
@@ -82,8 +82,8 @@ foreach outcome in "stroke" "death" {
 }
 
 **// Append categories within each demographic for each outcome
-foreach outcome in "stroke" "death" {
-	foreach demog in "sex" "age" "ethnic" "imd" {
+foreach outcome in "stroke" "mi" "dvt" "pe" "hf" "any_cvd" "aki" "anxiety" "depression" "psychosis" "death" {
+	foreach demog in "sex" "age" "ethnic" "imd" "hist_cvd" "hist_renal" "treatment" "vaccin" "smoking" "alcohol" "bmi" "hba1c" {
 		clear
 		set obs 0
 		forvalues catindex=1(1)`numcat_`demog'' {
@@ -98,10 +98,10 @@ foreach outcome in "stroke" "death" {
 }
 
 **// Append demographics within each outcome
-foreach outcome in "stroke" "death" {
+foreach outcome in "stroke" "mi" "dvt" "pe" "hf" "any_cvd" "aki" "anxiety" "depression" "psychosis" "death" {
 	clear
 	set obs 0
-	foreach demog in "sex" "age" "ethnic" "imd" {
+	foreach demog in "sex" "age" "ethnic" "imd" "hist_cvd" "hist_renal" "treatment" "vaccin" "smoking" "alcohol" "bmi" "hba1c" {
 		append using $resultsdir/hr_`outcome'_`demog'.dta
 		erase $resultsdir/hr_`outcome'_`demog'.dta
 	}
@@ -109,7 +109,7 @@ foreach outcome in "stroke" "death" {
 	**// Tidy presentation of hazard ratios
 	describe `outcome'_hr*, varlist
 	foreach myvar in `r(varlist)' {
-		format `myvar' %12.1f
+		format `myvar' %12.2f
 		tostring `myvar', replace force usedisplayformat
 		
 	}
@@ -124,7 +124,7 @@ foreach outcome in "stroke" "death" {
 
 **// Merge outcomes
 use $resultsdir/hr_stroke.dta, clear
-foreach outcome in "death" {
+foreach outcome in "mi" "dvt" "pe" "hf" "any_cvd" "aki" "anxiety" "depression" "psychosis" "death" {
 	capture merge 1:1 demogindex catindex groupindex using $resultsdir/hr_`outcome'.dta
 	if _rc==0 {
 	   drop _merge

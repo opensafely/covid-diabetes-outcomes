@@ -15,7 +15,7 @@ local grouplabel3="Pneumonia with diabetes"
 set more off
 
 **// Loop over each outcome
-foreach outcome in "stroke" "death" {
+foreach outcome in "stroke" "mi" "dvt" "pe" "hf" "any_cvd" "aki" "anxiety" "depression" "psychosis" "death" {
 	use $outdir/input_part1_clean.dta, clear
 	gen myend=(min(date_`outcome', date_censor)-date_patient_index)/(365.25/12)
 	gen myselect=(myend>0)
@@ -23,7 +23,7 @@ foreach outcome in "stroke" "death" {
 	stset myend, f(delta) id(patient_id)
 	local demogindex=0
 	**// Loop over each demographic/characteristic
-	foreach demog in "sex" "age" "ethnic" "imd" {
+	foreach demog in "sex" "age" "ethnic" "imd" "hist_cvd" "hist_renal" "treatment" "vaccin" "smoking" "alcohol" "bmi" "hba1c" {
 		local demogindex=`demogindex'+1
 		summ cat_`demog'
 		local numcat_`demog'=r(max)
@@ -35,18 +35,22 @@ foreach outcome in "stroke" "death" {
 			keep if cat_`demog'==`catindex'
 			tempname rates
 				postfile `rates' demogindex catindex groupindex str20(demographic) str25(group) `outcome'_ptime `outcome'_events `outcome'_rate `outcome'_rate_lo `outcome'_rate_hi ///
-				using $resultsdir/rates_`outcome'_`demog'_`catindex'.dta, replace
-				if _N>0 {
-					forvalues k=1(1)3 {
-						stptime if group==`k' & myselect==1, title(person-months) per(10000)
-						post `rates' (`demogindex') (`catindex') (`k') ("`demog'") ("`grouplabel`k''") (`r(ptime)') (`r(failures)') (`r(rate)') (`r(lb)') (`r(ub)')
-					}		
-				}
-				if _N==0 {
-					forvalues k=1(1)3 {
+				using $resultsdir/rates_`outcome'_`demog'_`catindex'.dta, replace			
+				forvalues k=1(1)3 {
+					capture stptime if group==`k' & myselect==1, title(person-months) per(10000)
+					if _rc==0 {
+						local numevents=`r(failures)'
+						if `numevents'>=10 {
+							post `rates' (`demogindex') (`catindex') (`k') ("`demog'") ("`grouplabel`k''") (`r(ptime)') (`r(failures)') (`r(rate)') (`r(lb)') (`r(ub)')
+						}
+						if `numevents'< 10 {
+							post `rates' (`demogindex') (`catindex') (`k') ("`demog'") ("`grouplabel`k''") (.) (.) (.) (.) (.)
+						}					
+					}
+					if _rc!=0 {
 						post `rates' (`demogindex') (`catindex') (`k') ("`demog'") ("`grouplabel`k''") (.) (.) (.) (.) (.)
-					}					
-				}								
+					}
+				}		
 			postclose `rates' 	
 			restore
 		}
@@ -54,8 +58,8 @@ foreach outcome in "stroke" "death" {
 }
 
 **// Append categories within each demographic for each outcome
-foreach outcome in "stroke" "death" {
-	foreach demog in "sex" "age" "ethnic" "imd" {
+foreach outcome in "stroke" "mi" "dvt" "pe" "hf" "any_cvd" "aki" "anxiety" "depression" "psychosis" "death" {
+	foreach demog in "sex" "age" "ethnic" "imd" "hist_cvd" "hist_renal" "treatment" "vaccin" "smoking" "alcohol" "bmi" "hba1c" {
 		clear
 		set obs 0
 		forvalues catindex=1(1)`numcat_`demog'' {
@@ -70,10 +74,10 @@ foreach outcome in "stroke" "death" {
 }
 
 **// Append demographics within each outcome
-foreach outcome in "stroke" "death" {
+foreach outcome in "stroke" "mi" "dvt" "pe" "hf" "any_cvd" "aki" "anxiety" "depression" "psychosis" "death" {
 	clear
 	set obs 0
-	foreach demog in "sex" "age" "ethnic" "imd" {
+	foreach demog in "sex" "age" "ethnic" "imd" "hist_cvd" "hist_renal" "treatment" "vaccin" "smoking" "alcohol" "bmi" "hba1c" {
 		append using $resultsdir/rates_`outcome'_`demog'.dta
 		erase $resultsdir/rates_`outcome'_`demog'.dta
 	}
@@ -95,7 +99,7 @@ foreach outcome in "stroke" "death" {
 
 **// Merge outcomes
 use $resultsdir/rates_stroke.dta, clear
-foreach outcome in "death" {
+foreach outcome in "mi" "dvt" "pe" "hf" "any_cvd" "aki" "anxiety" "depression" "psychosis" "death" {
 	capture merge 1:1 demogindex catindex groupindex using $resultsdir/rates_`outcome'.dta
 	if _rc==0 {
 	   drop _merge

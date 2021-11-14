@@ -311,77 +311,77 @@ def generate_study_variables(index_date_variable):
         ),
         # COVID Vaccination
         # First COVID vaccination (GP record)
-        date_vaccin_gp_first=patients.with_tpp_vaccination_record(
+        date_vaccin_gp_1=patients.with_tpp_vaccination_record(
             target_disease_matches="SARS-2 CORONAVIRUS",
             on_or_after="2020-12-01",
             find_first_match_in_period=True,
             returning="date",
             date_format="YYYY-MM-DD",
-            return_expectations={"date": {"earliest": "2020-12-08"},  "incidence": 0.9},
+            return_expectations={"date": {"earliest": "2020-12-08"},  "incidence": 0.7},
         ),
-        # Last COVID vaccination (GP record)
-        date_vaccin_gp_last=patients.with_tpp_vaccination_record(
+        # Second COVID vaccination (GP record)
+        date_vaccin_gp_2=patients.with_tpp_vaccination_record(
             target_disease_matches="SARS-2 CORONAVIRUS",
-            on_or_after="2020-12-01",
+            on_or_after="date_vaccin_gp_1 + 19 days",
             find_last_match_in_period=True,
             returning="date",
             date_format="YYYY-MM-DD",
-            return_expectations={"date": {"earliest": "2020-12-08"},  "incidence": 0.8},
+            return_expectations={"date": {"earliest": "2020-12-08"},  "incidence": 0.5},
         ),
         # First COVID vaccination (Pfizer BioNTech)
-        date_vaccin_pfizer_first=patients.with_tpp_vaccination_record(
-            product_name_matches="COVID-19 mRNA Vaccine Comirnaty 30micrograms/0.3ml dose conc for susp for inj MDV (Pfizer)",
-            on_or_after="2020-12-01", 
-            find_first_match_in_period=True,
-            returning="date",
-            date_format="YYYY-MM-DD",
-            return_expectations={"date": {"earliest": "2020-12-08"},  "incidence": 0.9},
-        ),
+        #date_vaccin_pfizer_first=patients.with_tpp_vaccination_record(
+        #    product_name_matches="COVID-19 mRNA Vaccine Comirnaty 30micrograms/0.3ml dose conc for susp for inj MDV (Pfizer)",
+        #    on_or_after="2020-12-01", 
+        #    find_first_match_in_period=True,
+        #    returning="date",
+        #    date_format="YYYY-MM-DD",
+        #    return_expectations={"date": {"earliest": "2020-12-08"},  "incidence": 0.9},
+        #),
         # Last COVID vaccination (Pfizer BioNTech)
-        date_vaccin_pfizer_last=patients.with_tpp_vaccination_record(
-            product_name_matches="COVID-19 mRNA Vaccine Comirnaty 30micrograms/0.3ml dose conc for susp for inj MDV (Pfizer)",
-            on_or_after="2020-12-01", 
-            find_last_match_in_period=True,
-            returning="date",
-            date_format="YYYY-MM-DD",
-            return_expectations={"date": {"earliest": "2020-12-08"},  "incidence": 0.9},
-        ),
+        #date_vaccin_pfizer_last=patients.with_tpp_vaccination_record(
+        #    product_name_matches="COVID-19 mRNA Vaccine Comirnaty 30micrograms/0.3ml dose conc for susp for inj MDV (Pfizer)",
+        #    on_or_after="2020-12-01", 
+        #    find_last_match_in_period=True,
+        #    returning="date",
+        #    date_format="YYYY-MM-DD",
+        #    return_expectations={"date": {"earliest": "2020-12-08"},  "incidence": 0.9},
+        #),
         # First COVID vaccination (Oxford AZ)
-        date_vaccin_oxford_first=patients.with_tpp_vaccination_record(
-            product_name_matches="COVID-19 Vac AstraZeneca (ChAdOx1 S recomb) 5x10000000000 viral particles/0.5ml dose sol for inj MDV",
-            on_or_after="2020-12-01",
-            find_first_match_in_period=True,
-            returning="date",
-            date_format="YYYY-MM-DD",
-            return_expectations={"date": {"earliest": "2021-01-04"},  "incidence": 0.7},
-        ),
+        #date_vaccin_oxford_first=patients.with_tpp_vaccination_record(
+        #    product_name_matches="COVID-19 Vac AstraZeneca (ChAdOx1 S recomb) 5x10000000000 viral particles/0.5ml dose sol for inj MDV",
+        #    on_or_after="2020-12-01",
+        #    find_first_match_in_period=True,
+        #    returning="date",
+        #    date_format="YYYY-MM-DD",
+        #    return_expectations={"date": {"earliest": "2021-01-04"},  "incidence": 0.7},
+        #),
         # Last COVID vaccination (Oxford AZ)
-        date_vaccin_oxford_last=patients.with_tpp_vaccination_record(
-            product_name_matches="COVID-19 Vac AstraZeneca (ChAdOx1 S recomb) 5x10000000000 viral particles/0.5ml dose sol for inj MDV",
-            on_or_after="2020-12-01",
-            find_last_match_in_period=True,
-            returning="date",
-            date_format="YYYY-MM-DD",
-            return_expectations={"date": {"earliest": "2021-01-04"},  "incidence": 0.7},
-        ),
+        #date_vaccin_oxford_last=patients.with_tpp_vaccination_record(
+        #    product_name_matches="COVID-19 Vac AstraZeneca (ChAdOx1 S recomb) 5x10000000000 viral particles/0.5ml dose sol for inj MDV",
+        #    on_or_after="2020-12-01",
+        #    find_last_match_in_period=True,
+        #    returning="date",
+        #    date_format="YYYY-MM-DD",
+        #    return_expectations={"date": {"earliest": "2021-01-04"},  "incidence": 0.7},
+        #),
         # First COVID vaccination (Moderna)
-        date_vaccin_moderna_first=patients.with_tpp_vaccination_record(
-            product_name_matches="COVID-19 mRNA (nucleoside modified) Vaccine Moderna 0.1mg/0.5mL dose dispersion for inj MDV",
-            on_or_after="2020-12-01",
-            find_first_match_in_period=True,
-            returning="date",
-            date_format="YYYY-MM-DD",
-            return_expectations={"date": {"earliest": "2021-04-01"},  "incidence": 0.4},
-        ),
+        #date_vaccin_moderna_first=patients.with_tpp_vaccination_record(
+        #    product_name_matches="COVID-19 mRNA (nucleoside modified) Vaccine Moderna 0.1mg/0.5mL dose dispersion for inj MDV",
+        #    on_or_after="2020-12-01",
+        #    find_first_match_in_period=True,
+        #    returning="date",
+        #    date_format="YYYY-MM-DD",
+        #    return_expectations={"date": {"earliest": "2021-04-01"},  "incidence": 0.4},
+        #),
         # Last COVID vaccination (Moderna)
-        date_vaccin_moderna_last=patients.with_tpp_vaccination_record(
-            product_name_matches="COVID-19 mRNA (nucleoside modified) Vaccine Moderna 0.1mg/0.5mL dose dispersion for inj MDV",
-            on_or_after="2020-12-01",
-            find_last_match_in_period=True,
-            returning="date",
-            date_format="YYYY-MM-DD",
-            return_expectations={"date": {"earliest": "2021-04-01"},  "incidence": 0.4},
-        ),
+        #date_vaccin_moderna_last=patients.with_tpp_vaccination_record(
+        #    product_name_matches="COVID-19 mRNA (nucleoside modified) Vaccine Moderna 0.1mg/0.5mL dose dispersion for inj MDV",
+        #    on_or_after="2020-12-01",
+        #    find_last_match_in_period=True,
+        #    returning="date",
+        #    date_format="YYYY-MM-DD",
+        #    return_expectations={"date": {"earliest": "2021-04-01"},  "incidence": 0.4},
+        #),
         ### CENSORING
         date_deregistered=patients.date_deregistered_from_all_supported_practices(
             date_format="YYYY-MM-DD",
@@ -407,14 +407,14 @@ def generate_study_variables(index_date_variable):
             on_or_after=f"{index_date_variable} - 3 months",
             return_first_date_in_period=True,
             date_format="YYYY-MM-DD",
-            return_expectations={"date": {"earliest": "2019-11-01"}},
+            return_expectations={"date": {"earliest": "2019-11-01"}, "incidence": 0.1},
         ),
         date_stroke_gp_2=patients.with_these_clinical_events(
             stroke_codes_2,
             on_or_after=f"{index_date_variable} - 3 months",
             return_first_date_in_period=True,
             date_format="YYYY-MM-DD",
-            return_expectations={"date": {"earliest": "2019-11-01"}},
+            return_expectations={"date": {"earliest": "2019-11-01"}, "incidence": 0.1},
         ),
         date_stroke_hospital=patients.admitted_to_hospital(
             with_these_diagnoses=stroke_codes_hospital,
@@ -422,7 +422,7 @@ def generate_study_variables(index_date_variable):
             find_first_match_in_period=True,
             returning="date_admitted",
             date_format="YYYY-MM-DD",
-            return_expectations={"date": {"earliest": "2019-11-01"}},
+            return_expectations={"date": {"earliest": "2019-11-01"}, "incidence": 0.1},
         ),
         date_stroke_ons=patients.with_these_codes_on_death_certificate(
             stroke_codes_hospital,
@@ -430,7 +430,7 @@ def generate_study_variables(index_date_variable):
             match_only_underlying_cause=False,
             returning="date_of_death",
             date_format="YYYY-MM-DD",
-            return_expectations={"date": {"earliest": "2020-02-01"}},
+            return_expectations={"date": {"earliest": "2019-11-01"}, "incidence": 0.1},
         ),
         # Myocardial Infarction (MI)
         date_mi_gp=patients.with_these_clinical_events(
@@ -438,7 +438,7 @@ def generate_study_variables(index_date_variable):
             on_or_after=f"{index_date_variable} - 3 months",
             return_first_date_in_period=True,
             date_format="YYYY-MM-DD",
-            return_expectations={"date": {"earliest": "2019-11-01"}},
+            return_expectations={"date": {"earliest": "2019-11-01"}, "incidence": 0.1},
         ),
         date_mi_hospital=patients.admitted_to_hospital(
             with_these_diagnoses=mi_codes_hospital,
@@ -446,7 +446,7 @@ def generate_study_variables(index_date_variable):
             find_first_match_in_period=True,
             returning="date_admitted",
             date_format="YYYY-MM-DD",
-            return_expectations={"date": {"earliest": "2019-11-01"}},
+            return_expectations={"date": {"earliest": "2019-11-01"}, "incidence": 0.1},
         ),
         date_mi_ons=patients.with_these_codes_on_death_certificate(
             mi_codes_hospital,
@@ -454,7 +454,7 @@ def generate_study_variables(index_date_variable):
             match_only_underlying_cause=False,
             returning="date_of_death",
             date_format="YYYY-MM-DD",
-            return_expectations={"date": {"earliest": "2020-02-01"}},
+            return_expectations={"date": {"earliest": "2019-11-01"}, "incidence": 0.1},
         ),
         # Deep Vein Thrombosis (DVT)
         date_dvt_gp=patients.with_these_clinical_events(
@@ -462,7 +462,7 @@ def generate_study_variables(index_date_variable):
             on_or_after=f"{index_date_variable} - 3 months",
             return_first_date_in_period=True,
             date_format="YYYY-MM-DD",
-            return_expectations={"date": {"earliest": "2019-11-01"}},
+            return_expectations={"date": {"earliest": "2019-11-01"}, "incidence": 0.1},
         ),
         date_dvt_hospital=patients.admitted_to_hospital(
             with_these_diagnoses=dvt_codes_hospital,
@@ -470,7 +470,7 @@ def generate_study_variables(index_date_variable):
             find_first_match_in_period=True,
             returning="date_admitted",
             date_format="YYYY-MM-DD",
-            return_expectations={"date": {"earliest": "2019-11-01"}},
+            return_expectations={"date": {"earliest": "2019-11-01"}, "incidence": 0.1},
         ),
         date_dvt_ons=patients.with_these_codes_on_death_certificate(
             dvt_codes_hospital,
@@ -478,7 +478,7 @@ def generate_study_variables(index_date_variable):
             match_only_underlying_cause=False,
             returning="date_of_death",
             date_format="YYYY-MM-DD",
-            return_expectations={"date": {"earliest": "2020-02-01"}},
+            return_expectations={"date": {"earliest": "2019-11-01"}, "incidence": 0.1},
         ),
         # Pulmonary Embolism (PE)
         date_pe_gp=patients.with_these_clinical_events(
@@ -486,7 +486,7 @@ def generate_study_variables(index_date_variable):
             on_or_after=f"{index_date_variable} - 3 months",
             return_first_date_in_period=True,
             date_format="YYYY-MM-DD",
-            return_expectations={"date": {"earliest": "2019-11-01"}},
+            return_expectations={"date": {"earliest": "2019-11-01"}, "incidence": 0.1},
         ),
         date_pe_hospital=patients.admitted_to_hospital(
             with_these_diagnoses=pe_codes_hospital,
@@ -494,7 +494,7 @@ def generate_study_variables(index_date_variable):
             find_first_match_in_period=True,
             returning="date_admitted",
             date_format="YYYY-MM-DD",
-            return_expectations={"date": {"earliest": "2019-11-01"}},
+            return_expectations={"date": {"earliest": "2019-11-01"}, "incidence": 0.1},
         ),
         date_pe_ons=patients.with_these_codes_on_death_certificate(
             pe_codes_hospital,
@@ -502,7 +502,7 @@ def generate_study_variables(index_date_variable):
             match_only_underlying_cause=False,
             returning="date_of_death",
             date_format="YYYY-MM-DD",
-            return_expectations={"date": {"earliest": "2020-02-01"}},
+            return_expectations={"date": {"earliest": "2019-11-01"}, "incidence": 0.1},
         ),
         # Heart Failure (HF)
         date_hf_gp=patients.with_these_clinical_events(
@@ -510,7 +510,7 @@ def generate_study_variables(index_date_variable):
             on_or_after=f"{index_date_variable} - 3 months",
             return_first_date_in_period=True,
             date_format="YYYY-MM-DD",
-            return_expectations={"date": {"earliest": "2019-11-01"}},
+            return_expectations={"date": {"earliest": "2019-11-01"}, "incidence": 0.1},
         ),
         date_hf_hospital=patients.admitted_to_hospital(
             with_these_diagnoses=hf_codes_hospital,
@@ -518,7 +518,7 @@ def generate_study_variables(index_date_variable):
             find_first_match_in_period=True,
             returning="date_admitted",
             date_format="YYYY-MM-DD",
-            return_expectations={"date": {"earliest": "2019-11-01"}},
+            return_expectations={"date": {"earliest": "2019-11-01"}, "incidence": 0.1},
         ),
         date_hf_ons=patients.with_these_codes_on_death_certificate(
             hf_codes_hospital,
@@ -526,11 +526,72 @@ def generate_study_variables(index_date_variable):
             match_only_underlying_cause=False,
             returning="date_of_death",
             date_format="YYYY-MM-DD",
-            return_expectations={"date": {"earliest": "2020-02-01"}},
+            return_expectations={"date": {"earliest": "2019-11-01"}, "incidence": 0.1},
         ),
         ## Renal
+        # Acute Kidney Injury (AKI)
+        date_aki_gp=patients.with_these_clinical_events(
+            aki_codes,
+            on_or_after=f"{index_date_variable} - 3 months",
+            return_first_date_in_period=True,
+            date_format="YYYY-MM-DD",
+            return_expectations={"date": {"earliest": "2019-11-01"}, "incidence": 0.1},            
+        ),
+        date_aki_hospital=patients.admitted_to_hospital(
+            with_these_diagnoses=aki_codes_hospital,
+            on_or_after=f"{index_date_variable} - 3 months",
+            find_first_match_in_period=True,
+            returning="date_admitted",
+            date_format="YYYY-MM-DD",
+            return_expectations={"date": {"earliest": "2019-11-01"}, "incidence": 0.1},            
+        ),
+        date_aki_ons=patients.with_these_codes_on_death_certificate(
+            aki_codes_hospital,
+            on_or_after=f"{index_date_variable}",
+            match_only_underlying_cause=False,
+            returning="date_of_death",
+            date_format="YYYY-MM-DD",
+            return_expectations={"date": {"earliest": "2019-11-01"}, "incidence": 0.1},
+        ),
         ## Hepatic
+        # >>> HERE
+        #
         ## Mental Illness
+        # Anxiety
+        # >>> Need to update code list
+        # >>> Need to add diagnoses from secondary care, and ONS
+        date_anxiety_gp=patients.with_these_clinical_events(
+            anxiety_codes,
+            on_or_before="today",
+            return_first_date_in_period=True,
+            date_format="YYYY-MM-DD",
+            return_expectations={"date": {"earliest": "2019-11-01"}, "incidence": 0.1},            
+        ),
+        # Depression
+        # >>> Need to update code list
+        # >>> Need to add diagnoses from secondary care, and ONS
+        date_depression_gp=patients.with_these_clinical_events(
+            depression_codes,
+            on_or_before="today",
+            return_first_date_in_period=True,
+            date_format="YYYY-MM-DD",
+            return_expectations={"date": {"earliest": "2019-11-01"}, "incidence": 0.1},            
+        ),
+        # Affective/non-affective psychosis
+        # >>> Need to update code list
+        # >>> Need to add diagnoses from secondary care, and ONS
+        date_psychosis_gp=patients.with_these_clinical_events(
+            psychosis_codes,
+            on_or_before="today",
+            return_first_date_in_period=True,
+            date_format="YYYY-MM-DD",
+            return_expectations={"date": {"earliest": "2019-11-01"}, "incidence": 0.1},            
+        ),
+        # Psychotropic medication
+        # >>> Here
+        #
         ## Symptoms of post-COVID syndrome outcome        
+        # >>> Here
+        #
     )
     return study_variables

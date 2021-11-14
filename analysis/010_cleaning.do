@@ -22,6 +22,7 @@ order patient_id practice_id date_discharged_covid date_discharged_pneum date_pa
 sort patient_id
 
 replace date_patient_index=min(date_discharged_covid, date_discharged_pneum)
+replace date_diabetes_diagnosis=min(date_t1dm_gp_first, date_t2dm_gp_first, date_unknown_diabetes_gp_first)
 
 drop if (has_follow_up!=1 | min(date_deregistered, date_death)<=date_patient_index)
 drop has_follow_up
@@ -84,6 +85,22 @@ if _rc==0 {
 }
 
 **// Type of diabetes
+gen temp1=(min(date_t1dm_gp_first, date_t1dm_hospital_first)<=date_patient_index)
+gen temp2=(min(date_t2dm_gp_first, date_t2dm_hospital_first)<=date_patient_index)
+gen temp3=(date_unknown_diabetes_gp_first<=date_patient_index)
+gen    cat_diabetes=.
+replace cat_diabetes=1 if temp1==1 & temp2!=1
+replace cat_diabetes=1 if temp1==1 & temp2==1            & insulin_lastyear==1 & antidiabetic_lastyear!=1
+replace cat_diabetes=1 if temp1==1 & temp2!=1 & temp3==1 & insulin_lastyear==1 & antidiabetic_lastyear!=1
+replace cat_diabetes=1 if temp1!=1 & temp2!=1 & temp3==1 & insulin_lastyear==1 & antidiabetic_lastyear!=1
+replace cat_diabetes=2 if temp1!=1 & temp2==1
+replace cat_diabetes=2 if temp1==1 & temp2==1            & antidiabetic_lastyear==1
+replace cat_diabetes=2 if temp1!=1 & temp2==1 & temp3==1 & antidiabetic_lastyear==1
+replace cat_diabetes=2 if temp1!=1 & temp2!=1 & temp3==1 & antidiabetic_lastyear==1
+recode  cat_diabetes .=3
+label define cat_diablab 1 "1" 2 "2" 3 "None"
+label values cat_diabetes cat_diablab
+drop temp* date_diabetes* date_t1dm* date_t2dm* date_unknown_diabetes* antidiabetic_lastyear insulin_lastyear
 
 **// History of CVD
 capture gen cat_hist_cvd=max(hist_cvd, hist_cvd_opcs)+1
@@ -95,8 +112,31 @@ if _rc==0 {
 }
 
 **// History of renal disease
+capture gen cat_hist_renal=max(ckd_hospital, hist_rrt)+1
+if _rc==0 {
+	recode cat_hist_renal .=3
+	label define cat_hist_renallab 1 "No" 2 "Yes" 3 "Unknown"
+	label values cat_hist_renal cat_hist_renallab
+	drop ckd_hospital hist_rrt
+}
 
 **// Type of treatment for COVID-19 (during hospitalisation)
+gen cat_treatment=1
+capture replace cat_treatment=2 if date_icu<=date_patient_index
+if _rc==0 {
+	replace cat_treatment=3 if resp_support_basic==1
+	replace cat_treatment=4 if resp_support_advanced==1
+}
+label define cat_treatmentlab 1 "Not admitted to ICU" 2 "Admitted to ICU" 3 "Required basic ventilatory support" 4 "Required advanced ventilatory support"
+label values cat_treatment cat_treatmentlab
+
+**// COVID-19 vaccination status (at baseline)
+gen cat_vaccin=1
+capture replace cat_vaccin=2 if date_vaccin_gp_1<date_covid_hospital
+capture replace cat_vaccin=3 if date_vaccin_gp_2<date_covid_hospital
+label define cat_vaccinlab 1 "None" 2 "One dose" 3 "Two doses"
+label value cat_vaccin cat_vaccinlab
+
 
 **// Smoking status
 capture gen cat_smoking=2 if latest_smoking=="N" & ever_smoked==1
@@ -156,36 +196,59 @@ label define cat_hba1clab 1 "Normal" 2 "Prediabetes" 3 "Diabetes" 4 "Unknown"
 capture label values cat_hba1c cat_hba1clab
 capture drop hba1c* cat_hba1c_percent date_hba1c*
 
-**// COVID-19 vaccination status
-
 
 **// OUTCOMES
 **///////////////
 
+**// Cardiovascular/Cerebrovascular
+
 **// Stroke
-gen date_stroke=min(date_stroke_gp, date_stroke_hospital, date_stroke_ons)
+gen  date_stroke=min(date_stroke_gp, date_stroke_hospital, date_stroke_ons)
 drop date_stroke_*
 
 **// Myocardial Infarction (MI)
-gen date_mi=min(date_mi_gp, date_mi_hospital, date_mi_ons)
+gen  date_mi=min(date_mi_gp, date_mi_hospital, date_mi_ons)
 drop date_mi_*
 
 **// Deep Vein Thrombosis (DVT)
-gen date_dvt=min(date_dvt_gp, date_dvt_hospital, date_dvt_ons)
+gen  date_dvt=min(date_dvt_gp, date_dvt_hospital, date_dvt_ons)
 drop date_dvt_*
 
 **// Pulmonary Embolism (PE)
-gen date_pe=min(date_pe_gp, date_pe_hospital, date_pe_ons)
+gen  date_pe=min(date_pe_gp, date_pe_hospital, date_pe_ons)
 drop date_pe_*
 
 **// Heart Failure
-gen date_hf=min(date_hf_gp, date_hf_hospital, date_hf_ons)
+gen  date_hf=min(date_hf_gp, date_hf_hospital, date_hf_ons)
 drop date_hf_*
 
+**// Any Cardiovascular/Cerebrovascular
+gen date_any_cvd=min(date_stroke, date_mi, date_dvt, date_pe, date_hf)
+
 **// Renal
+
+**// AKI
+gen  date_aki=min(date_aki_gp, date_aki_hospital, date_aki_ons)
+drop date_aki_*
+
 **// Hepatic
+
 **// Mental Illness
+
+**// Anxiety
+gen  date_anxiety=date_anxiety_gp
+drop date_anxiety_*
+
+**// Depression
+gen  date_depression=date_depression_gp
+drop date_depression_*
+
+**// Psychosis
+gen  date_psychosis=date_psychosis_gp
+drop date_psychosis_*
+
 **// Symptoms of post-COVID syndrome outcome
 
+format date_* %td
 
 save $outdir/input_part1_clean.dta, replace

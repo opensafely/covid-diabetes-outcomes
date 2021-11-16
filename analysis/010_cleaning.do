@@ -37,7 +37,7 @@ label define grouplab 1 "COVID-19 with diabetes" 2 "COVID-19 without diabetes" 3
 label values group grouplab
 
 **// Censoring
-gen date_first_covid=min(date_covid_test, date_covid_hospital, date_covid_icu)
+gen date_first_covid=min(date_covid_test, date_covid_hospital)
 gen date_censor=date_admitted_pneum if (group==1 | group==2)
 replace date_censor=date_first_covid if (group==3 | group==4)
 replace date_censor=min(date_deregistered, date_death, date_studyend) if min(date_deregistered, date_death, date_studyend)<date_censor
@@ -120,15 +120,14 @@ if _rc==0 {
 	drop ckd_hospital hist_rrt
 }
 
-**// Type of treatment for COVID-19 (during hospitalisation)
-gen cat_treatment=1
-capture replace cat_treatment=2 if date_icu<=date_patient_index
+**// Required critical care (during hospitalisation)
+capture describe critical_care_days
 if _rc==0 {
-	replace cat_treatment=3 if resp_support_basic==1
-	replace cat_treatment=4 if resp_support_advanced==1
+	gen cat_critical=1
+	replace cat_critical=2 if critical_care_days>0 & critical_care_days!=.
 }
-label define cat_treatmentlab 1 "Not admitted to ICU" 2 "Admitted to ICU" 3 "Required basic ventilatory support" 4 "Required advanced ventilatory support"
-label values cat_treatment cat_treatmentlab
+label define cat_criticallab 1 "No" 2 "Yes"
+label values cat_critical cat_criticallab
 
 **// COVID-19 vaccination status (at baseline)
 gen cat_vaccin=1
@@ -137,12 +136,11 @@ capture replace cat_vaccin=3 if date_vaccin_gp_2<date_covid_hospital
 label define cat_vaccinlab 1 "None" 2 "One dose" 3 "Two doses"
 label value cat_vaccin cat_vaccinlab
 
-
 **// Smoking status
-capture gen cat_smoking=2 if latest_smoking=="N" & ever_smoked==1
+capture describe latest_smoking ever_smoked
 if _rc==0 {
-	replace cat_smoking=1 if latest_smoking=="N" & ever_smoked==0
-	replace cat_smoking=2 if latest_smoking=="E"
+	gen     cat_smoking=1 if latest_smoking=="N" & (ever_smoked==0 | ever_smoked==.)
+	replace cat_smoking=2 if latest_smoking=="E" | (latest_smoking=="N" & ever_smoked==1)
 	replace cat_smoking=3 if latest_smoking=="S"
 	recode cat_smoking .=4
 	label define cat_smoklab 1 "Never" 2 "Ex" 3 "Current" 4 "Unknown"

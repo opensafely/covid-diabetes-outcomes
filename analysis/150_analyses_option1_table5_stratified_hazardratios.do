@@ -23,7 +23,7 @@ foreach outcome in "stroke" "mi" "dvt" "pe" "hf" "any_cvd" "aki" "anxiety" "depr
 	stset myend, f(delta) id(patient_id)
 	local demogindex=0
 	**// Loop over each demographic/characteristic
-	foreach demog in "sex" "age" "ethnic" "imd" "hist_cvd" "hist_renal" "treatment" "vaccin" "smoking" "alcohol" "bmi" "hba1c" {
+	foreach demog in "sex" "age" "ethnic" "imd" "hist_cvd" "hist_renal" "critical" "vaccin" "smoking" "alcohol" "bmi" "hba1c" {
 		local demogindex=`demogindex'+1
 		summ cat_`demog'
 		local numcat_`demog'=r(max)
@@ -83,7 +83,7 @@ foreach outcome in "stroke" "mi" "dvt" "pe" "hf" "any_cvd" "aki" "anxiety" "depr
 
 **// Append categories within each demographic for each outcome
 foreach outcome in "stroke" "mi" "dvt" "pe" "hf" "any_cvd" "aki" "anxiety" "depression" "psychosis" "death" {
-	foreach demog in "sex" "age" "ethnic" "imd" "hist_cvd" "hist_renal" "treatment" "vaccin" "smoking" "alcohol" "bmi" "hba1c" {
+	foreach demog in "sex" "age" "ethnic" "imd" "hist_cvd" "hist_renal" "critical" "vaccin" "smoking" "alcohol" "bmi" "hba1c" {
 		clear
 		set obs 0
 		forvalues catindex=1(1)`numcat_`demog'' {
@@ -101,7 +101,7 @@ foreach outcome in "stroke" "mi" "dvt" "pe" "hf" "any_cvd" "aki" "anxiety" "depr
 foreach outcome in "stroke" "mi" "dvt" "pe" "hf" "any_cvd" "aki" "anxiety" "depression" "psychosis" "death" {
 	clear
 	set obs 0
-	foreach demog in "sex" "age" "ethnic" "imd" "hist_cvd" "hist_renal" "treatment" "vaccin" "smoking" "alcohol" "bmi" "hba1c" {
+	foreach demog in "sex" "age" "ethnic" "imd" "hist_cvd" "hist_renal" "critical" "vaccin" "smoking" "alcohol" "bmi" "hba1c" {
 		append using $resultsdir/hr_`outcome'_`demog'.dta
 		erase $resultsdir/hr_`outcome'_`demog'.dta
 	}

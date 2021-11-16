@@ -187,12 +187,6 @@ def generate_study_variables(index_date_variable):
 	        date_format="YYYY-MM-DD",
 	        return_expectations={"date": {"earliest": "2020-02-01"}},
         ),
-        date_covid_icu=patients.admitted_to_icu(
-	        find_first_match_in_period=True,
-	        returning="date_admitted",
-	        date_format="YYYY-MM-DD",
-	        return_expectations={"date": {"earliest": "2020-02-01"}},
-        ),
         ### COVARIATES
         # Smoking status
         latest_smoking=patients.with_these_clinical_events(
@@ -257,11 +251,6 @@ def generate_study_variables(index_date_variable):
             on_or_before=f"{index_date_variable}",
             return_expectations={"incidence": 0.2},
         ),
-        #hist_cvd_opcs=patients.admitted_to_hospital(
-            #with_these_procedures=hist_cvd_codes_OPCS4,
-            #on_or_before=f"{index_date_variable}",
-            #return_expectations={"incidence": 0.2},
-        #),
         hist_cvd_opcs2=patients.admitted_to_hospital(
             with_these_procedures=hist_cvd_codes_OPCS4_2,
             on_or_before=f"{index_date_variable}",
@@ -290,24 +279,23 @@ def generate_study_variables(index_date_variable):
             return_expectations={"incidence": 0.1},
         ),
         # Type of treatment for COVID-19 (during hospitalisation)
-        resp_support_basic=patients.admitted_to_icu(
+        critical_care_days=patients.admitted_to_hospital(
+	        with_these_diagnoses=covid_codelist,
             on_or_after="2020-02-01",
-            find_first_match_in_period=True,
-            returning="had_basic_respiratory_support",
-            return_expectations={"date": {"earliest" : "2020-02-01"}, "rate" : "exponential_increase"},
-        ),
-        resp_support_advanced=patients.admitted_to_icu(
-            on_or_after="2020-02-01",
-            find_first_match_in_period=True,
-            returning="had_advanced_respiratory_support",
-            return_expectations={"date": {"earliest" : "2020-02-01"}, "rate" : "exponential_increase"},
-        ),
-        date_icu=patients.admitted_to_icu(
-            on_or_after="2020-02-01",
-            find_first_match_in_period=True,
-            returning="date_admitted",
-            date_format="YYYY-MM-DD",
-            return_expectations={"date": {"earliest" : "2020-02-01"}, "rate" : "exponential_increase"},
+	        find_first_match_in_period=True,
+	        returning="days_in_critical_care",
+            return_expectations={
+                "category": {
+                    "ratios": {
+                        "1": 0.2,
+                        "2": 0.2,
+                        "3": 0.2,
+                        "4": 0.2,
+                        "5": 0.2,
+                    },
+                },
+                "incidence": 0.5
+            },
         ),
         # COVID Vaccination
         # First COVID vaccination (GP record)
@@ -328,60 +316,6 @@ def generate_study_variables(index_date_variable):
             date_format="YYYY-MM-DD",
             return_expectations={"date": {"earliest": "2020-12-08"},  "incidence": 0.5},
         ),
-        # First COVID vaccination (Pfizer BioNTech)
-        #date_vaccin_pfizer_first=patients.with_tpp_vaccination_record(
-        #    product_name_matches="COVID-19 mRNA Vaccine Comirnaty 30micrograms/0.3ml dose conc for susp for inj MDV (Pfizer)",
-        #    on_or_after="2020-12-01", 
-        #    find_first_match_in_period=True,
-        #    returning="date",
-        #    date_format="YYYY-MM-DD",
-        #    return_expectations={"date": {"earliest": "2020-12-08"},  "incidence": 0.9},
-        #),
-        # Last COVID vaccination (Pfizer BioNTech)
-        #date_vaccin_pfizer_last=patients.with_tpp_vaccination_record(
-        #    product_name_matches="COVID-19 mRNA Vaccine Comirnaty 30micrograms/0.3ml dose conc for susp for inj MDV (Pfizer)",
-        #    on_or_after="2020-12-01", 
-        #    find_last_match_in_period=True,
-        #    returning="date",
-        #    date_format="YYYY-MM-DD",
-        #    return_expectations={"date": {"earliest": "2020-12-08"},  "incidence": 0.9},
-        #),
-        # First COVID vaccination (Oxford AZ)
-        #date_vaccin_oxford_first=patients.with_tpp_vaccination_record(
-        #    product_name_matches="COVID-19 Vac AstraZeneca (ChAdOx1 S recomb) 5x10000000000 viral particles/0.5ml dose sol for inj MDV",
-        #    on_or_after="2020-12-01",
-        #    find_first_match_in_period=True,
-        #    returning="date",
-        #    date_format="YYYY-MM-DD",
-        #    return_expectations={"date": {"earliest": "2021-01-04"},  "incidence": 0.7},
-        #),
-        # Last COVID vaccination (Oxford AZ)
-        #date_vaccin_oxford_last=patients.with_tpp_vaccination_record(
-        #    product_name_matches="COVID-19 Vac AstraZeneca (ChAdOx1 S recomb) 5x10000000000 viral particles/0.5ml dose sol for inj MDV",
-        #    on_or_after="2020-12-01",
-        #    find_last_match_in_period=True,
-        #    returning="date",
-        #    date_format="YYYY-MM-DD",
-        #    return_expectations={"date": {"earliest": "2021-01-04"},  "incidence": 0.7},
-        #),
-        # First COVID vaccination (Moderna)
-        #date_vaccin_moderna_first=patients.with_tpp_vaccination_record(
-        #    product_name_matches="COVID-19 mRNA (nucleoside modified) Vaccine Moderna 0.1mg/0.5mL dose dispersion for inj MDV",
-        #    on_or_after="2020-12-01",
-        #    find_first_match_in_period=True,
-        #    returning="date",
-        #    date_format="YYYY-MM-DD",
-        #    return_expectations={"date": {"earliest": "2021-04-01"},  "incidence": 0.4},
-        #),
-        # Last COVID vaccination (Moderna)
-        #date_vaccin_moderna_last=patients.with_tpp_vaccination_record(
-        #    product_name_matches="COVID-19 mRNA (nucleoside modified) Vaccine Moderna 0.1mg/0.5mL dose dispersion for inj MDV",
-        #    on_or_after="2020-12-01",
-        #    find_last_match_in_period=True,
-        #    returning="date",
-        #    date_format="YYYY-MM-DD",
-        #    return_expectations={"date": {"earliest": "2021-04-01"},  "incidence": 0.4},
-        #),
         ### CENSORING
         date_deregistered=patients.date_deregistered_from_all_supported_practices(
             date_format="YYYY-MM-DD",

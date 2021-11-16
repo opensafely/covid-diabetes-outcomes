@@ -41,16 +41,14 @@ replace category="No"								if	strpos(lower(demographic),"renal")!=0		&	categor
 replace category="Yes"								if	strpos(lower(demographic),"renal")!=0		&	category=="2"
 replace category="Unknown"							if	strpos(lower(demographic),"renal")!=0		&	category=="3"
 
-**// Type of treatment for COVID-19
-replace category="Not admitted to ICU"				if	strpos(lower(demographic),"treatment")!=0	&	category=="1"
-replace category="Admitted to ICU"					if	strpos(lower(demographic),"treatment")!=0	&	category=="2"
-replace category="Basic ventilatory support"		if	strpos(lower(demographic),"treatment")!=0	&	category=="3"
-replace category="Advanced ventilatory support"		if	strpos(lower(demographic),"treatment")!=0	&	category=="4"
+**// Required critical care
+replace category="No"								if	strpos(lower(demographic),"critical")!=0	&	category=="1"
+replace category="Yes"								if	strpos(lower(demographic),"critical")!=0	&	category=="2"
 
 **// COVID-19 vaccination status (at baseline)
-replace category="None" 							if strpos(lower(demographic),"vaccin")!=0 & category=="1"
-replace category="One dose" 						if strpos(lower(demographic),"vaccin")!=0 & category=="2"
-replace category="Two doses" 						if strpos(lower(demographic),"vaccin")!=0 & category=="3"
+replace category="None" 							if strpos(lower(demographic),"vaccin")!=0 		& 	category=="1"
+replace category="One dose" 						if strpos(lower(demographic),"vaccin")!=0 		& 	category=="2"
+replace category="Two doses" 						if strpos(lower(demographic),"vaccin")!=0 		& 	category=="3"
 
 **// Smoking status
 replace category="Never" 							if strpos(lower(demographic),"smok")!=0 		& 	category=="1"

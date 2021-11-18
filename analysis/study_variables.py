@@ -280,10 +280,10 @@ def generate_study_variables(index_date_variable):
         ),
         # Type of treatment for COVID-19 (during hospitalisation)
         critical_care_days=patients.admitted_to_hospital(
-	        with_these_diagnoses=covid_codelist,
+            with_these_diagnoses=covid_codelist,
             on_or_after="2020-02-01",
-	        find_first_match_in_period=True,
-	        returning="days_in_critical_care",
+            find_first_match_in_period=True,
+            returning="days_in_critical_care",
             return_expectations={
                 "category": {
                     "ratios": {

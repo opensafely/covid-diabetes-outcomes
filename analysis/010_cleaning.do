@@ -45,6 +45,7 @@ replace date_censor=min(date_deregistered, date_death, date_studyend) if min(dat
 **// Sex
 gen cat_sex=1 if sex=="F"
 replace cat_sex=2 if sex=="M"
+drop if cat_sex==.
 label define cat_sexlab 1 "Female" 2 "Male"
 label values cat_sex cat_sexlab
 drop sex
@@ -88,16 +89,11 @@ if _rc==0 {
 gen temp1=(min(date_t1dm_gp_first, date_t1dm_hospital_first)<=date_patient_index)
 gen temp2=(min(date_t2dm_gp_first, date_t2dm_hospital_first)<=date_patient_index)
 gen temp3=(date_unknown_diabetes_gp_first<=date_patient_index)
-gen    cat_diabetes=.
+gen     cat_diabetes=2
 replace cat_diabetes=1 if temp1==1 & temp2!=1
 replace cat_diabetes=1 if temp1==1 & temp2==1            & insulin_lastyear==1 & antidiabetic_lastyear!=1
-replace cat_diabetes=1 if temp1==1 & temp2!=1 & temp3==1 & insulin_lastyear==1 & antidiabetic_lastyear!=1
 replace cat_diabetes=1 if temp1!=1 & temp2!=1 & temp3==1 & insulin_lastyear==1 & antidiabetic_lastyear!=1
-replace cat_diabetes=2 if temp1!=1 & temp2==1
-replace cat_diabetes=2 if temp1==1 & temp2==1            & antidiabetic_lastyear==1
-replace cat_diabetes=2 if temp1!=1 & temp2==1 & temp3==1 & antidiabetic_lastyear==1
-replace cat_diabetes=2 if temp1!=1 & temp2!=1 & temp3==1 & antidiabetic_lastyear==1
-recode  cat_diabetes .=3
+replace cat_diabetes=3 if temp1!=1 & temp2!=1 & temp3!=1
 label define cat_diablab 1 "1" 2 "2" 3 "None"
 label values cat_diabetes cat_diablab
 drop temp* date_diabetes* date_t1dm* date_t2dm* date_unknown_diabetes* antidiabetic_lastyear insulin_lastyear

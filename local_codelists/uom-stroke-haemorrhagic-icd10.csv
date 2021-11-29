@@ -1,0 +1,20 @@
+icd,description
+G452,Multiple and bilateral precerebral artery syndromes
+I60,Subarachnoid haemorrhage
+I600,Subarachnoid haemorrhage from carotid siphon and bifurcation
+I605,Subarachnoid haemorrhage from vertebral artery
+I607,"Subarachnoid haemorrhage from intracranial artery, unspecified"
+I608,Other subarachnoid haemorrhage
+I609,"Subarachnoid haemorrhage, unspecified"
+I610,"Intracerebral haemorrhage in hemisphere, subcortical"
+I611,"Intracerebral haemorrhage in hemisphere, cortical"
+I612,"Intracerebral haemorrhage in hemisphere, unspecified"
+I613,Intracerebral haemorrhage in brain stem
+I614,Intracerebral haemorrhage in cerebellum
+I615,"Intracerebral haemorrhage, intraventricular"
+I620,Subdural haemorrhage (acute)(nontraumatic)
+I690,Sequelae of subarachnoid haemorrhage
+I691,Sequelae of intracerebral haemorrhage
+I692,Sequelae of other nontraumatic intracranial haemorrhage
+P103,Subarachnoid haemorrhage due to birth injury
+P525,Subarachnoid (nontraumatic) haemorrhage of fetus and newborn

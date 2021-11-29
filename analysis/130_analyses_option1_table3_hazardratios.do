@@ -18,7 +18,9 @@ local refgroup3="Pneumonia with diabetes"
 tempname hazardratios
 	postfile `hazardratios' outindex groupindex str30(outcome) str30(refgroup) hr1 hr1_lo hr1_hi hr2 hr2_lo hr2_hi hr3 hr3_lo hr3_hi using $resultsdir/option1_table3_hazardratios.dta, replace
 	local outindex=0
-	foreach outcome in "stroke" "mi" "dvt" "pe" "hf" "any_cvd" "aki" "anxiety" "depression" "psychosis" "death" {
+	foreach outcome in "stroke_thrombotic" "stroke_haemorrhagic" "stroke_tia" "stroke_pregnancy" "stroke_any" "mi" "dvt_nopregnancy" "dvt_pregnancy" "dvt_pregnancy_cvt" "dvt_any" ///
+	"pe_nopregnancy" "pe_pregnancy" "pe_any" "hf" "any_cvd" "aki_nopregnancy" "aki_pregnancy" "aki_any" "liver" "anxiety" "depression" "psychosis" "antidepressant" "anxiolytic" ///
+	"antipsychotic"  "mood_stabiliser" "sleep_insomnia" "sleep_hypersomnia" "sleep_apnoea" "fatigue" "death" {	
 		local outindex=`outindex'+1
 		gen myend=(min(date_`outcome', date_censor)-date_patient_index)/(365.25/12)
 		gen myselect=(myend>0)
@@ -99,6 +101,8 @@ foreach myvar in `r(varlist)' {
 	format `myvar' %-`r(max)'s
 	drop str
 }
+
+do `mypath'/005_table_edit.do
 
 save $resultsdir/option1_table3_hazardratios.dta, replace
 

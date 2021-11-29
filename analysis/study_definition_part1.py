@@ -9,7 +9,7 @@ from cohortextractor import (
 from study_variables import generate_study_variables
 from codelists import *
 
-dummy_data_date = "2020-02-01"
+#dummy_data_date = "2020-02-01"
 study_variables = generate_study_variables(index_date_variable="date_patient_index")
 
 study = StudyDefinition(
@@ -26,7 +26,7 @@ study = StudyDefinition(
     ),
     date_discharged_covid=patients.admitted_to_hospital(	
 	    with_these_diagnoses=covid_codelist,
-	    on_or_before="today",
+	    on_or_after="2020-02-01",
 	    find_first_match_in_period=True,
 	    returning="date_discharged",
 	    date_format="YYYY-MM-DD",
@@ -34,7 +34,7 @@ study = StudyDefinition(
     ),
     date_discharged_pneum=patients.admitted_to_hospital(	
 	    with_these_diagnoses=pneumonia_codelist,
-	    on_or_before="today",
+	    on_or_after="2019-02-01",
 	    find_first_match_in_period=True,
 	    returning="date_discharged",
 	    date_format="YYYY-MM-DD",
@@ -42,7 +42,7 @@ study = StudyDefinition(
     ),
     date_patient_index=patients.admitted_to_hospital(
         with_these_diagnoses=combine_codelists(covid_codelist, pneumonia_codelist),
-        on_or_before="today",
+	    on_or_after="2019-02-01",
 	    find_first_match_in_period=True,
 	    returning="date_discharged",
 	    date_format="YYYY-MM-DD",

@@ -204,9 +204,9 @@ def generate_study_variables(index_date_variable):
             on_or_before=f"{index_date_variable}",
         ),
         # Hazardous alcohol consumption (in the previous year)
-        haz_alcohol_lastyear=patients.with_these_clinical_events(
+        haz_alcohol=patients.with_these_clinical_events(
             hazardous_alcohol_codes,
-            between=[f"{index_date_variable} - 1 year", f"{index_date_variable}"],
+            on_or_before=f"{index_date_variable}",
             return_expectations={"incidence": 0.1},
         ),
         # HbA1c
@@ -246,10 +246,34 @@ def generate_study_variables(index_date_variable):
             },
         ),
         # History of CVD
-        hist_cvd=patients.with_these_clinical_events(
-            hist_cvd_codes,
+        hist_cvd_gp=patients.with_these_clinical_events(
+            combine_codelists(
+                hist_cvd_codes,
+                stroke_any_incl_history_codes,
+                mi_codes,
+                dvt_codes,
+                dvt_pregnancy_codes,
+                dvt_pregnancy_cvt_codes,
+                pe_codes,
+                pe_pregnancy_codes,
+                hf_codes
+            ),
             on_or_before=f"{index_date_variable}",
             return_expectations={"incidence": 0.2},
+        ),
+        hist_cvd_hospital=patients.admitted_to_hospital(
+            with_these_diagnoses=combine_codelists(
+                stroke_any_incl_history_codes_hospital,
+                mi_codes_hospital,
+                dvt_codes_hospital,
+                dvt_pregnancy_codes_hospital,
+                dvt_pregnancy_cvt_codes_hospital,
+                pe_codes_hospital,
+                pe_pregnancy_codes_hospital,
+                hf_codes_hospital
+            ),
+            on_or_before=f"{index_date_variable}",
+            return_expectations={"incidence": 0.1},            
         ),
         hist_cvd_opcs2=patients.admitted_to_hospital(
             with_these_procedures=hist_cvd_codes_OPCS4_2,
@@ -267,6 +291,11 @@ def generate_study_variables(index_date_variable):
                 "float": {"distribution": "normal", "mean": 60.0, "stddev": 15},
                 "incidence": 0.95
             },
+        ),
+        ckd_gp=patients.with_these_clinical_events(
+            ckd3_5_codes, 
+            on_or_before=f"{index_date_variable}",
+            return_expectations={"incidence": 0.1},
         ),
         ckd_hospital=patients.admitted_to_hospital(
             with_these_diagnoses=ckd3_5_codes_hospital,
@@ -336,30 +365,92 @@ def generate_study_variables(index_date_variable):
         ### OUTCOMES
         ## Cardiovascular
         # Stroke
-        date_stroke_gp=patients.with_these_clinical_events(
-            stroke_codes,
+        date_stroke_thrombotic_gp=patients.with_these_clinical_events(
+            stroke_thrombotic_codes,
             on_or_after=f"{index_date_variable} - 3 months",
             return_first_date_in_period=True,
             date_format="YYYY-MM-DD",
             return_expectations={"date": {"earliest": "2019-11-01"}, "incidence": 0.1},
         ),
-        date_stroke_gp_2=patients.with_these_clinical_events(
-            stroke_codes_2,
-            on_or_after=f"{index_date_variable} - 3 months",
-            return_first_date_in_period=True,
-            date_format="YYYY-MM-DD",
-            return_expectations={"date": {"earliest": "2019-11-01"}, "incidence": 0.1},
-        ),
-        date_stroke_hospital=patients.admitted_to_hospital(
-            with_these_diagnoses=stroke_codes_hospital,
+        date_stroke_thrombotic_hospital=patients.admitted_to_hospital(
+            with_these_diagnoses=stroke_thrombotic_codes_hospital,
             on_or_after=f"{index_date_variable} - 3 months",
             find_first_match_in_period=True,
             returning="date_admitted",
             date_format="YYYY-MM-DD",
             return_expectations={"date": {"earliest": "2019-11-01"}, "incidence": 0.1},
         ),
-        date_stroke_ons=patients.with_these_codes_on_death_certificate(
-            stroke_codes_hospital,
+        date_stroke_thrombotic_ons=patients.with_these_codes_on_death_certificate(
+            stroke_thrombotic_codes_hospital,
+            on_or_after=f"{index_date_variable}",
+            match_only_underlying_cause=False,
+            returning="date_of_death",
+            date_format="YYYY-MM-DD",
+            return_expectations={"date": {"earliest": "2019-11-01"}, "incidence": 0.1},
+        ),
+        date_stroke_haemorr_gp=patients.with_these_clinical_events(
+            stroke_haemorrhagic_codes,
+            on_or_after=f"{index_date_variable} - 3 months",
+            return_first_date_in_period=True,
+            date_format="YYYY-MM-DD",
+            return_expectations={"date": {"earliest": "2019-11-01"}, "incidence": 0.1},
+        ),
+        date_stroke_haemorr_hospital=patients.admitted_to_hospital(
+            with_these_diagnoses=stroke_haemorrhagic_codes_hospital,
+            on_or_after=f"{index_date_variable} - 3 months",
+            find_first_match_in_period=True,
+            returning="date_admitted",
+            date_format="YYYY-MM-DD",
+            return_expectations={"date": {"earliest": "2019-11-01"}, "incidence": 0.1},
+        ),
+        date_stroke_haemorr_ons=patients.with_these_codes_on_death_certificate(
+            stroke_haemorrhagic_codes_hospital,
+            on_or_after=f"{index_date_variable}",
+            match_only_underlying_cause=False,
+            returning="date_of_death",
+            date_format="YYYY-MM-DD",
+            return_expectations={"date": {"earliest": "2019-11-01"}, "incidence": 0.1},
+        ),
+        date_stroke_tia_gp=patients.with_these_clinical_events(
+            stroke_tia_codes,
+            on_or_after=f"{index_date_variable} - 3 months",
+            return_first_date_in_period=True,
+            date_format="YYYY-MM-DD",
+            return_expectations={"date": {"earliest": "2019-11-01"}, "incidence": 0.1},
+        ),
+        date_stroke_tia_hospital=patients.admitted_to_hospital(
+            with_these_diagnoses=stroke_tia_codes_hospital,
+            on_or_after=f"{index_date_variable} - 3 months",
+            find_first_match_in_period=True,
+            returning="date_admitted",
+            date_format="YYYY-MM-DD",
+            return_expectations={"date": {"earliest": "2019-11-01"}, "incidence": 0.1},
+        ),
+        date_stroke_tia_ons=patients.with_these_codes_on_death_certificate(
+            stroke_tia_codes_hospital,
+            on_or_after=f"{index_date_variable}",
+            match_only_underlying_cause=False,
+            returning="date_of_death",
+            date_format="YYYY-MM-DD",
+            return_expectations={"date": {"earliest": "2019-11-01"}, "incidence": 0.1},
+        ),
+        date_stroke_pregnancy_gp=patients.with_these_clinical_events(
+            stroke_pregnancy_codes,
+            on_or_after=f"{index_date_variable} - 3 months",
+            return_first_date_in_period=True,
+            date_format="YYYY-MM-DD",
+            return_expectations={"date": {"earliest": "2019-11-01"}, "incidence": 0.1},
+        ),
+        date_stroke_pregnancy_hospital=patients.admitted_to_hospital(
+            with_these_diagnoses=stroke_pregnancy_codes_hospital,
+            on_or_after=f"{index_date_variable} - 3 months",
+            find_first_match_in_period=True,
+            returning="date_admitted",
+            date_format="YYYY-MM-DD",
+            return_expectations={"date": {"earliest": "2019-11-01"}, "incidence": 0.1},
+        ),
+        date_stroke_pregnancy_ons=patients.with_these_codes_on_death_certificate(
+            stroke_pregnancy_codes_hospital,
             on_or_after=f"{index_date_variable}",
             match_only_underlying_cause=False,
             returning="date_of_death",
@@ -391,14 +482,14 @@ def generate_study_variables(index_date_variable):
             return_expectations={"date": {"earliest": "2019-11-01"}, "incidence": 0.1},
         ),
         # Deep Vein Thrombosis (DVT)
-        date_dvt_gp=patients.with_these_clinical_events(
+        date_dvt_nopregnancy_gp=patients.with_these_clinical_events(
             dvt_codes,
             on_or_after=f"{index_date_variable} - 3 months",
             return_first_date_in_period=True,
             date_format="YYYY-MM-DD",
             return_expectations={"date": {"earliest": "2019-11-01"}, "incidence": 0.1},
         ),
-        date_dvt_hospital=patients.admitted_to_hospital(
+        date_dvt_nopregnancy_hospital=patients.admitted_to_hospital(
             with_these_diagnoses=dvt_codes_hospital,
             on_or_after=f"{index_date_variable} - 3 months",
             find_first_match_in_period=True,
@@ -406,7 +497,7 @@ def generate_study_variables(index_date_variable):
             date_format="YYYY-MM-DD",
             return_expectations={"date": {"earliest": "2019-11-01"}, "incidence": 0.1},
         ),
-        date_dvt_ons=patients.with_these_codes_on_death_certificate(
+        date_dvt_nopregnancy_ons=patients.with_these_codes_on_death_certificate(
             dvt_codes_hospital,
             on_or_after=f"{index_date_variable}",
             match_only_underlying_cause=False,
@@ -414,15 +505,61 @@ def generate_study_variables(index_date_variable):
             date_format="YYYY-MM-DD",
             return_expectations={"date": {"earliest": "2019-11-01"}, "incidence": 0.1},
         ),
+        date_dvt_pregnancy_gp=patients.with_these_clinical_events(
+            dvt_pregnancy_codes,
+            on_or_after=f"{index_date_variable} - 3 months",
+            return_first_date_in_period=True,
+            date_format="YYYY-MM-DD",
+            return_expectations={"date": {"earliest": "2019-11-01"}, "incidence": 0.1},
+        ),
+        date_dvt_pregnancy_hospital=patients.admitted_to_hospital(
+            with_these_diagnoses=dvt_pregnancy_codes_hospital,
+            on_or_after=f"{index_date_variable} - 3 months",
+            find_first_match_in_period=True,
+            returning="date_admitted",
+            date_format="YYYY-MM-DD",
+            return_expectations={"date": {"earliest": "2019-11-01"}, "incidence": 0.1},            
+        ),
+        date_dvt_pregnancy_ons=patients.with_these_codes_on_death_certificate(
+            dvt_pregnancy_codes_hospital,
+            on_or_after=f"{index_date_variable}",
+            match_only_underlying_cause=False,
+            returning="date_of_death",
+            date_format="YYYY-MM-DD",
+            return_expectations={"date": {"earliest": "2019-11-01"}, "incidence": 0.1},
+        ),
+        date_dvt_pregnancy_cvt_gp=patients.with_these_clinical_events(
+            dvt_pregnancy_cvt_codes,
+            on_or_after=f"{index_date_variable} - 3 months",
+            return_first_date_in_period=True,
+            date_format="YYYY-MM-DD",
+            return_expectations={"date": {"earliest": "2019-11-01"}, "incidence": 0.1},
+        ),
+        date_dvt_pregnancy_cvt_hospital=patients.admitted_to_hospital(
+            with_these_diagnoses=dvt_pregnancy_cvt_codes_hospital,
+            on_or_after=f"{index_date_variable} - 3 months",
+            find_first_match_in_period=True,
+            returning="date_admitted",
+            date_format="YYYY-MM-DD",
+            return_expectations={"date": {"earliest": "2019-11-01"}, "incidence": 0.1},            
+        ),
+        date_dvt_pregnancy_cvt_ons=patients.with_these_codes_on_death_certificate(
+            dvt_pregnancy_cvt_codes_hospital,
+            on_or_after=f"{index_date_variable}",
+            match_only_underlying_cause=False,
+            returning="date_of_death",
+            date_format="YYYY-MM-DD",
+            return_expectations={"date": {"earliest": "2019-11-01"}, "incidence": 0.1},
+        ),
         # Pulmonary Embolism (PE)
-        date_pe_gp=patients.with_these_clinical_events(
+        date_pe_nopregnancy_gp=patients.with_these_clinical_events(
             pe_codes,
             on_or_after=f"{index_date_variable} - 3 months",
             return_first_date_in_period=True,
             date_format="YYYY-MM-DD",
             return_expectations={"date": {"earliest": "2019-11-01"}, "incidence": 0.1},
         ),
-        date_pe_hospital=patients.admitted_to_hospital(
+        date_pe_nopregnancy_hospital=patients.admitted_to_hospital(
             with_these_diagnoses=pe_codes_hospital,
             on_or_after=f"{index_date_variable} - 3 months",
             find_first_match_in_period=True,
@@ -430,8 +567,31 @@ def generate_study_variables(index_date_variable):
             date_format="YYYY-MM-DD",
             return_expectations={"date": {"earliest": "2019-11-01"}, "incidence": 0.1},
         ),
-        date_pe_ons=patients.with_these_codes_on_death_certificate(
+        date_pe_nopregnancy_ons=patients.with_these_codes_on_death_certificate(
             pe_codes_hospital,
+            on_or_after=f"{index_date_variable}",
+            match_only_underlying_cause=False,
+            returning="date_of_death",
+            date_format="YYYY-MM-DD",
+            return_expectations={"date": {"earliest": "2019-11-01"}, "incidence": 0.1},
+        ),
+        date_pe_pregnancy_gp=patients.with_these_clinical_events(
+            pe_pregnancy_codes,
+            on_or_after=f"{index_date_variable} - 3 months",
+            return_first_date_in_period=True,
+            date_format="YYYY-MM-DD",
+            return_expectations={"date": {"earliest": "2019-11-01"}, "incidence": 0.1},
+        ),
+        date_pe_pregnancy_hospital=patients.admitted_to_hospital(
+            with_these_diagnoses=pe_pregnancy_codes_hospital,
+            on_or_after=f"{index_date_variable} - 3 months",
+            find_first_match_in_period=True,
+            returning="date_admitted",
+            date_format="YYYY-MM-DD",
+            return_expectations={"date": {"earliest": "2019-11-01"}, "incidence": 0.1},
+        ),
+        date_pe_pregnancy_ons=patients.with_these_codes_on_death_certificate(
+            pe_pregnancy_codes_hospital,
             on_or_after=f"{index_date_variable}",
             match_only_underlying_cause=False,
             returning="date_of_death",
@@ -464,22 +624,22 @@ def generate_study_variables(index_date_variable):
         ),
         ## Renal
         # Acute Kidney Injury (AKI)
-        date_aki_gp=patients.with_these_clinical_events(
+        date_aki_nopregnancy_gp=patients.with_these_clinical_events(
             aki_codes,
-            on_or_after=f"{index_date_variable} - 3 months",
+            on_or_before="today",
             return_first_date_in_period=True,
             date_format="YYYY-MM-DD",
             return_expectations={"date": {"earliest": "2019-11-01"}, "incidence": 0.1},            
         ),
-        date_aki_hospital=patients.admitted_to_hospital(
+        date_aki_nopregnancy_hospital=patients.admitted_to_hospital(
             with_these_diagnoses=aki_codes_hospital,
-            on_or_after=f"{index_date_variable} - 3 months",
+            on_or_before="today",
             find_first_match_in_period=True,
             returning="date_admitted",
             date_format="YYYY-MM-DD",
             return_expectations={"date": {"earliest": "2019-11-01"}, "incidence": 0.1},            
         ),
-        date_aki_ons=patients.with_these_codes_on_death_certificate(
+        date_aki_nopregnancy_ons=patients.with_these_codes_on_death_certificate(
             aki_codes_hospital,
             on_or_after=f"{index_date_variable}",
             match_only_underlying_cause=False,
@@ -487,13 +647,56 @@ def generate_study_variables(index_date_variable):
             date_format="YYYY-MM-DD",
             return_expectations={"date": {"earliest": "2019-11-01"}, "incidence": 0.1},
         ),
+        date_aki_pregnancy_gp=patients.with_these_clinical_events(
+            aki_pregnancy_codes,
+            on_or_before="today",
+            return_first_date_in_period=True,
+            date_format="YYYY-MM-DD",
+            return_expectations={"date": {"earliest": "2019-11-01"}, "incidence": 0.1},            
+        ),
+        date_aki_pregnancy_hospital=patients.admitted_to_hospital(
+            with_these_diagnoses=aki_pregnancy_codes_hospital,
+            on_or_before="today",
+            find_first_match_in_period=True,
+            returning="date_admitted",
+            date_format="YYYY-MM-DD",
+            return_expectations={"date": {"earliest": "2019-11-01"}, "incidence": 0.1},            
+        ),
+        date_aki_pregnancy_ons=patients.with_these_codes_on_death_certificate(
+            aki_pregnancy_codes_hospital,
+            on_or_after=f"{index_date_variable}",
+            match_only_underlying_cause=False,
+            returning="date_of_death",
+            date_format="YYYY-MM-DD",
+            return_expectations={"date": {"earliest": "2019-11-01"}, "incidence": 0.1},
+        ),
         ## Hepatic
-        # >>> HERE
-        #
+        # Liver disease/failure
+        date_liver_gp=patients.with_these_clinical_events(
+            liver_codes,
+            on_or_before="today",
+            return_first_date_in_period=True,
+            date_format="YYYY-MM-DD",
+            return_expectations={"date": {"earliest": "2019-11-01"}, "incidence": 0.1},            
+        ),
+        date_liver_hospital=patients.admitted_to_hospital(
+            with_these_diagnoses=liver_codes_hospital,
+            on_or_before="today",
+            find_first_match_in_period=True,
+            returning="date_admitted",
+            date_format="YYYY-MM-DD",
+            return_expectations={"date": {"earliest": "2019-11-01"}, "incidence": 0.1},            
+        ),
+        date_liver_ons=patients.with_these_codes_on_death_certificate(
+            liver_codes_hospital,
+            on_or_after=f"{index_date_variable}",
+            match_only_underlying_cause=False,
+            returning="date_of_death",
+            date_format="YYYY-MM-DD",
+            return_expectations={"date": {"earliest": "2019-11-01"}, "incidence": 0.1},
+        ),
         ## Mental Illness
         # Anxiety
-        # >>> Need to update code list
-        # >>> Need to add diagnoses from secondary care, and ONS
         date_anxiety_gp=patients.with_these_clinical_events(
             anxiety_codes,
             on_or_before="today",
@@ -501,9 +704,23 @@ def generate_study_variables(index_date_variable):
             date_format="YYYY-MM-DD",
             return_expectations={"date": {"earliest": "2019-11-01"}, "incidence": 0.1},            
         ),
+        date_anxiety_hospital=patients.admitted_to_hospital(
+            with_these_diagnoses=anxiety_codes_hospital,
+            on_or_before="today",
+            find_first_match_in_period=True,
+            returning="date_admitted",
+            date_format="YYYY-MM-DD",
+            return_expectations={"date": {"earliest": "2019-11-01"}, "incidence": 0.1},            
+        ),
+        date_anxiety_ons=patients.with_these_codes_on_death_certificate(
+            anxiety_codes_hospital,
+            on_or_after=f"{index_date_variable}",
+            match_only_underlying_cause=False,
+            returning="date_of_death",
+            date_format="YYYY-MM-DD",
+            return_expectations={"date": {"earliest": "2019-11-01"}, "incidence": 0.1},
+        ),
         # Depression
-        # >>> Need to update code list
-        # >>> Need to add diagnoses from secondary care, and ONS
         date_depression_gp=patients.with_these_clinical_events(
             depression_codes,
             on_or_before="today",
@@ -511,9 +728,23 @@ def generate_study_variables(index_date_variable):
             date_format="YYYY-MM-DD",
             return_expectations={"date": {"earliest": "2019-11-01"}, "incidence": 0.1},            
         ),
+        date_depression_hospital=patients.admitted_to_hospital(
+            with_these_diagnoses=depression_codes_hospital,
+            on_or_before="today",
+            find_first_match_in_period=True,
+            returning="date_admitted",
+            date_format="YYYY-MM-DD",
+            return_expectations={"date": {"earliest": "2019-11-01"}, "incidence": 0.1},            
+        ),
+        date_depression_ons=patients.with_these_codes_on_death_certificate(
+            depression_codes_hospital,
+            on_or_after=f"{index_date_variable}",
+            match_only_underlying_cause=False,
+            returning="date_of_death",
+            date_format="YYYY-MM-DD",
+            return_expectations={"date": {"earliest": "2019-11-01"}, "incidence": 0.1},
+        ),
         # Affective/non-affective psychosis
-        # >>> Need to update code list
-        # >>> Need to add diagnoses from secondary care, and ONS
         date_psychosis_gp=patients.with_these_clinical_events(
             psychosis_codes,
             on_or_before="today",
@@ -521,11 +752,155 @@ def generate_study_variables(index_date_variable):
             date_format="YYYY-MM-DD",
             return_expectations={"date": {"earliest": "2019-11-01"}, "incidence": 0.1},            
         ),
+        date_psychosis_hospital=patients.admitted_to_hospital(
+            with_these_diagnoses=psychosis_codes_hospital,
+            on_or_before="today",
+            find_first_match_in_period=True,
+            returning="date_admitted",
+            date_format="YYYY-MM-DD",
+            return_expectations={"date": {"earliest": "2019-11-01"}, "incidence": 0.1},            
+        ),
+        date_psychosis_ons=patients.with_these_codes_on_death_certificate(
+            psychosis_codes_hospital,
+            on_or_after=f"{index_date_variable}",
+            match_only_underlying_cause=False,
+            returning="date_of_death",
+            date_format="YYYY-MM-DD",
+            return_expectations={"date": {"earliest": "2019-11-01"}, "incidence": 0.1},
+        ),
         # Psychotropic medication
-        # >>> Here
-        #
+        # Antidepressants
+        date_antidepressant=patients.with_these_medications(
+            antidepressant_codes,
+            on_or_before="today",
+            find_first_match_in_period=True,
+            returning="date",
+            date_format="YYYY-MM-DD",
+            return_expectations={"date": {"earliest": "2019-11-01"}, "incidence": 0.2},
+        ),
+        # Anxiolytics
+        date_anxiolytic=patients.with_these_medications(
+            anxiolytic_codes,
+            on_or_before="today",
+            find_first_match_in_period=True,
+            returning="date",
+            date_format="YYYY-MM-DD",
+            return_expectations={"date": {"earliest": "2019-11-01"}, "incidence": 0.2},
+        ),
+        # Antipsychotics
+        date_antipsychotic=patients.with_these_medications(
+            antipsychotic_codes,
+            on_or_before="today",
+            find_first_match_in_period=True,
+            returning="date",
+            date_format="YYYY-MM-DD",
+            return_expectations={"date": {"earliest": "2019-11-01"}, "incidence": 0.2},
+        ),
+        # Mood stabilisers
+        date_mood_stabiliser=patients.with_these_medications(
+            mood_stabiliser_codes,
+            on_or_before="today",
+            find_first_match_in_period=True,
+            returning="date",
+            date_format="YYYY-MM-DD",
+            return_expectations={"date": {"earliest": "2019-11-01"}, "incidence": 0.2},
+        ),
         ## Symptoms of post-COVID syndrome outcome        
-        # >>> Here
-        #
+        # Insomnia
+        date_sleep_insomnia_gp=patients.with_these_clinical_events(
+            sleep_insomnia_codes,
+            on_or_before="today",
+            return_first_date_in_period=True,
+            date_format="YYYY-MM-DD",
+            return_expectations={"date": {"earliest": "2019-11-01"}, "incidence": 0.1},            
+        ),
+        date_sleep_insomnia_hospital=patients.admitted_to_hospital(
+            with_these_diagnoses=sleep_insomnia_codes_hospital,
+            on_or_before="today",
+            find_first_match_in_period=True,
+            returning="date_admitted",
+            date_format="YYYY-MM-DD",
+            return_expectations={"date": {"earliest": "2019-11-01"}, "incidence": 0.1},            
+        ),
+        date_sleep_insomnia_ons=patients.with_these_codes_on_death_certificate(
+            sleep_insomnia_codes_hospital,
+            on_or_after=f"{index_date_variable}",
+            match_only_underlying_cause=False,
+            returning="date_of_death",
+            date_format="YYYY-MM-DD",
+            return_expectations={"date": {"earliest": "2019-11-01"}, "incidence": 0.1},
+        ),
+        # Hypersomnia
+        date_sleep_hypersomnia_gp=patients.with_these_clinical_events(
+            sleep_hypersomnia_codes,
+            on_or_before="today",
+            return_first_date_in_period=True,
+            date_format="YYYY-MM-DD",
+            return_expectations={"date": {"earliest": "2019-11-01"}, "incidence": 0.1},            
+        ),
+        date_sleep_hypersomnia_hospital=patients.admitted_to_hospital(
+            with_these_diagnoses=sleep_hypersomnia_codes_hospital,
+            on_or_before="today",
+            find_first_match_in_period=True,
+            returning="date_admitted",
+            date_format="YYYY-MM-DD",
+            return_expectations={"date": {"earliest": "2019-11-01"}, "incidence": 0.1},            
+        ),
+        date_sleep_hypersomnia_ons=patients.with_these_codes_on_death_certificate(
+            sleep_hypersomnia_codes_hospital,
+            on_or_after=f"{index_date_variable}",
+            match_only_underlying_cause=False,
+            returning="date_of_death",
+            date_format="YYYY-MM-DD",
+            return_expectations={"date": {"earliest": "2019-11-01"}, "incidence": 0.1},
+        ),
+        # Sleep apnoea
+        date_sleep_apnoea_gp=patients.with_these_clinical_events(
+            sleep_apnoea_codes,
+            on_or_before="today",
+            return_first_date_in_period=True,
+            date_format="YYYY-MM-DD",
+            return_expectations={"date": {"earliest": "2019-11-01"}, "incidence": 0.1},            
+        ),
+        date_sleep_apnoea_hospital=patients.admitted_to_hospital(
+            with_these_diagnoses=sleep_apnoea_codes_hospital,
+            on_or_before="today",
+            find_first_match_in_period=True,
+            returning="date_admitted",
+            date_format="YYYY-MM-DD",
+            return_expectations={"date": {"earliest": "2019-11-01"}, "incidence": 0.1},            
+        ),
+        date_sleep_apnoea_ons=patients.with_these_codes_on_death_certificate(
+            sleep_apnoea_codes_hospital,
+            on_or_after=f"{index_date_variable}",
+            match_only_underlying_cause=False,
+            returning="date_of_death",
+            date_format="YYYY-MM-DD",
+            return_expectations={"date": {"earliest": "2019-11-01"}, "incidence": 0.1},
+        ),
+        # Fatigue
+        date_fatigue_gp=patients.with_these_clinical_events(
+            fatigue_codes,
+            on_or_before="today",
+            return_first_date_in_period=True,
+            date_format="YYYY-MM-DD",
+            return_expectations={"date": {"earliest": "2019-11-01"}, "incidence": 0.1},            
+        ),
+        date_fatigue_hospital=patients.admitted_to_hospital(
+            with_these_diagnoses=fatigue_codes_hospital,
+            on_or_before="today",
+            find_first_match_in_period=True,
+            returning="date_admitted",
+            date_format="YYYY-MM-DD",
+            return_expectations={"date": {"earliest": "2019-11-01"}, "incidence": 0.1},            
+        ),
+        date_fatigue_ons=patients.with_these_codes_on_death_certificate(
+            fatigue_codes_hospital,
+            on_or_after=f"{index_date_variable}",
+            match_only_underlying_cause=False,
+            returning="date_of_death",
+            date_format="YYYY-MM-DD",
+            return_expectations={"date": {"earliest": "2019-11-01"}, "incidence": 0.1},
+        ),
     )
     return study_variables

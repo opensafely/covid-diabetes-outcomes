@@ -5,6 +5,8 @@ use $outdir/input_part1_clean.dta
 
 set more off
 
+drop if (date_censor-date_patient_index)/(365.25/12)<=0
+
 **// Specify the maximum number of controls per case
 local maxcontrols=1
 
@@ -33,7 +35,6 @@ forvalues j=1(1)`numcases' {
 	gen age_diff_days=((date_birth-date_birth[1])^2)^0.5
 	gen index_diff_days=((date_patient_index-date_patient_index[1])^2)^0.5
 	replace incl=. if cat_sex!=cat_sex[1]
-	replace incl=. if practice_id!=practice_id[1]
 	replace incl=. if age_diff_days>(365.25*3)
 	replace incl=. if index_diff_days>21
 	sum age_diff_days if incl==2
@@ -49,6 +50,11 @@ forvalues j=1(1)`numcases' {
 }
 drop if setid==.
 gsort setid -case patient_id
+
+**// Retain cases with a matched comparator
+by setid: egen count=count(setid)
+drop if count<2
+
 compress
 
 save $outdir/matched_groups_1_and_2.dta, replace

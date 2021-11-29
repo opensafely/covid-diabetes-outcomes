@@ -1,0 +1,126 @@
+CTV3ID,CTV3Term,classificationcode,classificationkey
+XE0dD,(Cirrhos &/or chron liver dis) or (alcoholic liver disease),1,Liver disease/failure
+J615.,(Cirrhosis - non alcoholic) or (portal cirrhosis),1,Liver disease/failure
+J615z,(Liver cirrhos: [named vars] or [NOS]) or (hepat fibrosis),1,Liver disease/failure
+AyuB2,"[X]Chronic viral hepatitis, unspecified",1,Liver disease/failure
+Jyu71,[X]Other and unspecified cirrhosis of liver,1,Liver disease/failure
+AyuB1,[X]Other chronic viral hepatitis,1,Liver disease/failure
+AyuB3,[X]Unspecified viral hepatitis with coma,1,Liver disease/failure
+J611.,Acute alcoholic hepatitis,1,Liver disease/failure
+J6000,Acute hepatic failure,1,Liver disease/failure
+XaJxp,Acute hepatic failure due to drugs,1,Liver disease/failure
+XE0b4,Alcoholic cirrhosis of liver,1,Liver disease/failure
+J610.,Alcoholic fatty liver,1,Liver disease/failure
+X3072,Alcoholic fibrosis and sclerosis of liver,1,Liver disease/failure
+X3073,Alcoholic hepatic failure,1,Liver disease/failure
+J617.,Alcoholic hepatitis,1,Liver disease/failure
+X306r,Alcoholic hepatitis,1,Liver disease/failure
+XE0dF,Alcoholic liver damage NOS,1,Liver disease/failure
+J613.,Alcoholic liver damage unspecified,1,Liver disease/failure
+X3071,Alcoholic liver disease,1,Liver disease/failure
+XaJTk,Autoimmune hepatitis,1,Liver disease/failure
+J615D,Bacterial portal cirrhosis,1,Liver disease/failure
+J616.,Biliary cirrhosis,1,Liver disease/failure
+XE0dJ,Biliary cirrhosis (& [primary]),1,Liver disease/failure
+J616z,Biliary cirrhosis NOS,1,Liver disease/failure
+J6156,Capsular portal cirrhosis,1,Liver disease/failure
+Xa9C7,Cardiac cirrhosis,1,Liver disease/failure
+XE0b7,Cardiac portal cirrhosis,1,Liver disease/failure
+J6141,Chronic active hepatitis,1,Liver disease/failure
+J6142,Chronic aggressive hepatitis,1,Liver disease/failure
+XaBE3,Chronic alcoholic hepatitis,1,Liver disease/failure
+X307C,Chronic hepatic failure,1,Liver disease/failure
+J614.,Chronic hepatitis,1,Liver disease/failure
+XE0dH,Chronic hepatitis (& [NOS]/[active B]/[active]/[persistent]),1,Liver disease/failure
+J614z,Chronic hepatitis NOS,1,Liver disease/failure
+J614y,Chronic hepatitis unspecified,1,Liver disease/failure
+J61z.,Chronic liver disease NOS,1,Liver disease/failure
+X307G,Chronic lobular hepatitis,1,Liver disease/failure
+X306l,Chronic non-A non-B hepatitis,1,Liver disease/failure
+J6140,Chronic persistent hepatitis,1,Liver disease/failure
+X306h,Chronic viral hepatitis,1,Liver disease/failure
+X306i,Chronic viral hepatitis B,1,Liver disease/failure
+X306j,Chronic viral hepatitis B with hepatitis D,1,Liver disease/failure
+A7071,Chronic viral hepatitis B without delta-agent,1,Liver disease/failure
+A7072,Chronic viral hepatitis C,1,Liver disease/failure
+X306k,Chronic viral hepatitis C,1,Liver disease/failure
+J61y0,Chronic yellow atrophy,1,Liver disease/failure
+XE0b5,Cirrhosis - non-alcoholic,1,Liver disease/failure
+J61..,Cirrhosis and chronic liver disease,1,Liver disease/failure
+X307L,Cirrhosis of liver,1,Liver disease/failure
+X307M,Cirrhosis of liver NOS,1,Liver disease/failure
+J6151,Cirrhosis of liver: [multilobular portal] or [postnecrotic],1,Liver disease/failure
+XE2up,Cirrhosis secondary to cholestasis,1,Liver disease/failure
+J6157,Cirrhosis: [cardiac portal] or [congestive],1,Liver disease/failure
+J612.,Cirrhosis: [florid] or [alcoholic],1,Liver disease/failure
+J6158,Cirrhosis: [juv portal] or [childh funct] or [Indian childh],1,Liver disease/failure
+XaMuG,Compensation for liver failure,1,Liver disease/failure
+XaMuI,Compensation for liver failure NOS,1,Liver disease/failure
+X307O,Cryptogenic cirrhosis,1,Liver disease/failure
+XaXi9,Cystic fibrosis related cirrhosis,1,Liver disease/failure
+J6153,Diffuse nodular cirrhosis,1,Liver disease/failure
+X307I,Drug-induced chronic hepatitis,1,Liver disease/failure
+J6154,Fatty portal cirrhosis,1,Liver disease/failure
+X307W,Fibrosis of liver,1,Liver disease/failure
+X307N,Florid cirrhosis,1,Liver disease/failure
+X3079,Fulminant hepatic failure,1,Liver disease/failure
+14S8.,H/O: liver recipient,1,Liver disease/failure
+X3076,Hepatic failure,1,Liver disease/failure
+X3078,Hepatic failure NOS,1,Liver disease/failure
+X307b,Hepatic fibrosis with hepatic sclerosis,1,Liver disease/failure
+J63A.,Hepatic granulomas in sarcoidosis,1,Liver disease/failure
+X307Z,Hepatic sclerosis,1,Liver disease/failure
+J624.,Hepatorenal syndrome,1,Liver disease/failure
+SP143,Hepatorenal syndrome as a complication of care,1,Liver disease/failure
+X307U,Hypoxia-associated cirrhosis,1,Liver disease/failure
+X307T,Infectious cirrhosis,1,Liver disease/failure
+J615H,Infectious cirrhosis NOS,1,Liver disease/failure
+X307c,Intrahepatic phlebosclerosis and fibrosis,1,Liver disease/failure
+X307S,"Laennec's cirrhosis, non-alcoholic",1,Liver disease/failure
+J62z.,Liver abscess and chronic liver disease causing sequelae NOS,1,Liver disease/failure
+J62..,Liver abscess and sequelae of chronic liver disease,1,Liver disease/failure
+XaREa,Liver disease due to cystic fibrosis,1,Liver disease/failure
+X3077,Liver failure NOS,1,Liver disease/failure
+X307z,Liver transplant failure,1,Liver disease/failure
+X307z,Liver transplant failure,1,Liver disease/failure
+SP086,Liver transplant failure and rejection,1,Liver disease/failure
+SP086,Liver transplant failure and rejection,1,Liver disease/failure
+X307y,Liver transplant rejection,1,Liver disease/failure
+X307y,Liver transplant rejection,1,Liver disease/failure
+J6155,Macronodular cirrhosis,1,Liver disease/failure
+X307Q,Micronodular cirrhosis,1,Liver disease/failure
+J6152,Mixed portal cirrhosis,1,Liver disease/failure
+XE0b6,Multilobular portal cirrhosis,1,Liver disease/failure
+XE0bA,Non-alcoholic cirrhosis NOS,1,Liver disease/failure
+J61y.,Other non-alcoholic chronic liver disease,1,Liver disease/failure
+J61yz,Other non-alcoholic chronic liver disease NOS,1,Liver disease/failure
+XE0bC,Other sequelae of chronic liver disease,1,Liver disease/failure
+XaMuH,Other specified compensation for liver failure,1,Liver disease/failure
+A704.,Other specified viral hepatitis with coma,1,Liver disease/failure
+A704z,Other specified viral hepatitis with hepatic coma NOS,1,Liver disease/failure
+X307Y,Pericellular fibrosis of congenital syphilis,1,Liver disease/failure
+J6159,Pigmentary portal cirrhosis,1,Liver disease/failure
+J615A,Pipestem portal cirrhosis,1,Liver disease/failure
+X307R,Portal cirrhosis,1,Liver disease/failure
+J615y,Portal cirrhosis unspecified,1,Liver disease/failure
+J61y3,Portal fibrosis without cirrhosis,1,Liver disease/failure
+J623.,Portal hypertension,1,Liver disease/failure
+J6160,Primary biliary cirrhosis,1,Liver disease/failure
+J6617,Primary sclerosing cholangitis,1,Liver disease/failure
+F10y0,Progressive neuronal degeneration with liver cirrhosis,1,Liver disease/failure
+J6143,Recurrent hepatitis,1,Liver disease/failure
+J6161,Secondary biliary cirrhosis,1,Liver disease/failure
+J6010,Subacute hepatic failure,1,Liver disease/failure
+X307A,Subfulminant hepatic failure,1,Liver disease/failure
+J615F,Syphilitic portal cirrhosis,1,Liver disease/failure
+X307V,Toxic cirrhosis,1,Liver disease/failure
+J6355,Toxic liver disease with chronic active hepatitis,1,Liver disease/failure
+J6354,Toxic liver disease with chronic lobular hepatitis,1,Liver disease/failure
+J6353,Toxic liver disease with chronic persistent hepatitis,1,Liver disease/failure
+J6356,Toxic liver disease with fibrosis and cirrhosis of liver,1,Liver disease/failure
+J615B,Toxic portal cirrhosis,1,Liver disease/failure
+J6150,Unilobular portal cirrhosis,1,Liver disease/failure
+A706.,Unspecified viral hepatitis with coma,1,Liver disease/failure
+A7040,Viral hepatitis C with coma,1,Liver disease/failure
+XaYbp,Viral hepatitis with hepatic coma,1,Liver disease/failure
+J615G,Zooparasitic portal cirrhosis,1,Liver disease/failure

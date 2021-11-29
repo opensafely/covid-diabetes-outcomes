@@ -1,0 +1,14 @@
+icd,description
+F51, Nonorganic sleep disorders
+F510, Nonorganic insomnia
+F512, Nonorganic disorder of the sleep-wake schedule
+F514, Sleep terrors [night terrors]
+F515, Nightmares
+F518, Other nonorganic sleep disorders
+F519,"Nonorganic sleep disorder, unspecified"
+G47, Sleep disorders
+G470, Disorders of initiating and maintaining sleep [insomnias]
+G472, Disorders of the sleep-wake schedule
+G478, Other sleep disorders
+G479,"Sleep disorder, unspecified"
+Z913, Personal history of unhealthy sleep-wake schedule

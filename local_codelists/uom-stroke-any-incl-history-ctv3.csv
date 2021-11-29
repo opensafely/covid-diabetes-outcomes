@@ -1,0 +1,184 @@
+CTV3ID,CTV3Term,history,classifiactioncode,classificationkey
+1477.,H/O: cerebrovascular disease,1,5,Cerebrovascular disease (not thrombotic or haemorrhagic)
+1477.,H/O: cerebrovascular disease,1,5,Cerebrovascular disease (not thrombotic or haemorrhagic)
+14A7.,H/O: CVA &/or stroke,1,1,Thrombotic stroke
+14A7.,H/O: CVA,1,1,Thrombotic stroke
+14A7.,H/O: stroke,1,1,Thrombotic stroke
+14AK.,H/O: Stroke in last year,1,1,Thrombotic stroke
+14AK.,H/O: Stroke in last year,1,1,Thrombotic stroke
+5C13.,Old cerebral infarction on imaging,1,5,Cerebrovascular disease (not thrombotic or haemorrhagic)
+7A244,Open embolectomy of cerebral artery,1,5,Cerebrovascular disease (not thrombotic or haemorrhagic)
+7A246,Open embolisation of cerebral artery,1,5,Cerebrovascular disease (not thrombotic or haemorrhagic)
+7A250,Percutaneous transluminal embolisation of cerebral artery,1,5,Cerebrovascular disease (not thrombotic or haemorrhagic)
+F11x2,Cerebral degeneration due to cerebrovascular disease,1,5,Cerebrovascular disease (not thrombotic or haemorrhagic)
+F4K7.,Retrobulbar haemorrhage,,2,Haemorrhagic stroke or SAH
+Fyu55,[X]Other transnt cerebral ischaemic attacks+related syndroms,,3,TIA
+Fyu55,[X]Other transnt cerebral ischaemic attacks+related syndroms,,3,TIA
+Fyu57,[X]Other vascular syndroms/brain in cerebrovasculr diseases,,5,Cerebrovascular disease (not thrombotic or haemorrhagic)
+G6...,Cerebrovascular disease,,5,Cerebrovascular disease (not thrombotic or haemorrhagic)
+G60..,Subarachnoid haemorrhage,,2,Haemorrhagic stroke or SAH
+G600.,Ruptured berry aneurysm,,2,Haemorrhagic stroke or SAH
+G601.,Subarachnoid haemorrhage from carotid siphon and bifurcation,,2,Haemorrhagic stroke or SAH
+G606.,Subarachnoid haemorrhage from vertebral artery,,2,Haemorrhagic stroke or SAH
+G60z.,Subarachnoid haemorrhage NOS,,2,Haemorrhagic stroke or SAH
+G610.,Cortical haemorrhage,,2,Haemorrhagic stroke or SAH
+G611.,Internal capsule haemorrhage,,2,Haemorrhagic stroke or SAH
+G613.,Cerebellar haemorrhage,,2,Haemorrhagic stroke or SAH
+G614.,Pontine haemorrhage,,2,Haemorrhagic stroke or SAH
+G615.,Bulbar haemorrhage,,2,Haemorrhagic stroke or SAH
+G617.,"Intracerebral haemorrhage, intraventricular",,2,Haemorrhagic stroke or SAH
+G619.,Lobar cerebral haemorrhage,,2,Haemorrhagic stroke or SAH
+G621.,Subdural haemorrhage - nontraumatic,,2,Haemorrhagic stroke or SAH
+G621.,Subdural haemorrhage - nontraumatic,,2,Haemorrhagic stroke or SAH
+G63..,Infarction - precerebral,,1,Thrombotic stroke
+G63..,Precerebral arterial occlusion,,5,Cerebrovascular disease (not thrombotic or haemorrhagic)
+G630.,Basilar artery occlusion,,1,Thrombotic stroke
+G631.,Carotid artery occlusion,,1,Thrombotic stroke
+G632.,Vertebral artery occlusion,,1,Thrombotic stroke
+G634.,Carotid artery stenosis,,5,Cerebrovascular disease (not thrombotic or haemorrhagic)
+G63y0,Cerebral infarct due to thrombosis of precerebral arteries,,1,Thrombotic stroke
+G63y1,Cerebral infarction due to embolism of precerebral arteries,,1,Thrombotic stroke
+G64..,Cerebral arterial occlusion,,1,Thrombotic stroke
+G640.,Occlusive stroke,,1,Thrombotic stroke
+G640.,Cerebral thrombosis,,1,Thrombotic stroke
+G6400,Cerebral infarction due to thrombosis of cerebral arteries,,1,Thrombotic stroke
+G641.,Cerebral embolism,,1,Thrombotic stroke
+G641.,Cerebral embolus,,1,Thrombotic stroke
+G6410,Cerebral infarction due to embolism of cerebral arteries,,1,Thrombotic stroke
+G64z.,Infarct (& [cerebell] or [cerebral NOS] or [brainstem NOS]),,1,Thrombotic stroke
+G64z.,Cerebellar infarction,,1,Thrombotic stroke
+G64z1,Lateral medullary syndrome,,1,Thrombotic stroke
+G64z2,Left sided cerebral infarction,,1,Thrombotic stroke
+G64z3,Right sided cerebral infarction,,1,Thrombotic stroke
+G64z4,Infarction of basal ganglia,,1,Thrombotic stroke
+G65..,Transient ischaemic attack,,3,TIA
+G65..,Transient cerebral ischaemia,,3,TIA
+G65..,Vertebrobasilar insufficiency,,5,Cerebrovascular disease (not thrombotic or haemorrhagic)
+G650.,Basilar artery syndrome,,1,Thrombotic stroke
+G650.,Insufficiency - basilar artery,,5,Cerebrovascular disease (not thrombotic or haemorrhagic)
+G651.,Vertebral artery syndrome,,5,Cerebrovascular disease (not thrombotic or haemorrhagic)
+G652.,Subclavian steal syndrome,,5,Cerebrovascular disease (not thrombotic or haemorrhagic)
+G653.,Carotid artery syndrome hemispheric,,3,TIA
+G654.,Multiple and bilateral precerebral artery syndromes,,1,Thrombotic stroke
+G656.,Vertebrobasilar insufficiency,,5,Cerebrovascular disease (not thrombotic or haemorrhagic)
+G657.,Carotid territory transient ischaemic attack,,3,TIA
+G65y.,Other transient cerebral ischaemia,,3,TIA
+G65z.,Transient cerebral ischaemia NOS,,3,TIA
+G65z0,Impending cerebral ischaemia,,3,TIA
+G65z1,Intermittent cerebral ischaemia,,3,TIA
+G660.,Middle cerebral artery syndrome,,1,Thrombotic stroke
+G661.,Anterior cerebral artery syndrome,,1,Thrombotic stroke
+G662.,Posterior cerebral artery syndrome,,1,Thrombotic stroke
+G664.,Cerebellar stroke syndrome,,1,Thrombotic stroke
+G665.,Pure motor lacunar syndrome,,1,Thrombotic stroke
+G666.,Pure sensory lacunar syndrome,,1,Thrombotic stroke
+G667.,Left sided CVA,,1,Thrombotic stroke
+G668.,Right sided CVA,,1,Thrombotic stroke
+G67..,Other cerebrovascular disease,,5,Cerebrovascular disease (not thrombotic or haemorrhagic)
+G670.,Cerebral atherosclerosis,,5,Cerebrovascular disease (not thrombotic or haemorrhagic)
+G6711,Chronic cerebral ischaemia,,5,Cerebrovascular disease (not thrombotic or haemorrhagic)
+G673.,"Cerebral aneurysm, nonruptured",,5,Cerebrovascular disease (not thrombotic or haemorrhagic)
+G6730,"Dissection of cerebral arteries, nonruptured",,5,Cerebrovascular disease (not thrombotic or haemorrhagic)
+G6732,Carotid artery dissection,,5,Cerebrovascular disease (not thrombotic or haemorrhagic)
+G6733,Vertebral artery dissection,,5,Cerebrovascular disease (not thrombotic or haemorrhagic)
+G674.,Cerebral arteritis,,5,Cerebrovascular disease (not thrombotic or haemorrhagic)
+G6740,Cerebral amyloid angiopathy,,5,Cerebrovascular disease (not thrombotic or haemorrhagic)
+G6770,Occlusion and stenosis of middle cerebral artery,,1,Thrombotic stroke
+G6771,Occlusion and stenosis of anterior cerebral artery,,1,Thrombotic stroke
+G6772,Occlusion and stenosis of posterior cerebral artery,,1,Thrombotic stroke
+G6773,Occlusion and stenosis of cerebellar arteries,,1,Thrombotic stroke
+G67A.,Cerebral vein thrombosis,,4,Cerebral venous thrombosis
+G67B.,Call-Fleming syndrome,,5,Cerebrovascular disease (not thrombotic or haemorrhagic)
+G67B.,Reversible cerebral vasoconstriction syndrome,,5,Cerebrovascular disease (not thrombotic or haemorrhagic)
+G67z.,Other cerebrovascular disease NOS,,5,Cerebrovascular disease (not thrombotic or haemorrhagic)
+G68..,Late effects of cerebrovascular disease,,5,Cerebrovascular disease (not thrombotic or haemorrhagic)
+G680.,Sequelae of subarachnoid haemorrhage,,2,Haemorrhagic stroke or SAH
+G681.,Sequelae of intracerebral haemorrhage,,2,Haemorrhagic stroke or SAH
+G683.,Sequelae of cerebral infarction,,5,Cerebrovascular disease (not thrombotic or haemorrhagic)
+G68W.,[X]Sequelae/other + unspecified cerebrovascular diseases,,5,Cerebrovascular disease (not thrombotic or haemorrhagic)
+G68X.,"[X]Sequelae of stroke,not specfd as h'morrhage or infarction",,5,Cerebrovascular disease (not thrombotic or haemorrhagic)
+G6y..,Other specified cerebrovascular disease,,5,Cerebrovascular disease (not thrombotic or haemorrhagic)
+G6z..,Cerebrovascular disease NOS,,5,Cerebrovascular disease (not thrombotic or haemorrhagic)
+G7...,Cerebrovascular disease,,5,Cerebrovascular disease (not thrombotic or haemorrhagic)
+G711.,Subarachnoid haemorrhage,,2,Haemorrhagic stroke or SAH
+G72..,Precerebral arterial occlusion,,5,Cerebrovascular disease (not thrombotic or haemorrhagic)
+G721.,Basilar artery occlusion,,1,Thrombotic stroke
+G722.,Carotid artery occlusion,,1,Thrombotic stroke
+G723.,Vertebral artery occlusion,,1,Thrombotic stroke
+G73..,Cerebral arterial occlusion,,1,Thrombotic stroke
+G731.,Cerebral thrombosis,,1,Thrombotic stroke
+G732.,Cerebral embolism,,1,Thrombotic stroke
+G74..,Transient cerebral ischaemia,,3,TIA
+G74..,Vertebrobasilar insufficiency,,5,Cerebrovascular disease (not thrombotic or haemorrhagic)
+G74..,Transient ischaemic attack,,3,TIA
+G77..,Late effects of cerebrovascular disease,,5,Cerebrovascular disease (not thrombotic or haemorrhagic)
+Gyu6.,Cerebrovascular disease,,5,Cerebrovascular disease (not thrombotic or haemorrhagic)
+Gyu61,[X]Other subarachnoid haemorrhage,,2,Haemorrhagic stroke or SAH
+Gyu65,[X]Occlusion and stenosis of other precerebral arteries,,1,Thrombotic stroke
+Gyu65,[X]Occlusion and stenosis of other precerebral arteries,,5,Cerebrovascular disease (not thrombotic or haemorrhagic)
+Gyu66,[X]Occlusion and stenosis of other cerebral arteries,,5,Cerebrovascular disease (not thrombotic or haemorrhagic)
+Gyu67,[X]Other specified cerebrovascular diseases,,5,Cerebrovascular disease (not thrombotic or haemorrhagic)
+Gyu68,[X]Cerebral arteritis in infectious and parasitic diseases,,5,Cerebrovascular disease (not thrombotic or haemorrhagic)
+Gyu69,[X]Cerebral arteritis in other diseases classified elsewhere,,5,Cerebrovascular disease (not thrombotic or haemorrhagic)
+Gyu69,[X]Cerebral arteritis in other diseases classified elsewhere,,5,Cerebrovascular disease (not thrombotic or haemorrhagic)
+Gyu6A,[X]Other cerebrovascular disorders in diseases CE,,5,Cerebrovascular disease (not thrombotic or haemorrhagic)
+Gyu6C,"[X]Sequelae of stroke,not specfd as h'morrhage or infarction",,5,Cerebrovascular disease (not thrombotic or haemorrhagic)
+Gyu6D,[X]Sequelae/other + unspecified cerebrovascular diseases,,5,Cerebrovascular disease (not thrombotic or haemorrhagic)
+Gyu6E,"[X]Subarachnoid haemorrh from intracranial artery, unspecif",,2,Haemorrhagic stroke or SAH
+Gyu6E,"[X]Subarachnoid haemorrh from intracranial artery, unspecif",,2,Haemorrhagic stroke or SAH
+L440.,Stroke in the puerperium,,6,Pregnancy related stroke
+L4401,Puerperal cerebrovascular disorder - delivered,,6,Pregnancy related stroke
+Q200.,Subdural and cerebral haemorrhage due to birth trauma,,5,Cerebrovascular disease (not thrombotic or haemorrhagic)
+Q2000,Intracerebral haemorrhage in fetus or newborn,,5,Cerebrovascular disease (not thrombotic or haemorrhagic)
+Q2002,Local subdural haematoma due to birth trauma,,5,Cerebrovascular disease (not thrombotic or haemorrhagic)
+Q2003,Tentorial tear due to birth trauma,,5,Cerebrovascular disease (not thrombotic or haemorrhagic)
+Q2004,Cerebral injury due to birth trauma,,5,Cerebrovascular disease (not thrombotic or haemorrhagic)
+Q2005,Cerebral haematoma in fetus or newborn,,5,Cerebrovascular disease (not thrombotic or haemorrhagic)
+Q2005,Cerebral haematoma in fetus or newborn,,5,Cerebrovascular disease (not thrombotic or haemorrhagic)
+Q2005,Intracerebral haematoma in fetus or newborn,,5,Cerebrovascular disease (not thrombotic or haemorrhagic)
+Q2006,Extradural haemorrhage in fetus or newborn,,5,Cerebrovascular disease (not thrombotic or haemorrhagic)
+Q2007,Cerebral haemorrhage due to birth injury,,5,Cerebrovascular disease (not thrombotic or haemorrhagic)
+Q411.,Perinatal intraventricular haemorrhage,,5,Cerebrovascular disease (not thrombotic or haemorrhagic)
+Q4113,Intraventricular haemorrhage due to birth injury,,5,Cerebrovascular disease (not thrombotic or haemorrhagic)
+X00D4,Infarction - precerebral,,1,Thrombotic stroke
+X00DM,Lobar cerebral haemorrhage,,2,Haemorrhagic stroke or SAH
+X00DU,Carotid territory transient ischaemic attack,,3,TIA
+X00DW,Vertebrobasilar insufficiency,,5,Cerebrovascular disease (not thrombotic or haemorrhagic)
+X00Do,Cerebral amyloid angiopathy,,5,Cerebrovascular disease (not thrombotic or haemorrhagic)
+X00Du,Carotid artery dissection,,5,Cerebrovascular disease (not thrombotic or haemorrhagic)
+X00Dv,Vertebral artery dissection,,5,Cerebrovascular disease (not thrombotic or haemorrhagic)
+X70Eh,Cerebral injury due to birth trauma,,5,Cerebrovascular disease (not thrombotic or haemorrhagic)
+X70Ei,Intracerebral haemorrhage in fetus or newborn,,5,Cerebrovascular disease (not thrombotic or haemorrhagic)
+XE0VG,Precerebral arterial occlusion,,5,Cerebrovascular disease (not thrombotic or haemorrhagic)
+XE0VH,Carotid artery occlusion,,1,Thrombotic stroke
+XE0VI,Cerebral arterial occlusion,,1,Thrombotic stroke
+XE0VK,Transient cerebral ischaemia,,3,TIA
+XE0VK,Transient ischaemic attack,,3,TIA
+XE0VL,Cerebral atherosclerosis,,5,Cerebrovascular disease (not thrombotic or haemorrhagic)
+XE0Ww,Cerebrovascular disease,,5,Cerebrovascular disease (not thrombotic or haemorrhagic)
+XE0X0,Vertebrobasilar insufficiency,,5,Cerebrovascular disease (not thrombotic or haemorrhagic)
+XE0X0,Transient ischaemic attack,,3,TIA
+XE0X0,Transient cerebral ischaemia,,3,TIA
+XE2te,H/O: CVA/stroke,1,1,Thrombotic stroke
+XM1PL,Stroke in the puerperium,,6,Pregnancy related stroke
+XM1R2,H/O: CVA,1,1,Thrombotic stroke
+XM1R3,H/O: stroke,1,1,Thrombotic stroke
+Xa00J,Cerebellar infarction,,1,Thrombotic stroke
+Xa00M,Lateral medullary syndrome,,1,Thrombotic stroke
+Xa1uW,Subarachnoid haemorrhage,,2,Haemorrhagic stroke or SAH
+Xa6Yt,Cerebral vein thrombosis,,4,Cerebral venous thrombosis
+XaBEC,Left sided cerebral infarction,,1,Thrombotic stroke
+XaBED,Right sided cerebral infarction,,1,Thrombotic stroke
+XaBL0,H/O: cerebrovascular disease,1,5,Cerebrovascular disease (not thrombotic or haemorrhagic)
+XaBL3,H/O: Stroke in last year,1,1,Thrombotic stroke
+XaEGK,Transient ischaemic attacks,,3,TIA
+XaJgQ,Infarction of basal ganglia,,1,Thrombotic stroke
+XaQbK,Pure motor lacunar syndrome,,1,Thrombotic stroke
+XaQbM,Pure sensory lacunar syndrome,,1,Thrombotic stroke
+XaX16,[V]Personal history of transient ischaemic attack,1,3,TIA
+XaX16,[V]Personal history of transient ischaemic attack,1,3,TIA
+XaaJd,Reversible cerebral vasoconstriction syndrome,,5,Cerebrovascular disease (not thrombotic or haemorrhagic)
+XaaJd,Call-Fleming syndrome,,5,Cerebrovascular disease (not thrombotic or haemorrhagic)
+XacGH,Old cerebral infarction on imaging,1,5,Cerebrovascular disease (not thrombotic or haemorrhagic)
+ZV12D,[V]Personal history of transient ischaemic attack,1,3,TIA
+ZV12D,[V]Personal history of transient ischaemic attack,1,3,TIA

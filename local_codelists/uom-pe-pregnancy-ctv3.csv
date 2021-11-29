@@ -1,0 +1,24 @@
+CTV3ID,CTV3Term,classificationcode,classificationkey
+Lyu64,[X]Other obstetric embolism,2,PE in pregnancy or puerperium
+L4322,Obstetric blood-clot pulm embolism - delivered with p/n comp,2,PE in pregnancy or puerperium
+L432.,Obstetric blood-clot pulmonary embolism,2,PE in pregnancy or puerperium
+L4321,Obstetric blood-clot pulmonary embolism - delivered,2,PE in pregnancy or puerperium
+L4323,Obstetric blood-clot pulmonary embolism + a/n complication,2,PE in pregnancy or puerperium
+L4324,Obstetric blood-clot pulmonary embolism + p/n complication,2,PE in pregnancy or puerperium
+L432z,Obstetric blood-clot pulmonary embolism NOS,2,PE in pregnancy or puerperium
+L4320,Obstetric blood-clot pulmonary embolism unspecified,2,PE in pregnancy or puerperium
+L43..,Obstetric pulmonary embolism,2,PE in pregnancy or puerperium
+L43z.,Obstetric pulmonary embolism NOS,2,PE in pregnancy or puerperium
+L43z1,Obstetric pulmonary embolism NOS - delivered,2,PE in pregnancy or puerperium
+L43z2,Obstetric pulmonary embolism NOS - delivered with p/n comp,2,PE in pregnancy or puerperium
+L43z3,Obstetric pulmonary embolism NOS with antenatal complication,2,PE in pregnancy or puerperium
+L43z4,Obstetric pulmonary embolism NOS with postnatal complication,2,PE in pregnancy or puerperium
+L43z0,"Obstetric pulmonary embolism NOS, unspecified",2,PE in pregnancy or puerperium
+XE0xN,Other obstetric pulmonary embolism,2,PE in pregnancy or puerperium
+L43y1,Other obstetric pulmonary embolism - delivered,2,PE in pregnancy or puerperium
+L43y2,Other obstetric pulmonary embolism - delivered + p/n comp,2,PE in pregnancy or puerperium
+L43yz,Other obstetric pulmonary embolism NOS,2,PE in pregnancy or puerperium
+L43y0,Other obstetric pulmonary embolism unspecified,2,PE in pregnancy or puerperium
+L43y3,Other obstetric pulmonary embolism with antenatal comp,2,PE in pregnancy or puerperium
+L43y4,Other obstetric pulmonary embolism with postnatal comp,2,PE in pregnancy or puerperium
+L0964,Pulmonary embolism following abortive pregnancy,2,PE in pregnancy or puerperium

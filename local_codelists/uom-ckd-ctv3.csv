@@ -1,0 +1,58 @@
+CTV3ID,CTV3Term
+1Z12.,Chronic kidney disease stage 3
+1Z13.,Chronic kidney disease stage 4
+1Z14.,Chronic kidney disease stage 5
+1Z15.,Chronic kidney disease stage 3A
+1Z16.,Chronic kidney disease stage 3B
+1Z1B.,Chronic kidney disease stage 3 with proteinuria
+1Z1C.,Chronic kidney disease stage 3 without proteinuria
+1Z1D.,Chronic kidney disease stage 3A with proteinuria
+1Z1E.,Chronic kidney disease stage 3A without proteinuria
+1Z1F.,Chronic kidney disease stage 3B with proteinuria
+1Z1G.,Chronic kidney disease stage 3B without proteinuria
+1Z1H.,CKD stage 4 with proteinuria
+1Z1J.,Chronic kidney disease stage 4 without proteinuria
+1Z1K.,Chronic kidney disease stage 5 with proteinuria
+1Z1L.,CKD stage 5 without proteinuria
+1Z1T.,CKD with GFR category G3a & albuminuria category A1
+1Z1V.,CKD with GFR category G3a & albuminuria category A2
+1Z1W.,CKD with GFR category G3a & albuminuria category A3
+1Z1X.,CKD with GFR category G3b & albuminuria category A1
+1Z1Y.,CKD with GFR category G3b & albuminuria category A2
+1Z1Z.,CKD with GFR category G3b & albuminuria category A3
+1Z1a.,CKD with GFR category G4 & albuminuria category A1
+1Z1b.,CKD with GFR category G4 & albuminuria category A2
+1Z1c.,CKD with GFR category G4 & albuminuria category A3
+1Z1d.,CKD with GFR category G5 & albuminuria category A1
+1Z1e.,CKD with GFR category G5 & albuminuria category A2
+1Z1f.,CKD with GFR category G5 & albuminuria category A3
+K053.,Chronic kidney disease stage 3
+K054.,Chronic kidney disease stage 4
+K055.,Chronic kidney disease stage 5
+XaLHI,Chronic kidney disease stage 3
+XaLHJ,Chronic kidney disease stage 4
+XaLHK,Chronic kidney disease stage 5
+XaNbn,Chronic kidney disease stage 3A
+XaNbo,Chronic kidney disease stage 3B
+XaO3t,CKD stage 3 with proteinuria
+XaO3u,CKD stage 3 without proteinuria
+XaO3v,Chronic kidney disease stage 3A with proteinuria
+XaO3w,CKD stage 3A without proteinuria
+XaO3x,Chronic kidney disease stage 3B with proteinuria
+XaO3y,CKD stage 3B without proteinuria
+XaO3z,Chronic kidney disease stage 4 with proteinuria
+XaO40,CKD stage 4 without proteinuria
+XaO41,CKD stage 5 with proteinuria
+XaO42,CKD stage 5 without proteinuria
+XacAM,CKD with GFR category G3a & albuminuria category A1
+XacAN,CKD with GFR category G3a & albuminuria category A2
+XacAO,CKD with GFR category G3a & albuminuria category A3
+XacAV,CKD with GFR category G3b & albuminuria category A1
+XacAW,CKD with GFR category G3b & albuminuria category A2
+XacAX,CKD with GFR category G3b & albuminuria category A3
+XacAb,CKD with GFR category G4 & albuminuria category A1
+XacAd,CKD with GFR category G4 & albuminuria category A2
+XacAe,CKD with GFR category G4 & albuminuria category A3
+XacAf,CKD with GFR category G5 & albuminuria category A1
+XacAh,CKD with GFR category G5 & albuminuria category A2
+XacAi,CKD with GFR category G5 & albuminuria category A3

@@ -1,0 +1,124 @@
+CTV3ID,CTV3Term
+12K8.,Maternal postnatal depression
+1B17.,Depressed
+1B1U.,Depressive symptoms
+1BT..,Sad mood
+1JJ..,Suspected depression
+1S40.,Dysphoric mood
+2257.,O/E - depressed
+62T1.,Puerperal depression
+E0013,Presenile dementia with depression
+E0021,Senile dementia with depression
+E112.,Agitated depression
+E1120,"Single major depressive episode, unspecified"
+E1121,"Single major depressive episode, mild"
+E1122,"Single major depressive episode, moderate"
+E1123,"Single major depressive episode, severe, without psychosis"
+E1125,"Single major depressive episode, partial or unspec remission"
+E1126,"Single major depressive episode, in full remission"
+E112z,Single major depressive episode NOS
+E113.,Endogenous depression - recurrent
+E1130,"Recurrent major depressive episodes, unspecified"
+E1131,"Recurrent major depressive episodes, mild"
+E1132,"Recurrent major depressive episodes, moderate"
+E1133,"Recurrent major depressive episodes, severe, no psychosis"
+E1135,"Recurrent major depressive episodes,partial/unspec remission"
+E1137,Recurrent depression
+E113z,Recurrent major depressive episode NOS
+E118.,Seasonal affective disorder
+E11y2,Atypical depressive disorder
+E11z2,Masked depression
+E135.,Agitated depression
+E2003,Anxiety with depression
+E204.,Neurotic depression reactive type
+E2112,Dysthymia
+E221.,Agitated depression
+E222.,Endogenous depression
+E234.,Seasonal affective disorder
+E290.,Brief depressive reaction
+E2900,Grief reaction ( & [bereavement reaction])
+E290z,Brief depressive reaction NOS
+E291.,Prolonged depressive adjustment reaction
+E2B..,Depressive disorder NEC
+E2B0.,Postviral depression
+E2B1.,Chronic depression
+E4E1.,Grief reaction
+E4J6.,Anxiety with depression
+E4J7.,[X]Mild depression
+E4JB.,Seasonal affective disorder
+E4JC.,Recurrent depression
+Eu204,[X]Post-schizophrenic depression
+Eu32.,Single major depressive episode
+Eu320,[X]Mild depressive episode
+Eu321,[X]Moderate depressive episode
+Eu322,"[X]Sev depress epis, no psych: (& single [agit][maj][vital])"
+Eu324,[X]Mild depression
+Eu325,"[X]Major depression, mild"
+Eu326,"[X]Major depression, moderately severe"
+Eu327,"[X]Major depression, severe without psychotic symptoms"
+Eu329,"[X]Single major depr ep, severe with psych, psych in remiss"
+Eu32A,"[X]Recurr major depr ep, severe with psych, psych in remiss"
+Eu32B,[X]Antenatal depression
+Eu32y,[X]Atypical depression
+Eu32z,[X](Depressn: [episode unsp][NOS (& react)][depress dis NOS]
+Eu33.,[X]Recurrent episodes of depressive reaction
+Eu330,"[X]Recurrent depressive disorder, current episode mild"
+Eu331,"[X]Recurrent depressive disorder, current episode moderate"
+Eu332,[X]Recurr depress disorder cur epi severe without psyc sympt
+Eu334,"[X]Recurrent depressive disorder, currently in remission"
+Eu33y,[X]Other recurrent depressive disorders
+Eu33z,"[X]Recurrent depressive disorder, unspecified"
+Eu341,[X]Dysthymia
+Eu412,[X]Mixed anxiety and depress disord (& mild anxiet depressn)
+Eu432,[X]Grief reaction
+Eu530,"[X]Ment/behav dis, puerperp:[mild NEC][postnat depressn NOS]"
+R07Z.,[D]Lassitude
+X00S8,Post-schizophrenic depression
+X00SO,Depressive disorder
+X00SQ,Agitated depression
+X00SR,Endogenous depression
+X00SS,Endogenous depression first episode
+X00SU,Masked depression
+X00Sb,Anxiety depression
+X761L,Seasonal affective disorder
+X76AY,Work stress
+XE0re,Sad mood
+XE0uv,Depressed
+XE1Y0,Single major depressive episode
+XE1Y1,Recurrent major depressive episodes
+XE1YC,Neurotic depression reactive type
+XE1YD,Neurasthenia
+XE1Yo,Grief reaction
+XE1ZY,[X]Severe depressive episode without psychotic symptoms
+XE1Za,[X]Other depressive episodes
+XE1Zb,"[X]Depressive episode, unspecified"
+XE1Zc,[X]Recurrent depressive disorder
+XE1Zd,[X]Recurr depress disorder cur epi severe without psyc sympt
+XE1Zf,"[X]Recurrent depressive disorder, unspecified"
+XE1aS,Agitated depression
+XE1aY,Depression: [reactive (neurotic)] or [postnatal]
+XM0CR,C/O - feeling depressed
+XM0CS,C/O - feeling unhappy
+XM1GC,Endogenous depression - recurrent
+XSEGJ,Major depressive disorder
+XSGok,Mild major depression
+XSGol,Moderate major depression
+XSGom,Severe major depression without psychotic features
+XSKr7,Cotard syndrome
+Xa0Rd,Atypical depressive disorder
+Xa0wV,Recurrent brief depressive disorder
+XaB9J,Depression NOS
+XaCHo,"[X]Manic-depress psychosis,depressd,no psychotic symptoms"
+XaCHr,[X]Single episode agitated depressn w'out psychotic symptoms
+XaCHs,[X]Single episode major depression w'out psychotic symptoms
+XaCIs,[X]Mild depression
+XaCIt,Moderate depression
+XaCIu,Severe depression
+XaImU,Depressive symptoms
+XaKUk,Dysphoric mood
+XaX0C,Suspected depression
+XaX53,"[X]Single major depr ep, severe with psych, psych in remiss"
+XaX54,"[X]Recurr major depr ep, severe with psych, psych in remiss"
+XaY2C,Antenatal depression
+Xaeft,Maternal postnatal depression
+XagUK,Prolonged single episode of reactive depression

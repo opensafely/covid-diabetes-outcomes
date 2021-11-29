@@ -13,4 +13,8 @@ by set: egen mysum=sum(group)
 drop if mysum<6
 drop mysum
 
+merge 1:1 patient_id group using $outdir/input_part1_clean.dta
+drop if _m==2
+drop _merge
+
 save $outdir/matched_groups_1_2_and_3.dta, replace

@@ -1,0 +1,77 @@
+icd,description
+F20,Schizophrenia
+F200,Paranoid schizophrenia
+F201,Disorganized schizophrenia
+F202,Catatonic schizophrenia
+F203,Undifferentiated schizophrenia
+F205,Residual schizophrenia
+F208,Other schizophrenia
+F2081,Schizophreniform disorder
+F2089,Other schizophrenia
+F209,"Schizophrenia, unspecified"
+F21,Schizotypal disorder
+F22,Delusional disorders
+F23,Brief psychotic disorder
+F24,Shared psychotic disorder
+F25,Schizoaffective disorders
+F250,"Schizoaffective disorder, bipolar type"
+F251,"Schizoaffective disorder, depressive type"
+F258,Other schizoaffective disorders
+F259,"Schizoaffective disorder, unspecified"
+F28,Other psychotic disorder not due to a substance or known physiological condition
+F29,Unspecified psychosis not due to a substance or known physiological condition
+F30,Manic episode
+F301,Manic episode without psychotic symptoms
+F3010,"Manic episode without psychotic symptoms, unspecified"
+F3011,"Manic episode without psychotic symptoms, mild"
+F3012,"Manic episode without psychotic symptoms, moderate"
+F3013,"Manic episode, severe, without psychotic symptoms"
+F302,"Manic episode, severe with psychotic symptoms"
+F303,Manic episode in partial remission
+F304,Manic episode in full remission
+F308,Other manic episodes
+F309,"Manic episode, unspecified"
+F31,Bipolar disorder
+F310,"Bipolar disorder, current episode hypomanic"
+F311,"Bipolar disorder, current episode manic without psychotic features"
+F3110,"Bipolar disorder, current episode manic without psychotic features, unspecified"
+F3111,"Bipolar disorder, current episode manic without psychotic features, mild"
+F3112,"Bipolar disorder, current episode manic without psychotic features, moderate"
+F3113,"Bipolar disorder, current episode manic without psychotic features, severe"
+F312,"Bipolar disorder, current episode manic severe with psychotic features"
+F313,"Bipolar disorder, current episode depressed, mild or moderate severity"
+F3130,"Bipolar disorder, current episode depressed, unspecified"
+F3131,"Bipolar disorder, current episode depressed, mild"
+F3132,"Bipolar disorder, current episode depressed, moderate"
+F314,"Bipolar disorder, current episode depressed, severe, without psychotic features"
+F315,"Bipolar disorder, current episode depressed, severe, with psychotic features"
+F316,"Bipolar disorder, current episode mixed"
+F3160,"Bipolar disorder, current episode mixed, unspecified"
+F3161,"Bipolar disorder, current episode mixed, mild"
+F3162,"Bipolar disorder, current episode mixed, moderate"
+F3163,"Bipolar disorder, current episode mixed, severe, without psychotic features"
+F3164,"Bipolar disorder, current episode mixed, severe, with psychotic features"
+F317,"Bipolar disorder, currently in remission"
+F3170,"Bipolar disorder, current episode mixed, most recent episode unspecified"
+F3171,"Bipolar disorder, in partial remission, most recent episode hypomanic"
+F3172,"Bipolar disorder, in full remission, most recent episode hypomanic"
+F3173,"Bipolar disorder, in partial remission, most recent episode manic"
+F3174,"Bipolar disorder, in full remission, most recent episode manic"
+F3175,"Bipolar disorder, in partial remission, most recent episode depressed"
+F3176,"Bipolar disorder, in full remission, most recent episode depressed"
+F3177,"Bipolar disorder, in partial remission, most recent episode mixed"
+F3178,"Bipolar disorder, in full remission, most recent episode mixed"
+F318,Other bipolar disorders
+F3181,Bipolar II disorder
+F3189,Other bipolar disorder
+F319,"Bipolar disorder, unspecified"
+F323,"Major depressive disorder, single episode, severe with psychotic features"
+F333,"Major depressive disorder, recurrent, severe with psychotic symptoms"
+F34,Persistent mood [affective] disorders
+F340,Cyclothymic disorder
+F341,Dysthymic disorder
+F348,Other persistent mood [affective] disorders
+F3481,Disruptive mood dysregulation disorder
+F3489,Other specified persistent mood disorders
+F349,"Persistent mood [affective] disorder, unspecified"
+F39,Unspecified mood [affective] disorder

@@ -1,0 +1,58 @@
+CTV3ID,CTV3Term
+168..,Fatigue - symptom
+1682.,Fatigue
+1683.,Tired all the time
+1684.,Malaise/lethargy
+168Z.,Tiredness symptom NOS
+E205.,Nervous exhaustion
+E36..,Tired all the time
+F03y.,Other causes of encephalitis
+F03z.,Encephalomyelitis NOS
+F122.,Myalgic encephalomyelitis
+F12Z.,Myalgic encephalomyelitis
+F286.,Chronic fatigue syndrome
+F2860,Mild chronic fatigue syndrome
+F2861,Moderate chronic fatigue syndrome
+F2862,Severe chronic fatigue syndrome
+F38..,Myalgic encephalomyelitis
+R007.,[D]Malaise and fatigue
+R0070,[D]Malaise
+R0071,[D]Fatigue
+R0072,[D]General weakness
+R0073,[D]Lethargy
+R0074,[D]Postviral (asthenic) syndrome
+R0075,[D]Tiredness
+R007z,[D]Lassitude
+R07..,[D]Malaise and fatigue
+R070.,[D]Malaise
+R071.,[D]Fatigue
+R073.,[D]Lethargy
+R074.,[D]Postviral (asthenic) syndrome
+R07Z.,[D]Malaise and fatigue NOS
+X001X,Encephalomyelitis NOS
+X75s8,Myalgic encephalomyelitis
+X76Am,Weakness - general
+XE0qj,Tiredness symptom
+XE0qk,Tired all the time
+XE0ql,Malaise/lethargy
+XE0uN,Fatigue - symptom
+XE15C,Other causes of encephalitis
+XE17Z,Myalgic encephalomyelitis
+XE17b,Myalgic encephalomyelitis
+XE1YD,Neurasthenia
+XE1aa,Tired all the time
+XM06l,Malaise and fatigue
+XM06m,Malaise
+XM06o,Lethargy
+XM06p,ME - Myalgic encephalomyelitis
+XM0Ce,C/O - debility - malaise
+XM0Cf,C/O - overwork
+XM0Cg,C/O - postviral syndrome
+XM0D3,Fatigue - symptom
+XM0D4,"C/O ""Muzzy head"""
+XM1AV,Asthenia
+Xa01F,Myalgic encephalomyelitis
+Xa96S,Tiredness
+XaPom,Mild chronic fatigue syndrome
+XaPon,Moderate chronic fatigue syndrome
+XaPoo,Severe chronic fatigue syndrome

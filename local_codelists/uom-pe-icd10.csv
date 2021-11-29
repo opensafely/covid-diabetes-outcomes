@@ -1,0 +1,4 @@
+icd,description,classificationcode,classificationkey
+I26,Pulmonary embolism,1,PE
+I260,Pulmonary embolism with mention of acute cor pulmonale,1,PE
+I269,Pulmonary embolism without mention of acute cor pulmonale,1,PE

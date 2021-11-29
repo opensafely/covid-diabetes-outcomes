@@ -1,0 +1,78 @@
+icd,description,classificationcode,classificationkey
+G450,Vertebro-basilar artery syndrome,1,Thrombotic stroke
+G451,Carotid artery syndrome (hemispheric),1,Thrombotic stroke
+I63,Cerebral infarction,1,Thrombotic stroke
+I630,Cerebral infarction due to thrombosis of precerebral arteries,1,Thrombotic stroke
+I631,Cerebral infarction due to embolism of precerebral arteries,1,Thrombotic stroke
+I632,Cerebral infarction due to unspecified occlusion or stenosis of precerebral arteries,1,Thrombotic stroke
+I633,Cerebral infarction due to thrombosis of cerebral arteries,1,Thrombotic stroke
+I634,Cerebral infarction due to embolism of cerebral arteries,1,Thrombotic stroke
+I635,Cerebral infarction due to unspecified occlusion or stenosis of cerebral arteries,1,Thrombotic stroke
+I639,"Cerebral infarction, unspecified",1,Thrombotic stroke
+I64X,"Stroke, not specified as haemorrhage or infarction",1,Thrombotic stroke
+I650,Occlusion and stenosis of vertebral artery,1,Thrombotic stroke
+I651,Occlusion and stenosis of basilar artery,1,Thrombotic stroke
+I652,Occlusion and stenosis of carotid artery,1,Thrombotic stroke
+I659,Occlusion and stenosis of unspecified precerebral artery,1,Thrombotic stroke
+I66,"Occlusion and stenosis of cerebral arteries, not resulting in cerebral infarction",1,Thrombotic stroke
+I660,Occlusion and stenosis of middle cerebral artery,1,Thrombotic stroke
+I661,Occlusion and stenosis of anterior cerebral artery,1,Thrombotic stroke
+I662,Occlusion and stenosis of posterior cerebral artery,1,Thrombotic stroke
+I663,Occlusion and stenosis of cerebellar arteries,1,Thrombotic stroke
+I693,Sequelae of cerebral infarction,1,Thrombotic stroke
+I694,"Sequelae of stroke, not specified as haemorrhage or infarction",1,Thrombotic stroke
+G452,Multiple and bilateral precerebral artery syndromes,2,Haemorrhagic stroke or SAH
+I60,Subarachnoid haemorrhage,2,Haemorrhagic stroke or SAH
+I600,Subarachnoid haemorrhage from carotid siphon and bifurcation,2,Haemorrhagic stroke or SAH
+I605,Subarachnoid haemorrhage from vertebral artery,2,Haemorrhagic stroke or SAH
+I607,"Subarachnoid haemorrhage from intracranial artery, unspecified",2,Haemorrhagic stroke or SAH
+I608,Other subarachnoid haemorrhage,2,Haemorrhagic stroke or SAH
+I609,"Subarachnoid haemorrhage, unspecified",2,Haemorrhagic stroke or SAH
+I610,"Intracerebral haemorrhage in hemisphere, subcortical",2,Haemorrhagic stroke or SAH
+I611,"Intracerebral haemorrhage in hemisphere, cortical",2,Haemorrhagic stroke or SAH
+I612,"Intracerebral haemorrhage in hemisphere, unspecified",2,Haemorrhagic stroke or SAH
+I613,Intracerebral haemorrhage in brain stem,2,Haemorrhagic stroke or SAH
+I614,Intracerebral haemorrhage in cerebellum,2,Haemorrhagic stroke or SAH
+I615,"Intracerebral haemorrhage, intraventricular",2,Haemorrhagic stroke or SAH
+I620,Subdural haemorrhage (acute)(nontraumatic),2,Haemorrhagic stroke or SAH
+I690,Sequelae of subarachnoid haemorrhage,2,Haemorrhagic stroke or SAH
+I691,Sequelae of intracerebral haemorrhage,2,Haemorrhagic stroke or SAH
+I692,Sequelae of other nontraumatic intracranial haemorrhage,2,Haemorrhagic stroke or SAH
+P103,Subarachnoid haemorrhage due to birth injury,2,Haemorrhagic stroke or SAH
+P525,Subarachnoid (nontraumatic) haemorrhage of fetus and newborn,2,Haemorrhagic stroke or SAH
+G45,Transient cerebral ischaemic attacks and related syndromes,3,TIA
+G458,Other transient cerebral ischaemic attacks and related syndromes,3,TIA
+G459,"Transient cerebral ischaemic attack, unspecified",3,TIA
+I636,"Cerebral infarction due to cerebral venous thrombosis, nonpyogenic",4,Cerebral venous thrombosis
+G46,Vascular syndromes of brain in cerebrovascular diseases,5,Cerebrovascular disease (not thrombotic or haemorrhagic)
+I653,Occlusion and stenosis of multiple and bilateral precerebral arteries,5,Cerebrovascular disease (not thrombotic or haemorrhagic)
+I668,Occlusion and stenosis of other cerebral artery,5,Cerebrovascular disease (not thrombotic or haemorrhagic)
+I669,Occlusion and stenosis of unspecified cerebral artery,5,Cerebrovascular disease (not thrombotic or haemorrhagic)
+I67,Other cerebrovascular diseases,5,Cerebrovascular disease (not thrombotic or haemorrhagic)
+I670,"Dissection of cerebral arteries, nonruptured",5,Cerebrovascular disease (not thrombotic or haemorrhagic)
+I671,"Cerebral aneurysm, nonruptured",5,Cerebrovascular disease (not thrombotic or haemorrhagic)
+I672,Cerebral atherosclerosis,5,Cerebrovascular disease (not thrombotic or haemorrhagic)
+I677,"Cerebral arteritis, not elsewhere classified",5,Cerebrovascular disease (not thrombotic or haemorrhagic)
+I678,Other specified cerebrovascular diseases,5,Cerebrovascular disease (not thrombotic or haemorrhagic)
+I679,"Cerebrovascular disease, unspecified",5,Cerebrovascular disease (not thrombotic or haemorrhagic)
+I68,Cerebrovascular disorders in diseases classified elsewhere,5,Cerebrovascular disease (not thrombotic or haemorrhagic)
+I69,Sequelae of cerebrovascular disease,5,Cerebrovascular disease (not thrombotic or haemorrhagic)
+I698,Sequelae of other and unspecified cerebrovascular diseases,5,Cerebrovascular disease (not thrombotic or haemorrhagic)
+I720,Aneurysm and dissection of carotid artery,5,Cerebrovascular disease (not thrombotic or haemorrhagic)
+P100,Subdural haemorrhage due to birth injury,5,Cerebrovascular disease (not thrombotic or haemorrhagic)
+P101,Cerebral haemorrhage due to birth injury,5,Cerebrovascular disease (not thrombotic or haemorrhagic)
+P102,Intraventricular haemorrhage due to birth injury,5,Cerebrovascular disease (not thrombotic or haemorrhagic)
+P104,Tentorial tear due to birth injury,5,Cerebrovascular disease (not thrombotic or haemorrhagic)
+P108,Other intracranial lacerations and haemorrhages due to birth injury,5,Cerebrovascular disease (not thrombotic or haemorrhagic)
+P111,Other specified brain damage due to birth injury,5,Cerebrovascular disease (not thrombotic or haemorrhagic)
+P112,Unspecified brain damage due to birth injury,5,Cerebrovascular disease (not thrombotic or haemorrhagic)
+P520,"Intraventricular (nontraumatic) haemorrhage, grade 1, of fetus and newborn",5,Cerebrovascular disease (not thrombotic or haemorrhagic)
+P521,"Intraventricular (nontraumatic) haemorrhage, grade 2, of fetus and newborn",5,Cerebrovascular disease (not thrombotic or haemorrhagic)
+P522,"Intraventricular (nontraumatic) haemorrhage, grade 3, of fetus and newborn",5,Cerebrovascular disease (not thrombotic or haemorrhagic)
+P523,Unspecified intraventricular (nontraumatic) haemorrhage of fetus and newborn,5,Cerebrovascular disease (not thrombotic or haemorrhagic)
+P524,Intracerebral (nontraumatic) haemorrhage of fetus and newborn,5,Cerebrovascular disease (not thrombotic or haemorrhagic)
+P526,Cerebellar (nontraumatic) and posterior fossa haemorrhage of fetus and newborn,5,Cerebrovascular disease (not thrombotic or haemorrhagic)
+P528,Other intracranial (nontraumatic) haemorrhages of fetus and newborn,5,Cerebrovascular disease (not thrombotic or haemorrhagic)
+O225,Cerebral venous thrombosis in pregnancy,6,Pregnancy related stroke
+O873,Cerebral venous thrombosis in the puerperium,6,Pregnancy related stroke
+O994,"Diseases of the circulatory system complicating pregnancy, childbirth and the puerperium",6,Pregnancy related stroke

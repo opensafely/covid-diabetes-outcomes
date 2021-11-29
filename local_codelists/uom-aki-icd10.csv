@@ -1,0 +1,11 @@
+icd,description,classificationcode,classificationkey
+K767,Hepatorenal syndrome,1,AKI
+N141,"Nephropathy induced by other drugs, medicaments and biological substances",1,AKI
+N144,"Toxic nephropathy, not elsewhere classified",1,AKI
+N17,Acute renal failure,1,AKI
+N170,Acute renal failure with tubular necrosis,1,AKI
+N171,Acute renal failure with acute cortical necrosis,1,AKI
+N172,Acute renal failure with medullary necrosis,1,AKI
+N178,Other acute renal failure,1,AKI
+N179,"Acute renal failure, unspecified",1,AKI
+N19X,Unspecified kidney failure,1,AKI

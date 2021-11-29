@@ -1,0 +1,52 @@
+icd,description
+F40,Phobic anxiety disorders
+F400,Agoraphobia
+F4000,Agoraphobia unspecified
+F4001,Agoraphobia with panic disorder
+F4002,Agoraphobia without panic disorder
+F401,Social phobias
+F4010,"Social phobia, unspecified"
+F4011,"Social phobia, generalized"
+F402,Specific (isolated) phobias
+F4021,Animal type phobia
+F40210,Arachnophobia
+F40218,Other animal type phobia
+F4022,Natural environment type phobia
+F40220,Fear of thunderstorms
+F40228,Other natural environment type phobia
+F4023,"Blood, injection, injury type phobia"
+F40230,Fear of blood
+F40231,Fear of injections and transfusions
+F40232,Fear of other medical care
+F40233,Fear of injury
+F4024,Situational type phobia
+F40240,Claustrophobia
+F40241,Acrophobia
+F40242,Fear of bridges
+F40243,Fear of flying
+F40248,Other situational type phobia
+F4029,Other specified phobia
+F40290,Androphobia
+F40291,Gynephobia
+F40298,Other specified phobia
+F408,Other phobic anxiety disorders
+F409,"Phobic anxiety disorder, unspecified"
+F41,Other anxiety disorders
+F410,Panic disorder [episodic paroxysmal anxiety]
+F411,Generalized anxiety disorder
+F413,Other mixed anxiety disorders
+F418,Other specified anxiety disorders
+F419,"Anxiety disorder, unspecified"
+F42,Obsessive-compulsive disorder
+F422,Mixed obsessional thoughts and acts
+F423,Hoarding disorder
+F424,Excoriation (skin-picking) disorder
+F428,Other obsessive-compulsive disorder
+F429,"Obsessive-compulsive disorder, unspecified"
+F430,Acute stress reaction
+F431,Post-traumatic stress disorder (PTSD)
+F4310,"Post-traumatic stress disorder, unspecified"
+F4311,"Post-traumatic stress disorder, acute"
+F4312,"Post-traumatic stress disorder, chronic"
+F438,Other reactions to severe stress
+F439,"Reaction to severe stress, unspecified"

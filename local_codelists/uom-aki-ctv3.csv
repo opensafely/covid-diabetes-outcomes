@@ -1,0 +1,27 @@
+CTV3ID,CTV3Term,classificationcode,classificationkey
+J624.,Hepatorenal syndrome,1,AKI
+K04..,Acute renal failure,1,AKI
+K040.,Acute tubular necrosis,1,AKI
+K041.,Acute cortical necrosis,1,AKI
+K04y.,Other acute renal failure,1,AKI
+K04z.,Acute renal failure NOS,1,AKI
+X30Ip,Postoperative acute tubular necrosis,1,AKI
+X30Ir,Nephrotoxic acute renal failure,1,AKI
+X30Is,Acute drug-induced renal failure,1,AKI
+X30Ix,Pulmonary renal syndrome,1,AKI
+Xa85t,Post-renal renal failure,1,AKI
+Xaa8O,Acute kidney injury stage 1,1,AKI
+Xaa8P,Acute kidney injury stage 2,1,AKI
+Xaa8Q,Acute kidney injury stage 3,1,AKI
+XaB3Y,Transient acute renal failure,1,AKI
+XaPwv,Acute renal failure due to urinary obstruction,1,AKI
+XaZ6J,Acute renal failure due to angio-conv-enzyme inhibitor,1,AKI
+XaZe5,Acute renal failure due to traumatic rhabdomyolysis,1,AKI
+XaZPp,Acute renal failure induced by aminoglycoside,1,AKI
+XaZPs,Acute renal failure induced by cisplatin,1,AKI
+XaZPt,Acute renal failure induced by cyclosporin A,1,AKI
+XaZPu,Acute renal failure induced by non-steroid anti-inflamm drug,1,AKI
+XaZSx,Acute renal failure due to non-traumatic rhabdomyolysis,1,AKI
+XaZZ0,Acute renal failure induced by radiographic contrast media,1,AKI
+XM08q,Prerenal renal failure,1,AKI
+XM199,[EDTA]Cortical or tubular necrosis associated+renal failure,1,AKI

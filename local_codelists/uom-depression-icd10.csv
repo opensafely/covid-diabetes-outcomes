@@ -1,0 +1,19 @@
+icd,description
+F32,Depressive episode
+F320,"Major depressive disorder, single episode, mild"
+F321,"Major depressive disorder, single episode, moderate"
+F322,"Major depressive disorder, single episode, severe without psychotic features"
+F324,"Major depressive disorder, single episode, in partial remission"
+F328,Other depressive episodes
+F3281,Premenstrual dysphoric disorder
+F3289,Other specified depressive episodes
+F329,"Major depressive disorder, single episode, unspecified"
+F32A,"Depression, unspecified"
+F33,"Major depressive disorder, recurrent"
+F330,"Major depressive disorder, recurrent, mild"
+F331,"Major depressive disorder, recurrent, moderate"
+F332,"Major depressive disorder, recurrent severe without psychotic features"
+F3340,"Major depressive disorder, recurrent, unspecified"
+F3341,"Major depressive disorder, recurrent, in partial remission"
+F338,Other recurrent depressive disorders
+F339,"Major depressive disorder, recurrent, unspecified"

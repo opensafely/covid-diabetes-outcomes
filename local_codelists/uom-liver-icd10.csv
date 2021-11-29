@@ -1,0 +1,44 @@
+icd,description,classificationcode,classificationkey
+B171,Acute hepatitis C,1,Liver disease/failure
+B178,Other specified acute viral hepatitis,1,Liver disease/failure
+B180,Chronic viral hepatitis B with delta-agent,1,Liver disease/failure
+B181,Chronic viral hepatitis B without delta-agent,1,Liver disease/failure
+B182,Chronic viral hepatitis C,1,Liver disease/failure
+B188,Other chronic viral hepatitis,1,Liver disease/failure
+B189,"Chronic viral hepatitis, unspecified",1,Liver disease/failure
+B190,Unspecified viral hepatitis with hepatic coma,1,Liver disease/failure
+K70,Alcoholic liver disease,1,Liver disease/failure
+K700,Alcoholic fatty liver,1,Liver disease/failure
+K701,Alcoholic hepatitis,1,Liver disease/failure
+K702,Alcoholic fibrosis and sclerosis of liver,1,Liver disease/failure
+K703,Alcoholic cirrhosis of liver,1,Liver disease/failure
+K704,Alcoholic hepatic failure,1,Liver disease/failure
+K709,"Alcoholic liver disease, unspecified",1,Liver disease/failure
+K711,Toxic liver disease with hepatic necrosis,1,Liver disease/failure
+K713,Toxic liver disease with chronic persistent hepatitis,1,Liver disease/failure
+K714,Toxic liver disease with chronic lobular hepatitis,1,Liver disease/failure
+K715,Toxic liver disease with chronic active hepatitis,1,Liver disease/failure
+K717,Toxic liver disease with fibrosis and cirrhosis of liver,1,Liver disease/failure
+K72,"Hepatic failure, not elsewhere classified",1,Liver disease/failure
+K720,Acute and subacute hepatic failure,1,Liver disease/failure
+K721,Chronic hepatic failure,1,Liver disease/failure
+K729,"Hepatic failure, unspecified",1,Liver disease/failure
+K73,"Chronic hepatitis, not elsewhere classified",1,Liver disease/failure
+K730,"Chronic persistent hepatitis, not elsewhere classified",1,Liver disease/failure
+K731,"Chronic lobular hepatitis, not elsewhere classified",1,Liver disease/failure
+K732,"Chronic active hepatitis, not elsewhere classified",1,Liver disease/failure
+K738,"Other chronic hepatitis, not elsewhere classified",1,Liver disease/failure
+K739,"Chronic hepatitis, unspecified",1,Liver disease/failure
+K740,Hepatic fibrosis,1,Liver disease/failure
+K741,Hepatic sclerosis,1,Liver disease/failure
+K742,Hepatic fibrosis with hepatic sclerosis,1,Liver disease/failure
+K743,Primary biliary cirrhosis,1,Liver disease/failure
+K744,Secondary biliary cirrhosis,1,Liver disease/failure
+K745,"Biliary cirrhosis, unspecified",1,Liver disease/failure
+K746,Other and unspecified cirrhosis of liver,1,Liver disease/failure
+K754,Autoimmune hepatitis,1,Liver disease/failure
+K767,Hepatorenal syndrome,1,Liver disease/failure
+K768,Other specified diseases of liver,1,Liver disease/failure
+K769,"Liver disease, unspecified",1,Liver disease/failure
+K830,Cholangitis,1,Liver disease/failure
+T864,Liver transplant failure and rejection,1,Liver disease/failure

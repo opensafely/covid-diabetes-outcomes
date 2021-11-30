@@ -29,7 +29,7 @@ replace category="5 (most deprived)" if strpos(lower(demographic),"imd")!=0 & ca
 replace category="Unknown" if strpos(lower(demographic),"imd")!=0 & (category=="6" | category==".")
 
 **// Type of diabetes
-replace category="None"if strpos(lower(demographic),"diabetes")!=0 & category=="3"
+replace category="None" if strpos(lower(demographic),"diabetes")!=0 & category=="3"
 
 **// History of CVD
 replace category="No" if strpos(lower(demographic),"cvd")!=0 & category=="1"

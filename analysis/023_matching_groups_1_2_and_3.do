@@ -6,7 +6,8 @@ append using $outdir/matched_groups_1_and_3.dta
 
 keep setid patient_id group
 order setid group patient_id
-duplicates drop
+sort setid group patient_id
+drop if setid==setid[_n-1] & group==group[_n-1] & patient_id==patient_id[_n-1]
 
 sort setid group
 by set: egen mysum=sum(group)

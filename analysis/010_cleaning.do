@@ -11,11 +11,13 @@ rename hba1c_percentage_date date_hba1c_percent
 
 describe date_*, varlist
 foreach myvar in `r(varlist)' {
-	gen temp=date(`myvar',"YMD")
-	format temp %td
-	drop `myvar'
-	rename temp `myvar'
-	format `myvar' %td
+	capture gen temp=date(`myvar',"YMD")
+	if _rc==0 {
+		format temp %td
+		drop `myvar'
+		rename temp `myvar'
+		format `myvar' %td		
+	}
 }
 
 order patient_id practice_id date_discharged_covid date_discharged_pneum date_patient_index has_follow_up date_diabetes_diagnosis date_birth sex region date_deregistered date_death

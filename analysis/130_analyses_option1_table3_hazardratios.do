@@ -31,7 +31,7 @@ tempname hazardratios
 			local mycount1=r(N)
 			count if group==`k' & delta==1
 			local mycount`k'=r(N)
-			if `mycount1'>=10 & `mycount`k''>=10 {
+			if `mycount1'>=5 & `mycount`k''>=5 {
 				forvalues m=1(1)3 {
 					if `m'==1 {
 						capture stcox expos if (group==1 | group==`k') & myselect==1

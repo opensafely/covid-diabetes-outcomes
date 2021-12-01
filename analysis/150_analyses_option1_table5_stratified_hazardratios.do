@@ -46,7 +46,7 @@ foreach outcome in "stroke_thrombotic" "stroke_haemorrhagic" "stroke_tia" "strok
 					local mycounta=r(N)
 					count if group==`k' & delta==1
 					local mycountb=r(N)
-					if `mycounta'>=10 & `mycountb'>=10 {
+					if `mycounta'>=5 & `mycountb'>=5 {
 						forvalues m=1(1)3 {
 							if `m'==1 {
 								capture stcox expos if (group==1 | group==`k') & myselect==1

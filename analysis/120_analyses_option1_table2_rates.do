@@ -27,8 +27,19 @@ tempname rates
 		gen delta=(date_`outcome'==min(date_`outcome', date_censor))
 		stset myend, f(delta) id(patient_id)
 		forvalues k=1(1)3 {
-			stptime if group==`k' & myselect==1, title(person-months) per(10000)
-			post `rates' (`outindex') (`k') ("`outcome'") ("`grouplabel`k''") (`r(ptime)') (`r(failures)') (`r(rate)') (`r(lb)') (`r(ub)')
+			capture stptime if group==`k' & myselect==1, title(person-months) per(10000)		
+			if _rc==0 {
+				local numevents=`r(failures)'
+				if `numevents'>=5 {
+					post `rates' (`outindex') (`k') ("`outcome'") ("`grouplabel`k''") (`r(ptime)') (`r(failures)') (`r(rate)') (`r(lb)') (`r(ub)')
+				}
+				if `numevents'< 5 {
+					post `rates' (`outindex') (`k') ("`outcome'") ("`grouplabel`k''") (.) (.) (.) (.) (.)
+				}					
+			}
+			if _rc!=0 {
+				post `rates' (`outindex') (`k') ("`outcome'") ("`grouplabel`k''") (.) (.) (.) (.) (.)
+			}					
 		}
 		drop myselect myend delta _st _d _t _t0
 	}

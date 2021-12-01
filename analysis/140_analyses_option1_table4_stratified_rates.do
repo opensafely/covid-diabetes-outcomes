@@ -42,10 +42,10 @@ foreach outcome in "stroke_thrombotic" "stroke_haemorrhagic" "stroke_tia" "strok
 					capture stptime if group==`k' & myselect==1, title(person-months) per(10000)
 					if _rc==0 {
 						local numevents=`r(failures)'
-						if `numevents'>=10 {
+						if `numevents'>=5 {
 							post `rates' (`demogindex') (`catindex') (`k') ("`demog'") ("`grouplabel`k''") (`r(ptime)') (`r(failures)') (`r(rate)') (`r(lb)') (`r(ub)')
 						}
-						if `numevents'< 10 {
+						if `numevents'< 5 {
 							post `rates' (`demogindex') (`catindex') (`k') ("`demog'") ("`grouplabel`k''") (.) (.) (.) (.) (.)
 						}					
 					}

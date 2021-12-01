@@ -25,11 +25,12 @@ tempname demographics
 		forvalues k=1(1)3 {
 			count if group==`k'
 			local group`k'=r(N)
-			if `group`k''>0 {
+			if `group`k''>=5 {
 				stptime if group==`k', per(10000)
 				local pmonths`k'=`r(ptime)'
 			}
-			if `group`k''==0 {
+			if `group`k''<5 {
+				local group`k'=.
 				local pmonths`k'=.
 			}
 		}
@@ -49,11 +50,12 @@ tempname demographics
 					forvalues k=1(1)3 {
 						count if cat_`demog'==`j' & group==`k'
 						local group`k'=r(N)
-						if `group`k''>0 {
+						if `group`k''>=5 {
 							stptime if cat_`demog'==`j' & group==`k', per(10000)
 							local pmonths`k'=`r(ptime)'
 						}
-						if `group`k''==0 {
+						if `group`k''<5 {
+							local group`k'=.
 							local pmonths`k'=.
 						}
 					}

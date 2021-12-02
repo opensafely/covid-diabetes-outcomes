@@ -45,7 +45,6 @@ actions:
     outputs:
       moderately_sensitive:
         table1: output/results/option1_table1_demographics.dta
-        table2: output/results/option1_table1_demographics.csv
 
   analyses_option1_table2:
     run: stata-mp:latest analysis/120_analyses_option1_table2_rates.do
@@ -53,7 +52,6 @@ actions:
     outputs:
       moderately_sensitive:
         table1: output/results/option1_table2_rates.dta
-        table2: output/results/option1_table2_rates.csv
 
   analyses_option1_table3:
     run: stata-mp:latest analysis/130_analyses_option1_table3_hazardratios.do
@@ -61,7 +59,6 @@ actions:
     outputs:
       moderately_sensitive:
         table1: output/results/option1_table3_hazardratios.dta
-        table2: output/results/option1_table3_hazardratios.csv
 
   analyses_option1_table4:
     run: stata-mp:latest analysis/140_analyses_option1_table4_stratified_rates.do
@@ -69,15 +66,13 @@ actions:
     outputs:
       moderately_sensitive:
         table1: output/results/option1_table4_stratified_rates.dta
-        table2: output/results/option1_table4_stratified_rates.csv 
 
   analyses_option1_table5:
     run: stata-mp:latest analysis/150_analyses_option1_table5_stratified_hazardratios.do
     needs: [data_cleaning]
     outputs:
       moderately_sensitive:
-        table1: output/results/option1_table5_stratified_hazardratios.dta
-        table2: output/results/option1_table5_stratified_hazardratios.csv     
+        table1: output/results/option1_table5_stratified_hazardratios.dta    
 
   analyses_option2_table1a:
     run: stata-mp:latest analysis/210_analyses_option2_table1a_demographics_groups_1_and_2.do
@@ -85,7 +80,6 @@ actions:
     outputs:
       moderately_sensitive:
         table1: output/results/option2_table1a_demographics_groups_1_and_2.dta
-        table2: output/results/option2_table1a_demographics_groups_1_and_2.csv
 
   analyses_option2_table1b:
     run: stata-mp:latest analysis/211_analyses_option2_table1b_demographics_groups_1_and_3.do
@@ -93,7 +87,6 @@ actions:
     outputs:
       moderately_sensitive:
         table1: output/results/option2_table1b_demographics_groups_1_and_3.dta
-        table2: output/results/option2_table1b_demographics_groups_1_and_3.csv
 
   analyses_option3_table1:
     run: stata-mp:latest analysis/310_analyses_option3_table1_demographics.do
@@ -101,4 +94,3 @@ actions:
     outputs:
       moderately_sensitive:
         table1: output/results/option3_table1_demographics.dta
-        table2: output/results/option3_table1_demographics.csv

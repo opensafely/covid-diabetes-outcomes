@@ -25,7 +25,7 @@ foreach outcome in "stroke_thrombotic" "stroke_haemorrhagic" "stroke_tia" "strok
 	stset myend, f(delta) id(patient_id)
 	local demogindex=0
 	**// Loop over each demographic/characteristic
-	foreach demog in "sex" "age" "ethnic" "imd" "hist_cvd" "hist_renal" "critical" "vaccin" "smoking" "alcohol" "bmi" "hba1c" {
+	foreach demog in "sex" "age" "ethnic" "imd" "diabetes" "hist_cvd" "hist_renal" "critical" "vaccin" "smoking" "alcohol" "bmi" "hba1c" {
 		local demogindex=`demogindex'+1
 		summ cat_`demog'
 		local numcat_`demog'=r(max)
@@ -46,7 +46,7 @@ foreach outcome in "stroke_thrombotic" "stroke_haemorrhagic" "stroke_tia" "strok
 					local mycounta=r(N)
 					count if group==`k' & delta==1
 					local mycountb=r(N)
-					if `mycounta'>=5 & `mycountb'>=5 {
+					if `mycounta'>=8 & `mycountb'>=8 {
 						forvalues m=1(1)3 {
 							if `m'==1 {
 								capture stcox expos if (group==1 | group==`k') & myselect==1
@@ -87,7 +87,7 @@ foreach outcome in "stroke_thrombotic" "stroke_haemorrhagic" "stroke_tia" "strok
 foreach outcome in "stroke_thrombotic" "stroke_haemorrhagic" "stroke_tia" "stroke_pregnancy" "stroke_any" "mi" "dvt_nopregnancy" "dvt_pregnancy" "dvt_pregnancy_cvt" "dvt_any" ///
 "pe_nopregnancy" "pe_pregnancy" "pe_any" "hf" "any_cvd" "aki_nopregnancy" "aki_pregnancy" "aki_any" "liver" "anxiety" "depression" "psychosis" "antidepressant" "anxiolytic" ///
 "antipsychotic"  "mood_stabiliser" "sleep_insomnia" "sleep_hypersomnia" "sleep_apnoea" "fatigue" "death" {	
-	foreach demog in "sex" "age" "ethnic" "imd" "hist_cvd" "hist_renal" "critical" "vaccin" "smoking" "alcohol" "bmi" "hba1c" {
+	foreach demog in "sex" "age" "ethnic" "imd" "diabetes" "hist_cvd" "hist_renal" "critical" "vaccin" "smoking" "alcohol" "bmi" "hba1c" {
 		clear
 		set obs 0
 		forvalues catindex=1(1)`numcat_`demog'' {
@@ -107,7 +107,7 @@ foreach outcome in "stroke_thrombotic" "stroke_haemorrhagic" "stroke_tia" "strok
 "antipsychotic"  "mood_stabiliser" "sleep_insomnia" "sleep_hypersomnia" "sleep_apnoea" "fatigue" "death" {	
 	clear
 	set obs 0
-	foreach demog in "sex" "age" "ethnic" "imd" "hist_cvd" "hist_renal" "critical" "vaccin" "smoking" "alcohol" "bmi" "hba1c" {
+	foreach demog in "sex" "age" "ethnic" "imd" "diabetes" "hist_cvd" "hist_renal" "critical" "vaccin" "smoking" "alcohol" "bmi" "hba1c" {
 		append using $resultsdir/hr_`outcome'_`demog'.dta
 		erase $resultsdir/hr_`outcome'_`demog'.dta
 	}
@@ -163,6 +163,3 @@ foreach myvar in `r(varlist)' {
 }
 drop demogindex catindex groupindex
 save $resultsdir/option1_table5_stratified_hazardratios.dta, replace
-	
-**// Convert to csv
-export delimited $resultsdir/option1_table5_stratified_hazardratios.csv, replace

@@ -31,7 +31,7 @@ tempname hazardratios
 			local mycount1=r(N)
 			count if group==`k' & delta==1
 			local mycount`k'=r(N)
-			if `mycount1'>=5 & `mycount`k''>=5 {
+			if `mycount1'>=8 & `mycount`k''>=8 {
 				forvalues m=1(1)3 {
 					if `m'==1 {
 						capture stcox expos if (group==1 | group==`k') & myselect==1
@@ -57,7 +57,7 @@ tempname hazardratios
 				}
 				post `hazardratios' (`outindex') (`k') ("`outcome'") ("`refgroup`k''") (`hr1') (`hr1_lo') (`hr1_hi') (`hr2') (`hr2_lo') (`hr2_hi') (`hr3') (`hr3_lo') (`hr3_hi')
 			}
-			if `mycount1'<10 | `mycount`k''<10 {
+			else {
 				post `hazardratios' (`outindex') (`k') ("`outcome'") ("`refgroup`k''") (.) (.) (.) (.) (.) (.) (.) (.) (.)
 			}
 		}
@@ -105,6 +105,3 @@ foreach myvar in `r(varlist)' {
 do `mypath'/005_table_edit.do
 
 save $resultsdir/option1_table3_hazardratios.dta, replace
-
-**// Convert to csv
-export delimited using $resultsdir/option1_table3_hazardratios.csv, replace

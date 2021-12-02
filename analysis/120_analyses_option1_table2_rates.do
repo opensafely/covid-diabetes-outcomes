@@ -29,13 +29,7 @@ tempname rates
 		forvalues k=1(1)3 {
 			capture stptime if group==`k' & myselect==1, title(person-months) per(10000)		
 			if _rc==0 {
-				local numevents=`r(failures)'
-				if `numevents'>=5 {
-					post `rates' (`outindex') (`k') ("`outcome'") ("`grouplabel`k''") (`r(ptime)') (`r(failures)') (`r(rate)') (`r(lb)') (`r(ub)')
-				}
-				if `numevents'< 5 {
-					post `rates' (`outindex') (`k') ("`outcome'") ("`grouplabel`k''") (.) (.) (.) (.) (.)
-				}					
+				post `rates' (`outindex') (`k') ("`outcome'") ("`grouplabel`k''") (`r(ptime)') (`r(failures)') (`r(rate)') (`r(lb)') (`r(ub)')
 			}
 			if _rc!=0 {
 				post `rates' (`outindex') (`k') ("`outcome'") ("`grouplabel`k''") (.) (.) (.) (.) (.)
@@ -88,6 +82,3 @@ drop str
 do `mypath'/005_table_edit.do
 
 save $resultsdir/option1_table2_rates.dta, replace
-
-**// Convert to csv
-export delimited using $resultsdir/option1_table2_rates.csv, replace

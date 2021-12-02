@@ -25,12 +25,11 @@ tempname demographics
 		forvalues k=1(1)3 {
 			count if group==`k'
 			local group`k'=r(N)
-			if `group`k''>=5 {
-				stptime if group==`k', per(10000)
+			capture stptime if group==`k', per(10000)
+			if _rc==0 {			
 				local pmonths`k'=`r(ptime)'
 			}
-			if `group`k''<5 {
-				local group`k'=.
+			if _rc!=0 {
 				local pmonths`k'=.
 			}
 		}
@@ -50,12 +49,11 @@ tempname demographics
 					forvalues k=1(1)3 {
 						count if cat_`demog'==`j' & group==`k'
 						local group`k'=r(N)
-						if `group`k''>=5 {
-							stptime if cat_`demog'==`j' & group==`k', per(10000)
+						capture stptime if cat_`demog'==`j' & group==`k', per(10000)
+						if _rc==0 {						
 							local pmonths`k'=`r(ptime)'
 						}
-						if `group`k''<5 {
-							local group`k'=.
+						if _rc!=0 {
 							local pmonths`k'=.
 						}
 					}
@@ -87,6 +85,3 @@ foreach myvar in `r(varlist)' {
 }
 format covid_diab_pmonths covid_nodiab_pmonths pneum_diab_pmonths %12.1f
 save $resultsdir/option3_table1_demographics.dta, replace
-
-**// Convert to csv
-export delimited using $resultsdir/option3_table1_demographics.csv, replace

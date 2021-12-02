@@ -94,3 +94,25 @@ actions:
     outputs:
       moderately_sensitive:
         table1: output/results/option3_table1_demographics.dta
+
+  redaction:
+    run: stata-mp:latest analysis/999_redaction.do
+    needs: [analyses_option1_table1, analyses_option1_table2, analyses_option1_table3, analyses_option1_table4, analyses_option1_table5, analyses_option2_table1a, analyses_option2_table1b, analyses_option3_table1]
+    outputs:
+      moderately_sensitive:
+        table1: output/results/option1_table1_demographics_redacted.dta
+        table2: output/results/option1_table1_demographics_redacted.csv
+        table3: output/results/option1_table2_rates_redacted.dta
+        table4: output/results/option1_table2_rates_redacted.csv
+        table5: output/results/option1_table3_hazardratios_redacted.dta
+        table6: output/results/option1_table3_hazardratios_redacted.csv
+        table7: output/results/option1_table4_stratified_rates_redacted.dta
+        table8: output/results/option1_table4_stratified_rates_redacted.csv
+        table9: output/results/option1_table5_stratified_hazardratios_redacted.dta
+        table10: output/results/option1_table5_stratified_hazardratios_redacted.csv
+        table11: output/results/option2_table1a_demographics_groups_1_and_2_redacted.dta
+        table12: output/results/option2_table1a_demographics_groups_1_and_2_redacted.csv
+        table13: output/results/option2_table1b_demographics_groups_1_and_3_redacted.dta
+        table14: output/results/option2_table1b_demographics_groups_1_and_3_redacted.csv
+        table15: output/results/option3_table1_demographics_redacted.dta
+        table16: output/results/option3_table1_demographics_redacted.csv       

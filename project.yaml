@@ -95,6 +95,34 @@ actions:
       moderately_sensitive:
         table1: output/results/option3_table1_demographics.dta
 
+  analyses_option3_table2:
+    run: stata-mp:latest analysis/320_analyses_option3_table2_rates.do
+    needs: [matching_groups_1_2_and_3]
+    outputs:
+      moderately_sensitive:
+        table1: output/results/option3_table2_rates.dta
+
+  analyses_option3_table3:
+    run: stata-mp:latest analysis/330_analyses_option3_table3_hazardratios.do
+    needs: [matching_groups_1_2_and_3]
+    outputs:
+      moderately_sensitive:
+        table1: output/results/option3_table3_hazardratios.dta
+
+  analyses_option3_table4:
+    run: stata-mp:latest analysis/340_analyses_option3_table4_stratified_rates.do
+    needs: [matching_groups_1_2_and_3]
+    outputs:
+      moderately_sensitive:
+        table1: output/results/option3_table4_stratified_rates.dta
+
+  analyses_option3_table5:
+    run: stata-mp:latest analysis/350_analyses_option3_table5_stratified_hazardratios.do
+    needs: [matching_groups_1_2_and_3]
+    outputs:
+      moderately_sensitive:
+        table1: output/results/option3_table5_stratified_hazardratios.dta
+
   redaction:
     run: stata-mp:latest analysis/999_redaction.do
     needs: [analyses_option1_table1, analyses_option1_table2, analyses_option1_table3, analyses_option1_table4, analyses_option1_table5, analyses_option2_table1a, analyses_option2_table1b, analyses_option3_table1]

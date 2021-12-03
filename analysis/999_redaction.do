@@ -1,7 +1,5 @@
 clear
 do `c(pwd)'/analysis/000_filepaths.do
-
-local run_all=0
 		
 **\\ Option 1
 **\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
@@ -14,7 +12,7 @@ foreach myvar in `r(varlist)' {
    recode `myvar' .=0
    replace `myvar'=round(`myvar',5)
    tostring `myvar', replace force
-   replace `myvar'="<10" if (`myvar'=="." | `myvar'=="0" | `myvar'=="5") & flag!=1
+   replace `myvar'="[REDACTED]" if (`myvar'=="." | `myvar'=="0" | `myvar'=="5") & flag!=1
 }
 drop *_pmonths flag
 save $resultsdir/option1_table1_demographics_redacted.dta, replace
@@ -24,21 +22,19 @@ export delimited using $resultsdir/option1_table1_demographics_redacted.csv, rep
 use $resultsdir/option1_table2_rates.dta, clear
 replace numevents=round(numevents,5)
 tostring numevents, replace force
-replace numevents="<10" if (numevents=="." | numevents=="0" | numevents=="5")
+replace numevents="[REDACTED]" if (numevents=="." | numevents=="0" | numevents=="5")
 replace person_time=round(person_time,1000)/10000
 format person_time %9.1f
 tostring person_time, replace force u
-replace person_time="" if (numevents=="<10" | person_time==".")
-replace rate="" if (numevents=="<10" | rate==". (., .)")
+replace person_time="[REDACTED]" if (numevents=="[REDACTED]" | person_time==".")
+replace rate="[REDACTED]" if (numevents=="[REDACTED]" | rate==". (., .)")
 save $resultsdir/option1_table2_rates_redacted.dta, replace
 export delimited using $resultsdir/option1_table2_rates_redacted.csv, replace
-
-if `run_all'==1 {
 
 **\\ Option 1: Table 3. Hazard ratio
 use $resultsdir/option1_table3_hazardratios.dta, clear
 forvalues k=1(1)3 {
-	replace hr`k'="" if hr`k'==". (., .)"
+	replace hr`k'="[REDACTED]" if hr`k'==". (., .)"
 }
 save $resultsdir/option1_table3_hazardratios_redacted.dta, replace
 export delimited using $resultsdir/option1_table3_hazardratios_redacted.csv, replace
@@ -56,9 +52,9 @@ foreach myvar in `r(varlist)' {
    recode `myvar' .=0
    replace `myvar'=round(`myvar',5)
    tostring `myvar', replace force
-   replace `myvar'="<10" if (`myvar'=="0" | `myvar'=="5") & flag!=1
-   replace `myvar'="<10" if (`myvar'=="0" | `myvar'=="5") & flag==1 & category!="None" & group!="COVID-19 without diabetes"
-   replace `myvar'="<10" if (`myvar'=="0" | `myvar'=="5") & flag==1 & category=="None" & group=="COVID-19 without diabetes"
+   replace `myvar'="[REDACTED]" if (`myvar'=="0" | `myvar'=="5") & flag!=1
+   replace `myvar'="[REDACTED]" if (`myvar'=="0" | `myvar'=="5") & flag==1 & category!="None" & group!="COVID-19 without diabetes"
+   replace `myvar'="[REDACTED]" if (`myvar'=="0" | `myvar'=="5") & flag==1 & category=="None" & group=="COVID-19 without diabetes"
 }
 describe *_ptime, varlist
 foreach myvar in `r(varlist)' {
@@ -66,13 +62,13 @@ foreach myvar in `r(varlist)' {
 	format `myvar' %9.1f
 	tostring `myvar', replace force u
 	local myname=substr("`myvar'",1,strpos("`myvar'","_ptime")-1)
-	replace `myvar'="" if (`myname'_events=="<10")
+	replace `myvar'="[REDACTED]" if (`myname'_events=="[REDACTED]")
 	replace `myvar'="-" if `myvar'=="."
 }
 describe *_rate, varlist
 foreach myvar in `r(varlist)' {
 	local myname=substr("`myvar'",1,strpos("`myvar'","_rate")-1)
-	replace `myvar'="" if (`myname'_events=="<10" | `myvar'==". (., .)")
+	replace `myvar'="[REDACTED]" if (`myname'_events=="[REDACTED]" | `myvar'==". (., .)")
 }
 gen flag2=1 if category==category[_n-1] & flag==1
 replace category="" if flag2==1
@@ -85,7 +81,7 @@ use $resultsdir/option1_table5_stratified_hazardratios.dta, clear
 forvalues m=1(1)3 {
 	describe *_hr`m', varlist
 	foreach myvar in `r(varlist)' {
-		replace `myvar'="" if `myvar'==". (., .)"
+		replace `myvar'="[REDACTED]" if (`myvar'==". (., .)" | `myvar'=="-" | `myvar'==".")
 	}
 }
 save $resultsdir/option1_table5_stratified_hazardratios_redacted.dta, replace
@@ -102,7 +98,7 @@ foreach myvar in `r(varlist)' {
    recode `myvar' .=0
    replace `myvar'=round(`myvar',5)
    tostring `myvar', replace force
-   replace `myvar'="<10" if (`myvar'=="." | `myvar'=="0" | `myvar'=="5") & flag!=1
+   replace `myvar'="[REDACTED]" if (`myvar'=="." | `myvar'=="0" | `myvar'=="5") & flag!=1
 }
 drop *_pmonths flag
 save $resultsdir/option2_table1a_demographics_groups_1_and_2_redacted.dta, replace
@@ -116,7 +112,7 @@ foreach myvar in `r(varlist)' {
    recode `myvar' .=0
    replace `myvar'=round(`myvar',5)
    tostring `myvar', replace force
-   replace `myvar'="<10" if (`myvar'=="." | `myvar'=="0" | `myvar'=="5") & flag!=1
+   replace `myvar'="[REDACTED]" if (`myvar'=="." | `myvar'=="0" | `myvar'=="5") & flag!=1
 }
 drop *_pmonths flag
 save $resultsdir/option2_table1b_demographics_groups_1_and_3_redacted.dta, replace
@@ -133,10 +129,8 @@ foreach myvar in `r(varlist)' {
    recode `myvar' .=0
    replace `myvar'=round(`myvar',5)
    tostring `myvar', replace force
-   replace `myvar'="<10" if (`myvar'=="." | `myvar'=="0" | `myvar'=="5") & flag!=1
+   replace `myvar'="[REDACTED]" if (`myvar'=="." | `myvar'=="0" | `myvar'=="5") & flag!=1
 }
 drop *_pmonths flag
 save $resultsdir/option3_table1_demographics_redacted.dta, replace
 export delimited using $resultsdir/option3_table1_demographics_redacted.csv, replace
-
-}

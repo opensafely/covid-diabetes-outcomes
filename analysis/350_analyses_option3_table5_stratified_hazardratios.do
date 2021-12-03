@@ -17,7 +17,7 @@ local refgroup3="Pneumonia with diabetes"
 foreach outcome in "stroke_thrombotic" "stroke_haemorrhagic" "stroke_tia" "stroke_pregnancy" "stroke_any" "mi" "dvt_nopregnancy" "dvt_pregnancy" "dvt_pregnancy_cvt" "dvt_any" ///
 "pe_nopregnancy" "pe_pregnancy" "pe_any" "hf" "any_cvd" "aki_nopregnancy" "aki_pregnancy" "aki_any" "liver" "anxiety" "depression" "psychosis" "antidepressant" "anxiolytic" ///
 "antipsychotic"  "mood_stabiliser" "sleep_insomnia" "sleep_hypersomnia" "sleep_apnoea" "fatigue" "death" {	
-	use $outdir/input_part1_clean.dta, clear
+	use $outdir/matched_groups_1_2_and_3.dta, clear
 	gen expos=(group==1)
 	gen myend=(min(date_`outcome', date_censor)-date_patient_index)/(365.25/12)
 	gen myselect=(myend>0)

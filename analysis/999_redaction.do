@@ -1,5 +1,7 @@
 clear
 do `c(pwd)'/analysis/000_filepaths.do
+
+local run_all=0
 		
 **\\ Option 1
 **\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
@@ -30,6 +32,8 @@ replace person_time="[REDACTED]" if (numevents=="[REDACTED]" | person_time==".")
 replace rate="[REDACTED]" if (numevents=="[REDACTED]" | rate==". (., .)")
 save $resultsdir/option1_table2_rates_redacted.dta, replace
 export delimited using $resultsdir/option1_table2_rates_redacted.csv, replace
+
+if `run_all'==1 {
 
 **\\ Option 1: Table 3. Hazard ratio
 use $resultsdir/option1_table3_hazardratios.dta, clear
@@ -134,3 +138,5 @@ foreach myvar in `r(varlist)' {
 drop *_pmonths flag
 save $resultsdir/option3_table1_demographics_redacted.dta, replace
 export delimited using $resultsdir/option3_table1_demographics_redacted.csv, replace
+
+}

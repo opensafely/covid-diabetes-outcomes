@@ -8,6 +8,8 @@ do `mypath'/000_filepaths.do
 
 use $outdir/matched_groups_1_and_3.dta, clear
 
+if _N>0 {
+
 set more off
 
 gen myend=(date_censor-date_patient_index)/(365.25/12)
@@ -36,7 +38,7 @@ tempname demographics
 		post `demographics'  ("Total") (.) (`group1') (`pmonths1') (`group2') (`pmonths2') (`group3') (`pmonths3')
 		
 		**// By categories of each demographic
-		foreach demog in "sex" "age" "ethnic" "imd" "diabetes" "hist_cvd" "hist_renal" "critical" "vaccin" "smoking" "alcohol" "bmi" "hba1c" {
+		foreach demog in "sex" "age" "ethnic" "imd" "hist_cvd" "hist_renal" "critical" "vaccin" "smoking" "alcohol" "bmi" "hba1c" {
 			capture summ cat_`demog'
 			if _rc==0 {
 				local numcat=r(max)
@@ -86,3 +88,5 @@ foreach myvar in `r(varlist)' {
 format covid_diab_pmonths covid_nodiab_pmonths pneum_diab_pmonths %12.1f
 drop covid_nodiab_n covid_nodiab_pmonths
 save $resultsdir/option2_table1b_demographics_groups_1_and_3.dta, replace
+
+}

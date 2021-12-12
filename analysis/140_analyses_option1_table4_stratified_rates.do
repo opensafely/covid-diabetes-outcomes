@@ -15,17 +15,16 @@ local grouplabel3="Pneumonia with diabetes"
 set more off
 
 **// Loop over each outcome
-foreach outcome in "stroke_thrombotic" "stroke_haemorrhagic" "stroke_tia" "stroke_pregnancy" "stroke_any" "mi" "dvt_nopregnancy" "dvt_pregnancy" "dvt_pregnancy_cvt" "dvt_any" ///
-"pe_nopregnancy" "pe_pregnancy" "pe_any" "hf" "any_cvd" "aki_nopregnancy" "aki_pregnancy" "aki_any" "liver" "anxiety" "depression" "psychosis" "antidepressant" "anxiolytic" ///
-"antipsychotic"  "mood_stabiliser" "sleep_insomnia" "sleep_hypersomnia" "sleep_apnoea" "fatigue" "death" {	
+foreach outcome in "stroke_thrombotic" "stroke_haemorrhagic" "stroke_tia" "stroke_any" "mi" "dvt_any" "pe_any" "hf" "any_cvd" "aki_any" "liver" ///
+"anxiety" "depression" "psychosis" "antidepressant" "anxiolytic" "antipsychotic"  "mood_stabiliser" "sleep_insomnia" "sleep_hypersomnia" "sleep_apnoea" "fatigue" "death" {	
 	use $outdir/input_part1_clean.dta, clear
 	gen myend=(min(date_`outcome', date_censor)-date_patient_index)/(365.25/12)
 	gen myselect=(myend>0)
 	gen delta=(date_`outcome'==min(date_`outcome', date_censor))
-	stset myend, f(delta) id(patient_id)
+	capture stset myend, f(delta) id(patient_id)
 	local demogindex=0
 	**// Loop over each demographic/characteristic
-	foreach demog in "sex" "age" "ethnic" "imd" "diabetes" "hist_cvd" "hist_renal" "critical" "vaccin" "smoking" "alcohol" "bmi" "hba1c" {
+	foreach demog in "sex" "age" "ethnic" "imd" "hist_cvd" "hist_renal" "critical" "vaccin" "smoking" "alcohol" "bmi" "hba1c" {
 		local demogindex=`demogindex'+1
 		summ cat_`demog'
 		local numcat_`demog'=r(max)
@@ -54,10 +53,9 @@ foreach outcome in "stroke_thrombotic" "stroke_haemorrhagic" "stroke_tia" "strok
 }
 
 **// Append categories within each demographic for each outcome
-foreach outcome in "stroke_thrombotic" "stroke_haemorrhagic" "stroke_tia" "stroke_pregnancy" "stroke_any" "mi" "dvt_nopregnancy" "dvt_pregnancy" "dvt_pregnancy_cvt" "dvt_any" ///
-"pe_nopregnancy" "pe_pregnancy" "pe_any" "hf" "any_cvd" "aki_nopregnancy" "aki_pregnancy" "aki_any" "liver" "anxiety" "depression" "psychosis" "antidepressant" "anxiolytic" ///
-"antipsychotic"  "mood_stabiliser" "sleep_insomnia" "sleep_hypersomnia" "sleep_apnoea" "fatigue" "death" {	
-	foreach demog in "sex" "age" "ethnic" "imd" "diabetes" "hist_cvd" "hist_renal" "critical" "vaccin" "smoking" "alcohol" "bmi" "hba1c" {
+foreach outcome in "stroke_thrombotic" "stroke_haemorrhagic" "stroke_tia" "stroke_any" "mi" "dvt_any" "pe_any" "hf" "any_cvd" "aki_any" "liver" ///
+"anxiety" "depression" "psychosis" "antidepressant" "anxiolytic" "antipsychotic"  "mood_stabiliser" "sleep_insomnia" "sleep_hypersomnia" "sleep_apnoea" "fatigue" "death" {	
+	foreach demog in "sex" "age" "ethnic" "imd" "hist_cvd" "hist_renal" "critical" "vaccin" "smoking" "alcohol" "bmi" "hba1c" {
 		clear
 		set obs 0
 		forvalues catindex=1(1)`numcat_`demog'' {
@@ -72,12 +70,11 @@ foreach outcome in "stroke_thrombotic" "stroke_haemorrhagic" "stroke_tia" "strok
 }
 
 **// Append demographics within each outcome
-foreach outcome in "stroke_thrombotic" "stroke_haemorrhagic" "stroke_tia" "stroke_pregnancy" "stroke_any" "mi" "dvt_nopregnancy" "dvt_pregnancy" "dvt_pregnancy_cvt" "dvt_any" ///
-"pe_nopregnancy" "pe_pregnancy" "pe_any" "hf" "any_cvd" "aki_nopregnancy" "aki_pregnancy" "aki_any" "liver" "anxiety" "depression" "psychosis" "antidepressant" "anxiolytic" ///
-"antipsychotic"  "mood_stabiliser" "sleep_insomnia" "sleep_hypersomnia" "sleep_apnoea" "fatigue" "death" {	
+foreach outcome in "stroke_thrombotic" "stroke_haemorrhagic" "stroke_tia" "stroke_any" "mi" "dvt_any" "pe_any" "hf" "any_cvd" "aki_any" "liver" ///
+"anxiety" "depression" "psychosis" "antidepressant" "anxiolytic" "antipsychotic"  "mood_stabiliser" "sleep_insomnia" "sleep_hypersomnia" "sleep_apnoea" "fatigue" "death" {	
 	clear
 	set obs 0
-	foreach demog in "sex" "age" "ethnic" "imd" "diabetes" "hist_cvd" "hist_renal" "critical" "vaccin" "smoking" "alcohol" "bmi" "hba1c" {
+	foreach demog in "sex" "age" "ethnic" "imd" "hist_cvd" "hist_renal" "critical" "vaccin" "smoking" "alcohol" "bmi" "hba1c" {
 		append using $resultsdir/rates_`outcome'_`demog'.dta
 		erase $resultsdir/rates_`outcome'_`demog'.dta
 	}
@@ -99,9 +96,8 @@ foreach outcome in "stroke_thrombotic" "stroke_haemorrhagic" "stroke_tia" "strok
 
 **// Merge outcomes
 use $resultsdir/rates_stroke_thrombotic.dta, clear
-foreach outcome in "stroke_haemorrhagic" "stroke_tia" "stroke_pregnancy" "stroke_any" "mi" "dvt_nopregnancy" "dvt_pregnancy" "dvt_pregnancy_cvt" "dvt_any" ///
-"pe_nopregnancy" "pe_pregnancy" "pe_any" "hf" "any_cvd" "aki_nopregnancy" "aki_pregnancy" "aki_any" "liver" "anxiety" "depression" "psychosis" "antidepressant" "anxiolytic" ///
-"antipsychotic"  "mood_stabiliser" "sleep_insomnia" "sleep_hypersomnia" "sleep_apnoea" "fatigue" "death" {	
+foreach outcome in "stroke_haemorrhagic" "stroke_tia" "stroke_any" "mi" "dvt_any" "pe_any" "hf" "any_cvd" "aki_any" "liver" ///
+"anxiety" "depression" "psychosis" "antidepressant" "anxiolytic" "antipsychotic"  "mood_stabiliser" "sleep_insomnia" "sleep_hypersomnia" "sleep_apnoea" "fatigue" "death" {	
 	capture merge 1:1 demogindex catindex groupindex using $resultsdir/rates_`outcome'.dta
 	if _rc==0 {
 	   drop _merge

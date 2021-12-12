@@ -9,6 +9,8 @@ replace outcome=temp
 order category, after(outcome)
 drop strpos temp flag
 
+replace category="" if (outcome=="DVT" | outcome=="PE" | outcome=="AKI")
+
 foreach myvar in "type" "outcome" "category" {
    gen str=strlen(`myvar')
    summ str

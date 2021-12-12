@@ -25,7 +25,7 @@ tempname demographics
 		forvalues k=1(1)3 {
 			count if group==`k'
 			local group`k'=r(N)
-			stptime if group==`k', per(10000)
+			capture stptime if group==`k', per(10000)
 			if _rc==0 {			
 				local pmonths`k'=`r(ptime)'
 			}
@@ -36,7 +36,7 @@ tempname demographics
 		post `demographics'  ("Total") (.) (`group1') (`pmonths1') (`group2') (`pmonths2') (`group3') (`pmonths3')
 		
 		**// By categories of each demographic
-		foreach demog in "sex" "age" "ethnic" "imd" "diabetes" "hist_cvd" "hist_renal" "critical" "vaccin" "smoking" "alcohol" "bmi" "hba1c" {
+		foreach demog in "sex" "age" "ethnic" "imd" "hist_cvd" "hist_renal" "critical" "vaccin" "smoking" "alcohol" "bmi" "hba1c" {
 			capture summ cat_`demog'
 			if _rc==0 {
 				local numcat=r(max)

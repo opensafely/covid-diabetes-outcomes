@@ -45,6 +45,22 @@ replace date_censor=date_first_covid if (group==3 | group==4)
 replace date_censor=min(date_deregistered, date_death, date_studyend) if min(date_deregistered, date_death, date_studyend)<date_censor
 drop date_covid_test date_admitted_pneum date_first_covid date_deregistered
 
+**// Type of diabetes
+gen temp1=(min(date_t1dm_gp_first, date_t1dm_hospital_first)<=date_patient_index)
+gen temp2=(min(date_t2dm_gp_first, date_t2dm_hospital_first)<=date_patient_index)
+gen temp3=(date_unknown_diabetes_gp_first<=date_patient_index)
+gen     cat_diabetes=2
+replace cat_diabetes=1 if temp1==1 & temp2!=1
+replace cat_diabetes=1 if temp1==1 & temp2==1            & insulin_lastyear==1 & antidiabetic_lastyear!=1
+replace cat_diabetes=1 if temp1!=1 & temp2!=1 & temp3==1 & insulin_lastyear==1 & antidiabetic_lastyear!=1
+replace cat_diabetes=3 if temp1!=1 & temp2!=1 & temp3!=1
+label define cat_diablab 1 "1" 2 "2" 3 "None"
+label values cat_diabetes cat_diablab
+**// Drop Type 1 diabetes
+drop if cat_diabetes==1
+drop temp* date_diabetes* date_t1dm* date_t2dm* date_unknown_diabetes* antidiabetic_lastyear insulin_lastyear cat_diabetes
+
+
 **// Sex
 gen cat_sex=1 if sex=="F"
 replace cat_sex=2 if sex=="M"
@@ -87,19 +103,6 @@ if _rc==0 {
 	label values cat_imd cat_imdlab
 	drop imd
 }
-
-**// Type of diabetes
-gen temp1=(min(date_t1dm_gp_first, date_t1dm_hospital_first)<=date_patient_index)
-gen temp2=(min(date_t2dm_gp_first, date_t2dm_hospital_first)<=date_patient_index)
-gen temp3=(date_unknown_diabetes_gp_first<=date_patient_index)
-gen     cat_diabetes=2
-replace cat_diabetes=1 if temp1==1 & temp2!=1
-replace cat_diabetes=1 if temp1==1 & temp2==1            & insulin_lastyear==1 & antidiabetic_lastyear!=1
-replace cat_diabetes=1 if temp1!=1 & temp2!=1 & temp3==1 & insulin_lastyear==1 & antidiabetic_lastyear!=1
-replace cat_diabetes=3 if temp1!=1 & temp2!=1 & temp3!=1
-label define cat_diablab 1 "1" 2 "2" 3 "None"
-label values cat_diabetes cat_diablab
-drop temp* date_diabetes* date_t1dm* date_t2dm* date_unknown_diabetes* antidiabetic_lastyear insulin_lastyear
 
 **// History of CVD
 capture gen cat_hist_cvd=max(hist_cvd_gp, hist_cvd_hospital, hist_cvd_opcs2)+1

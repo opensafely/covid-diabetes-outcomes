@@ -88,5 +88,11 @@ foreach myvar in `r(varlist)' {
 format covid_diab_pmonths covid_nodiab_pmonths pneum_diab_pmonths %12.1f
 drop covid_nodiab_n covid_nodiab_pmonths
 save $resultsdir/option2_table1b_demographics_groups_1_and_3.dta, replace
+}
 
+else {
+	clear
+	set obs 0
+	gen empty=.
+	save $resultsdir/option2_table1b_demographics_groups_1_and_3.dta, replace
 }

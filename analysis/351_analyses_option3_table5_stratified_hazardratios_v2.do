@@ -330,3 +330,10 @@ foreach myvar in `r(varlist)' {
 drop demogindex catindex groupindex
 save $resultsdir/option3_table5_stratified_hazardratios_v2.dta, replace
 }
+
+else {
+	clear
+	set obs 0
+	gen empty=.
+	save $resultsdir/option3_table5_stratified_hazardratios_v2.dta, replace
+}

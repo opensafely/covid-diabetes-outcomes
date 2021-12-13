@@ -131,3 +131,10 @@ foreach myvar in `r(varlist)' {
 drop demogindex catindex groupindex
 save $resultsdir/option3_table4_stratified_rates.dta, replace
 }
+
+else {
+	clear
+	set obs 0
+	gen empty=.
+	save $resultsdir/option3_table4_stratified_rates.dta, replace
+}

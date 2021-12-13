@@ -258,3 +258,10 @@ do `mypath'/005_table_edit.do
 
 save $resultsdir/option3_table3_hazardratios_v2.dta, replace
 }
+
+else {
+	clear
+	set obs 0
+	gen empty=.
+	save $resultsdir/option3_table3_hazardratios_v2.dta, replace
+}

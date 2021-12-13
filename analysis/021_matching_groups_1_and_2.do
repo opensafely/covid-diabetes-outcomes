@@ -52,8 +52,10 @@ drop if setid==.
 gsort setid -case patient_id
 
 **// Retain cases with a matched comparator
-by setid: egen count=count(setid)
-drop if count<2
+if _N>0 {
+	by setid: egen count=count(setid)
+	drop if count<2
+}
 
 compress
 

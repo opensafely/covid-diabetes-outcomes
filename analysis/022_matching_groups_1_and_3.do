@@ -74,8 +74,10 @@ replace date_birth=actual_date_birth if group==3
 drop actual_date_birth
 
 **// Retain cases with a matched comparator
-by setid: egen count=count(setid)
-drop if count<2
+if _N>0 {
+	by setid: egen count=count(setid)
+	drop if count<2
+}
 
 compress
 

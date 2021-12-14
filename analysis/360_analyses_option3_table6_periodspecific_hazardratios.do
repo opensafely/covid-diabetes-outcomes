@@ -117,5 +117,5 @@ else {
 	clear
 	set obs 0
 	gen empty=.
-	save $resultsdir/option3_table6_periodspecific_hazardratios_v2.dta, replace
+	save $resultsdir/option3_table6_periodspecific_hazardratios.dta, replace
 }

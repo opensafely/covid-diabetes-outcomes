@@ -110,6 +110,18 @@ if _rc==0 {
 	export delimited using $resultsdir/option1_table5_stratified_hazardratios_v2_redacted.csv, replace
 }
 
+**\\ Option 1: Table 6. Period-specific hazard ratios
+capture use $resultsdir/option1_table6_periodspecific_hazardratios.dta, clear
+if _rc==0 {
+	describe hr_*, varlist
+	foreach myvar in `r(varlist)' {
+		replace `myvar'="[REDACTED]" if (`myvar'==". (., .)" | `myvar'=="-" | `myvar'==".")
+		replace `myvar'="[FAILED]" if `myvar'=="999999.00 (999999.00, 999999.00)"
+	}
+	save $resultsdir/option1_table6_periodspecific_hazardratios_redacted.dta, replace
+	export delimited using $resultsdir/option1_table6_periodspecific_hazardratios_redacted.csv, replace
+}
+
 **\\ Option 2
 **\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
@@ -266,4 +278,18 @@ if _rc==0 {
 	}
 	save $resultsdir/option3_table5_stratified_hazardratios_v2_redacted.dta, replace
 	export delimited using $resultsdir/option3_table5_stratified_hazardratios_v2_redacted.csv, replace
+}
+
+**\\ Option 3: Table 6. Period-specific hazard ratios
+capture use $resultsdir/option3_table6_periodspecific_hazardratios.dta, clear
+if _rc==0 {
+	if _N>0 {
+		describe hr_*, varlist
+		foreach myvar in `r(varlist)' {
+			replace `myvar'="[REDACTED]" if (`myvar'==". (., .)" | `myvar'=="-" | `myvar'==".")
+			replace `myvar'="[FAILED]" if `myvar'=="999999.00 (999999.00, 999999.00)"
+		}	
+	}
+	save $resultsdir/option3_table6_periodspecific_hazardratios_redacted.dta, replace
+	export delimited using $resultsdir/option3_table6_periodspecific_hazardratios_redacted.csv, replace
 }

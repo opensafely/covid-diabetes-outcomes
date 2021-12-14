@@ -38,7 +38,7 @@ tempname hazardratios
 		gen delta=(date_`outcome'==min(date_`outcome', date_censor))
 		capture stset myend, f(delta) id(patient_id)
 		forvalues k=2(1)3 {
-			forvalues m=1(1)3 {
+			forvalues j=1(1)3 {
 				count if group==1   & delta==1 & myselect==1 & period==`j'
 				local mycounta=r(N)
 				count if group==`k' & delta==1 & myselect==1 & period==`j'
@@ -92,11 +92,11 @@ describe hr*, varlist
 foreach myvar in `r(varlist)' {
 	tostring `myvar', replace force usedisplayformat
 }
-forvalues m=1(1)3 {
+forvalues j=(1)3 {
 	gen new_hr`j'=hr`j'+" ("+hr`j'_lo+", "+hr`j'_hi+")"
 }
 drop hr*
-forvalues m=1(1)3 {
+forvalues j=1(1)3 {
 	rename new_hr`j' hr_period`j'
 }
 

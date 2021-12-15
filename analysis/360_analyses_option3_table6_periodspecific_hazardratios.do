@@ -92,7 +92,7 @@ describe hr*, varlist
 foreach myvar in `r(varlist)' {
 	tostring `myvar', replace force usedisplayformat
 }
-forvalues j=(1)3 {
+forvalues j=1(1)3 {
 	gen new_hr`j'=hr`j'+" ("+hr`j'_lo+", "+hr`j'_hi+")"
 }
 drop hr*

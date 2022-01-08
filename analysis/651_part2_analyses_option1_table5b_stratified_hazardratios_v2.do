@@ -3,32 +3,32 @@ local mypath="`c(pwd)'/analysis/"
 do `mypath'/000_filepaths.do
 
 
-**// Stratified hazard ratios - comparing groups 1,2 and 1,3
+**// Stratified hazard ratios - comparing groups 1 and 2
 **///////////////////////////////////////////////////////////////////
 
 set more off
 		
-use $outdir/matched_groups_1_2_and_3.dta, clear
-
-if _N>0 {
+use $outdir/input_part2_clean.dta, clear
 
 local refgroup2="COVID-19 without diabetes"
-local refgroup3="Pneumonia with diabetes"
 
 **// Loop over each outcome
 foreach outcome in "stroke_thrombotic" "stroke_haemorrhagic" "stroke_tia" "stroke_any" "mi" "dvt_any" "pe_any" "hf" "any_cvd" "aki_any" "liver" ///
 "anxiety" "depression" "psychosis" "antidepressant" "anxiolytic" "antipsychotic"  "mood_stabiliser" "sleep_insomnia" "sleep_hypersomnia" "sleep_apnoea" "fatigue" "death" {	
-	use $outdir/matched_groups_1_2_and_3.dta, clear
+	use $outdir/input_part2_clean.dta, clear
 	gen expos=(group==1)
 	gen myend=(min(date_`outcome', date_censor)-date_patient_index)/(365.25/12)
 	gen myselect=(myend>0)
 	gen delta=(date_`outcome'==min(date_`outcome', date_censor))
 	local demogindex=0
 	**// Loop over each demographic/characteristic
-	foreach demog in "sex" "age" "ethnic" "imd" "hist_cvd" "hist_renal" "critical" "vaccin" "smoking" "alcohol" "bmi" "hba1c" {
+	foreach demog in "sex" "age" "ethnic" "imd" "hist_cvd" "hist_renal" "vaccin" "smoking" "alcohol" "bmi" "hba1c" {
 		local demogindex=`demogindex'+1
 		summ cat_`demog'
 		local numcat_`demog'=r(max)
+		if `numcat_`demog''==. {
+			local numcat_`demog'=1
+		}
 		**// Loop over categories of the demographic/characteristic
 		forvalues catindex=1(1)`numcat_`demog'' {
 			capture erase $resultsdir/hr_`outcome'_`demog'_`catindex'.dta
@@ -40,7 +40,7 @@ foreach outcome in "stroke_thrombotic" "stroke_haemorrhagic" "stroke_tia" "strok
 				`outcome'_hr3 `outcome'_hr3_lo `outcome'_hr3_hi ///
 				`outcome'_hr4 `outcome'_hr4_lo `outcome'_hr4_hi ///
 				using $resultsdir/hr_`outcome'_`demog'_`catindex'.dta, replace
-				forvalues k=2(1)3 {
+				forvalues k=2(1)2 {
 					count if group==1 & delta==1 & myselect==1 & cat_`demog'==`catindex'
 					local mycounta=r(N)
 					count if group==`k' & delta==1 & myselect==1 & cat_`demog'==`catindex'
@@ -55,7 +55,7 @@ foreach outcome in "stroke_thrombotic" "stroke_haemorrhagic" "stroke_tia" "strok
 								preserve
 								**// Estimate propensity scores
 								keep if (group==1 | group==`k') & myselect==1 & cat_`demog'==`catindex'
-								foreach mytype in "critical" "vaccin" "hba1c" {
+								foreach mytype in "vaccin" "hba1c" {
 									rename cat_`mytype' excl_`mytype'
 								}
 								capture logistic expos i.cat_*
@@ -96,7 +96,7 @@ foreach outcome in "stroke_thrombotic" "stroke_haemorrhagic" "stroke_tia" "strok
 								preserve
 								**// Estimate propensity scores
 								keep if (group==1 | group==`k') & myselect==1 & cat_`demog'==`catindex'
-								foreach mytype in "critical" "vaccin" "hba1c" {
+								foreach mytype in "vaccin" "hba1c" {
 									rename cat_`mytype' excl_`mytype'
 								}
 								capture logistic expos i.cat_*
@@ -139,7 +139,7 @@ foreach outcome in "stroke_thrombotic" "stroke_haemorrhagic" "stroke_tia" "strok
 								preserve
 								**// Estimate propensity scores
 								keep if (group==1 | group==`k') & myselect==1 & cat_`demog'==`catindex'
-								foreach mytype in "critical" "vaccin" "hba1c" {
+								foreach mytype in "vaccin" "hba1c" {
 									rename cat_`mytype' excl_`mytype'
 								}
 								capture logistic expos i.cat_*
@@ -185,7 +185,7 @@ foreach outcome in "stroke_thrombotic" "stroke_haemorrhagic" "stroke_tia" "strok
 *								preserve
 *								**// Estimate propensity scores (incorporating all two-way interactions)
 *								keep if (group==1 | group==`k') & myselect==1 & cat_`demog'==`catindex'
-*								foreach mytype in "critical" "vaccin" "hba1c" {
+*								foreach mytype in "vaccin" "hba1c" {
 *									rename cat_`mytype' excl_`mytype'
 *								}
 *								describe cat_*, varlist
@@ -255,7 +255,7 @@ foreach outcome in "stroke_thrombotic" "stroke_haemorrhagic" "stroke_tia" "strok
 **// Append categories within each demographic for each outcome
 foreach outcome in "stroke_thrombotic" "stroke_haemorrhagic" "stroke_tia" "stroke_any" "mi" "dvt_any" "pe_any" "hf" "any_cvd" "aki_any" "liver" ///
 "anxiety" "depression" "psychosis" "antidepressant" "anxiolytic" "antipsychotic"  "mood_stabiliser" "sleep_insomnia" "sleep_hypersomnia" "sleep_apnoea" "fatigue" "death" {		
-	foreach demog in "sex" "age" "ethnic" "imd" "hist_cvd" "hist_renal" "critical" "vaccin" "smoking" "alcohol" "bmi" "hba1c" {
+	foreach demog in "sex" "age" "ethnic" "imd" "hist_cvd" "hist_renal" "vaccin" "smoking" "alcohol" "bmi" "hba1c" {
 		clear
 		set obs 0
 		forvalues catindex=1(1)`numcat_`demog'' {
@@ -274,7 +274,7 @@ foreach outcome in "stroke_thrombotic" "stroke_haemorrhagic" "stroke_tia" "strok
 "anxiety" "depression" "psychosis" "antidepressant" "anxiolytic" "antipsychotic"  "mood_stabiliser" "sleep_insomnia" "sleep_hypersomnia" "sleep_apnoea" "fatigue" "death" {	
 	clear
 	set obs 0
-	foreach demog in "sex" "age" "ethnic" "imd" "hist_cvd" "hist_renal" "critical" "vaccin" "smoking" "alcohol" "bmi" "hba1c" {
+	foreach demog in "sex" "age" "ethnic" "imd" "hist_cvd" "hist_renal" "vaccin" "smoking" "alcohol" "bmi" "hba1c" {
 		append using $resultsdir/hr_`outcome'_`demog'.dta
 		erase $resultsdir/hr_`outcome'_`demog'.dta
 	}
@@ -328,12 +328,4 @@ foreach myvar in `r(varlist)' {
 	}
 }
 drop demogindex catindex groupindex
-save $resultsdir/option3_table5_stratified_hazardratios_v2.dta, replace
-}
-
-else {
-	clear
-	set obs 0
-	gen empty=.
-	save $resultsdir/option3_table5_stratified_hazardratios_v2.dta, replace
-}
+save $resultsdir/part2_option1_table5b_stratified_hazardratios_v2.dta, replace

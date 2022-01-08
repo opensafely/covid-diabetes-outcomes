@@ -15,7 +15,7 @@ local grouplabel3="Pneumonia with diabetes"
 set more off
 
 tempname rates
-	postfile `rates' outindex groupindex str30(outcome) str30(group) person_time numevents rate rate_lo rate_hi using $resultsdir/option1_table2_rates.dta, replace
+	postfile `rates' outindex groupindex str30(outcome) str30(group) person_time numevents rate rate_lo rate_hi using $resultsdir/option1_table2a_rates.dta, replace
 	**// Outcomes
 	local outindex=0
 	foreach outcome in "stroke_thrombotic" "stroke_haemorrhagic" "stroke_tia" "stroke_any" "mi" "dvt_any" "pe_any" "hf" "any_cvd" "aki_any" "liver" ///
@@ -24,7 +24,7 @@ tempname rates
 		gen myend=(min(date_`outcome', date_censor)-date_patient_index)/(365.25/12)
 		gen myselect=(myend>0)
 		gen delta=(date_`outcome'==min(date_`outcome', date_censor))
-		stset myend, f(delta) id(patient_id)
+		capture stset myend, f(delta) id(patient_id)
 		forvalues k=1(1)3 {
 			capture stptime if group==`k' & myselect==1, title(person-months) per(10000)		
 			if _rc==0 {
@@ -34,11 +34,13 @@ tempname rates
 				post `rates' (`outindex') (`k') ("`outcome'") ("`grouplabel`k''") (.) (.) (.) (.) (.)
 			}					
 		}
-		drop myselect myend delta _st _d _t _t0
+		foreach myvar in myselect myend delta _st _d _t _t0 {
+		    capture drop `myvar'
+		}
 	}
 postclose `rates'
 
-use $resultsdir/option1_table2_rates.dta, clear
+use $resultsdir/option1_table2a_rates.dta, clear
 
 **// Labelling
 gen type=""
@@ -80,4 +82,4 @@ drop str
 
 do `mypath'/005_table_edit.do
 
-save $resultsdir/option1_table2_rates.dta, replace
+save $resultsdir/option1_table2a_rates.dta, replace

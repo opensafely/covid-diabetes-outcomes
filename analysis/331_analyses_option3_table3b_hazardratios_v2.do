@@ -10,8 +10,6 @@ set more off
 		
 use $outdir/matched_groups_1_2_and_3.dta, clear
 
-if _N>0 {
-
 gen expos=(group==1)
 
 local refgroup2="COVID-19 without diabetes"
@@ -19,7 +17,7 @@ local refgroup3="Pneumonia with diabetes"
 
 tempname hazardratios
 	postfile `hazardratios' outindex groupindex str30(outcome) str30(refgroup) hr1 hr1_lo hr1_hi hr2 hr2_lo hr2_hi hr3 hr3_lo hr3_hi hr4 hr4_lo hr4_hi ///
-	using $resultsdir/option3_table3_hazardratios_v2.dta, replace
+	using $resultsdir/option3_table3b_hazardratios_v2.dta, replace
 	local outindex=0
 	foreach outcome in "stroke_thrombotic" "stroke_haemorrhagic" "stroke_tia" "stroke_any" "mi" "dvt_any" "pe_any" "hf" "any_cvd" "aki_any" "liver" ///
 	"anxiety" "depression" "psychosis" "antidepressant" "anxiolytic" "antipsychotic"  "mood_stabiliser" "sleep_insomnia" "sleep_hypersomnia" "sleep_apnoea" "fatigue" "death" {	
@@ -213,11 +211,13 @@ tempname hazardratios
 				post `hazardratios' (`outindex') (`k') ("`outcome'") ("`refgroup`k''") (.) (.) (.) (.) (.) (.) (.) (.) (.) (.) (.) (.)
 			}
 		}
-		drop myend myselect delta
+		foreach myvar in myend myselect delta {
+			capture drop `myvar'
+		}
 	}
 postclose `hazardratios'
 
-use $resultsdir/option3_table3_hazardratios_v2.dta, clear
+use $resultsdir/option3_table3b_hazardratios_v2.dta, clear
 
 **// Labelling
 gen type=""
@@ -256,12 +256,4 @@ foreach myvar in `r(varlist)' {
 
 do `mypath'/005_table_edit.do
 
-save $resultsdir/option3_table3_hazardratios_v2.dta, replace
-}
-
-else {
-	clear
-	set obs 0
-	gen empty=.
-	save $resultsdir/option3_table3_hazardratios_v2.dta, replace
-}
+save $resultsdir/option3_table3b_hazardratios_v2.dta, replace

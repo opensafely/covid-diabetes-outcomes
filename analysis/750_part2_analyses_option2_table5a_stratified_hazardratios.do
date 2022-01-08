@@ -3,22 +3,19 @@ local mypath="`c(pwd)'/analysis/"
 do `mypath'/000_filepaths.do
 
 
-**// Stratified hazard ratios - comparing groups 1,2 and 1,3
+**// Stratified hazard ratios - comparing groups 1 and 2
 **///////////////////////////////////////////////////////////////////
 
 set more off
 		
-use $outdir/matched_groups_1_2_and_3.dta, clear
-
-if _N>0 {
+use $outdir/matched_part2_groups_1_and_2.dta, clear
 
 local refgroup2="COVID-19 without diabetes"
-local refgroup3="Pneumonia with diabetes"
 
 **// Loop over each outcome
 foreach outcome in "stroke_thrombotic" "stroke_haemorrhagic" "stroke_tia" "stroke_any" "mi" "dvt_any" "pe_any" "hf" "any_cvd" "aki_any" "liver" ///
 "anxiety" "depression" "psychosis" "antidepressant" "anxiolytic" "antipsychotic"  "mood_stabiliser" "sleep_insomnia" "sleep_hypersomnia" "sleep_apnoea" "fatigue" "death" {	
-	use $outdir/matched_groups_1_2_and_3.dta, clear
+	use $outdir/matched_part2_groups_1_and_2.dta, clear
 	gen expos=(group==1)
 	gen myend=(min(date_`outcome', date_censor)-date_patient_index)/(365.25/12)
 	gen myselect=(myend>0)
@@ -26,10 +23,13 @@ foreach outcome in "stroke_thrombotic" "stroke_haemorrhagic" "stroke_tia" "strok
 	capture stset myend, f(delta) id(patient_id)
 	local demogindex=0
 	**// Loop over each demographic/characteristic
-	foreach demog in "sex" "age" "ethnic" "imd" "hist_cvd" "hist_renal" "critical" "vaccin" "smoking" "alcohol" "bmi" "hba1c" {
+	foreach demog in "sex" "age" "ethnic" "imd" "hist_cvd" "hist_renal" "vaccin" "smoking" "alcohol" "bmi" "hba1c" {
 		local demogindex=`demogindex'+1
 		summ cat_`demog'
 		local numcat_`demog'=r(max)
+		if `numcat_`demog''==. {
+			local numcat_`demog'=1
+		}
 		**// Loop over categories of the demographic/characteristic
 		forvalues catindex=1(1)`numcat_`demog'' {
 			capture erase $resultsdir/hr_`outcome'_`demog'_`catindex'.dta
@@ -40,7 +40,7 @@ foreach outcome in "stroke_thrombotic" "stroke_haemorrhagic" "stroke_tia" "strok
 				`outcome'_hr2 `outcome'_hr2_lo `outcome'_hr2_hi ///
 				`outcome'_hr3 `outcome'_hr3_lo `outcome'_hr3_hi ///
 				using $resultsdir/hr_`outcome'_`demog'_`catindex'.dta, replace
-				forvalues k=2(1)3 {
+				forvalues k=2(1)2 {
 					count if group==1 & delta==1 & myselect==1 & cat_`demog'==`catindex'
 					local mycounta=r(N)
 					count if group==`k' & delta==1 & myselect==1 & cat_`demog'==`catindex'
@@ -85,7 +85,7 @@ foreach outcome in "stroke_thrombotic" "stroke_haemorrhagic" "stroke_tia" "strok
 **// Append categories within each demographic for each outcome
 foreach outcome in "stroke_thrombotic" "stroke_haemorrhagic" "stroke_tia" "stroke_any" "mi" "dvt_any" "pe_any" "hf" "any_cvd" "aki_any" "liver" ///
 "anxiety" "depression" "psychosis" "antidepressant" "anxiolytic" "antipsychotic"  "mood_stabiliser" "sleep_insomnia" "sleep_hypersomnia" "sleep_apnoea" "fatigue" "death" {	
-	foreach demog in "sex" "age" "ethnic" "imd" "hist_cvd" "hist_renal" "critical" "vaccin" "smoking" "alcohol" "bmi" "hba1c" {
+	foreach demog in "sex" "age" "ethnic" "imd" "hist_cvd" "hist_renal" "vaccin" "smoking" "alcohol" "bmi" "hba1c" {
 		clear
 		set obs 0
 		forvalues catindex=1(1)`numcat_`demog'' {
@@ -104,7 +104,7 @@ foreach outcome in "stroke_thrombotic" "stroke_haemorrhagic" "stroke_tia" "strok
 "anxiety" "depression" "psychosis" "antidepressant" "anxiolytic" "antipsychotic"  "mood_stabiliser" "sleep_insomnia" "sleep_hypersomnia" "sleep_apnoea" "fatigue" "death" {	
 	clear
 	set obs 0
-	foreach demog in "sex" "age" "ethnic" "imd" "hist_cvd" "hist_renal" "critical" "vaccin" "smoking" "alcohol" "bmi" "hba1c" {
+	foreach demog in "sex" "age" "ethnic" "imd" "hist_cvd" "hist_renal" "vaccin" "smoking" "alcohol" "bmi" "hba1c" {
 		append using $resultsdir/hr_`outcome'_`demog'.dta
 		erase $resultsdir/hr_`outcome'_`demog'.dta
 	}
@@ -157,12 +157,4 @@ foreach myvar in `r(varlist)' {
 	}
 }
 drop demogindex catindex groupindex
-save $resultsdir/option3_table5_stratified_hazardratios.dta, replace
-}
-
-else {
-	clear
-	set obs 0
-	gen empty=.
-	save $resultsdir/option3_table5_stratified_hazardratios.dta, replace
-}
+save $resultsdir/part2_option2_table5a_stratified_hazardratios.dta, replace

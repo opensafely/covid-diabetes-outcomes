@@ -3,21 +3,20 @@ local mypath="`c(pwd)'/analysis/"
 do `mypath'/000_filepaths.do
 
 
-**// Hazard ratios - groups 1,2 and 1,3
+**// Hazard ratios - groups 1 and 2
 **/////////////////////////////////////////////
 
 set more off
 		
-use $outdir/input_part1_clean.dta, clear
+use $outdir/input_part2_clean.dta, clear
 
 gen expos=(group==1)
 
 local refgroup2="COVID-19 without diabetes"
-local refgroup3="Pneumonia with diabetes"
 
 tempname hazardratios
 	postfile `hazardratios' outindex groupindex str30(outcome) str30(refgroup) hr1 hr1_lo hr1_hi hr2 hr2_lo hr2_hi hr3 hr3_lo hr3_hi hr4 hr4_lo hr4_hi ///
-	using $resultsdir/option1_table3_hazardratios_v2.dta, replace
+	using $resultsdir/part2_option1_table3b_hazardratios_v2.dta, replace
 	local outindex=0
 	foreach outcome in "stroke_thrombotic" "stroke_haemorrhagic" "stroke_tia" "stroke_any" "mi" "dvt_any" "pe_any" "hf" "any_cvd" "aki_any" "liver" ///
 	"anxiety" "depression" "psychosis" "antidepressant" "anxiolytic" "antipsychotic"  "mood_stabiliser" "sleep_insomnia" "sleep_hypersomnia" "sleep_apnoea" "fatigue" "death" {	
@@ -25,7 +24,7 @@ tempname hazardratios
 		gen myend=(min(date_`outcome', date_censor)-date_patient_index)/(365.25/12)
 		gen myselect=(myend>0)
 		gen delta=(date_`outcome'==min(date_`outcome', date_censor))
-		forvalues k=2(1)3 {
+		forvalues k=2(1)2 {
 			count if group==1 & delta==1 & myselect==1
 			local mycount1=r(N)
 			count if group==`k' & delta==1 & myselect==1
@@ -38,7 +37,7 @@ tempname hazardratios
 						preserve						
 						**// Estimate propensity scores
 						keep if (group==1 | group==`k') & myselect==1						
-						foreach mytype in "critical" "vaccin" "hba1c" {
+						foreach mytype in "vaccin" "hba1c" {
 							rename cat_`mytype' excl_`mytype'
 						}						
 						capture logistic expos i.cat_*					
@@ -76,7 +75,7 @@ tempname hazardratios
 						preserve						
 						**// Estimate propensity scores
 						keep if (group==1 | group==`k') & myselect==1						
-						foreach mytype in "critical" "vaccin" "hba1c" {
+						foreach mytype in "vaccin" "hba1c" {
 							rename cat_`mytype' excl_`mytype'
 						}						
 						capture logistic expos i.cat_*				
@@ -116,7 +115,7 @@ tempname hazardratios
 						preserve						
 						**// Estimate propensity scores
 						keep if (group==1 | group==`k') & myselect==1						
-						foreach mytype in "critical" "vaccin" "hba1c" {
+						foreach mytype in "vaccin" "hba1c" {
 							rename cat_`mytype' excl_`mytype'
 						}						
 						capture logistic expos i.cat_*				
@@ -159,7 +158,7 @@ tempname hazardratios
 						preserve						
 						**// Estimate propensity scores (incorporating all two-way interactions)
 						keep if (group==1 | group==`k') & myselect==1						
-						foreach mytype in "critical" "vaccin" "hba1c" {
+						foreach mytype in "vaccin" "hba1c" {
 							rename cat_`mytype' excl_`mytype'
 						}						
 						describe cat_*, varlist
@@ -211,11 +210,13 @@ tempname hazardratios
 				post `hazardratios' (`outindex') (`k') ("`outcome'") ("`refgroup`k''") (.) (.) (.) (.) (.) (.) (.) (.) (.) (.) (.) (.)
 			}
 		}
-		drop myend myselect delta
+		foreach myvar in myend myselect delta {
+			capture drop `myvar'
+		}
 	}
 postclose `hazardratios'
 
-use $resultsdir/option1_table3_hazardratios_v2.dta, clear
+use $resultsdir/part2_option1_table3b_hazardratios_v2.dta, clear
 
 **// Labelling
 gen type=""
@@ -254,4 +255,4 @@ foreach myvar in `r(varlist)' {
 
 do `mypath'/005_table_edit.do
 
-save $resultsdir/option1_table3_hazardratios_v2.dta, replace
+save $resultsdir/part2_option1_table3b_hazardratios_v2.dta, replace

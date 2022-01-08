@@ -6,7 +6,7 @@ do `mypath'/000_filepaths.do
 **// Stratified outcome rate comparisons - groups 1,2 and 3
 **///////////////////////////////////////////////////////////////////
 
-use $outdir/input_part1_clean.dta, clear
+use $outdir/matched_groups_1_2_and_3.dta, clear
 
 local grouplabel1="COVID-19 with diabetes"
 local grouplabel2="COVID-19 without diabetes"
@@ -17,7 +17,7 @@ set more off
 **// Loop over each outcome
 foreach outcome in "stroke_thrombotic" "stroke_haemorrhagic" "stroke_tia" "stroke_any" "mi" "dvt_any" "pe_any" "hf" "any_cvd" "aki_any" "liver" ///
 "anxiety" "depression" "psychosis" "antidepressant" "anxiolytic" "antipsychotic"  "mood_stabiliser" "sleep_insomnia" "sleep_hypersomnia" "sleep_apnoea" "fatigue" "death" {	
-	use $outdir/input_part1_clean.dta, clear
+	use $outdir/matched_groups_1_2_and_3.dta, clear
 	gen myend=(min(date_`outcome', date_censor)-date_patient_index)/(365.25/12)
 	gen myselect=(myend>0)
 	gen delta=(date_`outcome'==min(date_`outcome', date_censor))
@@ -28,6 +28,9 @@ foreach outcome in "stroke_thrombotic" "stroke_haemorrhagic" "stroke_tia" "strok
 		local demogindex=`demogindex'+1
 		summ cat_`demog'
 		local numcat_`demog'=r(max)
+		if `numcat_`demog''==. {
+			local numcat_`demog'=1
+		}
 		**// Loop over categories of the demographic/characteristic
 		forvalues catindex=1(1)`numcat_`demog'' {
 			capture erase $resultsdir/rates_`outcome'_`demog'_`catindex'.dta
@@ -127,4 +130,4 @@ foreach myvar in `r(varlist)' {
 	}
 }
 drop demogindex catindex groupindex
-save $resultsdir/option1_table4_stratified_rates.dta, replace
+save $resultsdir/option3_table4a_stratified_rates.dta, replace

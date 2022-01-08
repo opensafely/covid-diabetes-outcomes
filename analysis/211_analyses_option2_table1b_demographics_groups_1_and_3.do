@@ -8,14 +8,12 @@ do `mypath'/000_filepaths.do
 
 use $outdir/matched_groups_1_and_3.dta, clear
 
-if _N>0 {
-
 set more off
 
 gen myend=(date_censor-date_patient_index)/(365.25/12)
 drop if myend<=0
 gen delta=1
-stset myend, f(delta) id(patient_id)
+capture stset myend, f(delta) id(patient_id)
 
 **// Declare variable names and filename (.dta) to save results to
 
@@ -46,6 +44,9 @@ tempname demographics
 				if r(N)>0 {
 					local numcat=`numcat'+1
 					recode cat_`demog' .=`numcat'
+				}
+				if `numcat'==. {
+					local numcat=1
 				}
 				forvalues j=1(1)`numcat' {
 					forvalues k=1(1)3 {
@@ -88,11 +89,3 @@ foreach myvar in `r(varlist)' {
 format covid_diab_pmonths covid_nodiab_pmonths pneum_diab_pmonths %12.1f
 drop covid_nodiab_n covid_nodiab_pmonths
 save $resultsdir/option2_table1b_demographics_groups_1_and_3.dta, replace
-}
-
-else {
-	clear
-	set obs 0
-	gen empty=.
-	save $resultsdir/option2_table1b_demographics_groups_1_and_3.dta, replace
-}

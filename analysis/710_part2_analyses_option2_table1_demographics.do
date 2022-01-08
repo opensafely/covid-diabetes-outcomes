@@ -6,7 +6,7 @@ do `mypath'/000_filepaths.do
 **// Demographics and baseline risk factors
 **/////////////////////////////////////////
 
-use $outdir/matched_groups_1_and_2.dta, clear
+use $outdir/matched_part2_groups_1_and_2.dta, clear
 
 set more off
 
@@ -18,25 +18,25 @@ capture stset myend, f(delta) id(patient_id)
 **// Declare variable names and filename (.dta) to save results to
 
 tempname demographics
-	postfile `demographics' str20(demographic) category covid_diab_n covid_diab_pmonths covid_nodiab_n covid_nodiab_pmonths pneum_diab_n pneum_diab_pmonths using ///
-	$resultsdir/option2_table1a_demographics_groups_1_and_2.dta, replace
+	postfile `demographics' str20(demographic) category covid_diab_n covid_diab_pmonths covid_nodiab_n covid_nodiab_pmonths using ///
+	$resultsdir/part2_option2_table1_demographics.dta, replace
 						
 		**// Total
-		forvalues k=1(1)3 {
+		forvalues k=1(1)2 {
 			count if group==`k'
 			local group`k'=r(N)
 			capture stptime if group==`k', per(10000)
-			if _rc==0 {	
+			if _rc==0 {			
 				local pmonths`k'=`r(ptime)'
 			}
 			if _rc!=0 {
 				local pmonths`k'=.
 			}
 		}
-		post `demographics'  ("Total") (.) (`group1') (`pmonths1') (`group2') (`pmonths2') (`group3') (`pmonths3')
+		post `demographics'  ("Total") (.) (`group1') (`pmonths1') (`group2') (`pmonths2') 
 		
 		**// By categories of each demographic
-		foreach demog in "sex" "age" "ethnic" "imd" "hist_cvd" "hist_renal" "critical" "vaccin" "smoking" "alcohol" "bmi" "hba1c" {
+		foreach demog in "sex" "age" "ethnic" "imd" "hist_cvd" "hist_renal" "vaccin" "smoking" "alcohol" "bmi" "hba1c" {
 			capture summ cat_`demog'
 			if _rc==0 {
 				local numcat=r(max)
@@ -46,28 +46,28 @@ tempname demographics
 					recode cat_`demog' .=`numcat'
 				}
 				if `numcat'==. {
-				    local numcat=1
+					local numcat=1
 				}
 				forvalues j=1(1)`numcat' {
-					forvalues k=1(1)3 {
+					forvalues k=1(1)2 {
 						count if cat_`demog'==`j' & group==`k'
 						local group`k'=r(N)
 						capture stptime if cat_`demog'==`j' & group==`k', per(10000)
-						if _rc==0 {					
+						if _rc==0 {			
 							local pmonths`k'=`r(ptime)'
 						}
 						if _rc!=0 {
 							local pmonths`k'=.
 						}
 					}
-					post `demographics'  ("`demog'") (`j') (`group1') (`pmonths1') (`group2') (`pmonths2') (`group3') (`pmonths3')
+					post `demographics'  ("`demog'") (`j') (`group1') (`pmonths1') (`group2') (`pmonths2')
 				}
 			}
 		}
 		
 postclose `demographics'
 
-use $resultsdir/option2_table1a_demographics_groups_1_and_2.dta, clear
+use $resultsdir/part2_option2_table1_demographics.dta, clear
 
 **// Labelling
 capture tostring demographic, replace force
@@ -86,6 +86,5 @@ foreach myvar in `r(varlist)' {
    format `myvar' %-`r(max)'s
    drop str
 }
-format covid_diab_pmonths covid_nodiab_pmonths pneum_diab_pmonths %12.1f
-drop pneum_diab_n pneum_diab_pmonths
-save $resultsdir/option2_table1a_demographics_groups_1_and_2.dta, replace
+format covid_diab_pmonths covid_nodiab_pmonths %12.1f
+save $resultsdir/part2_option2_table1_demographics.dta, replace

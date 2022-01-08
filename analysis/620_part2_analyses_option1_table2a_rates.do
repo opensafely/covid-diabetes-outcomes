@@ -3,21 +3,18 @@ local mypath="`c(pwd)'/analysis/"
 do `mypath'/000_filepaths.do
 
 
-**// Outcome rates - groups 1,2 and 3
+**// Outcome rates - groups 1 and 2
 **//////////////////////////////////////////////
 
-use $outdir/matched_groups_1_2_and_3.dta, clear
+use $outdir/input_part2_clean.dta, clear
 
-if _N>0 {
-
-local grouplabel1="COVID-19 with diabetes"
-local grouplabel2="COVID-19 without diabetes"
-local grouplabel3="Pneumonia with diabetes"
+local grouplabel1="With diabetes"
+local grouplabel2="Without diabetes"
 
 set more off
 
 tempname rates
-	postfile `rates' outindex groupindex str30(outcome) str30(group) person_time numevents rate rate_lo rate_hi using $resultsdir/option3_table2_rates.dta, replace
+	postfile `rates' outindex groupindex str30(outcome) str30(group) person_time numevents rate rate_lo rate_hi using $resultsdir/part2_option1_table2a_rates.dta, replace
 	**// Outcomes
 	local outindex=0
 	foreach outcome in "stroke_thrombotic" "stroke_haemorrhagic" "stroke_tia" "stroke_any" "mi" "dvt_any" "pe_any" "hf" "any_cvd" "aki_any" "liver" ///
@@ -26,8 +23,8 @@ tempname rates
 		gen myend=(min(date_`outcome', date_censor)-date_patient_index)/(365.25/12)
 		gen myselect=(myend>0)
 		gen delta=(date_`outcome'==min(date_`outcome', date_censor))
-		stset myend, f(delta) id(patient_id)
-		forvalues k=1(1)3 {
+		capture stset myend, f(delta) id(patient_id)
+		forvalues k=1(1)2 {
 			capture stptime if group==`k' & myselect==1, title(person-months) per(10000)		
 			if _rc==0 {
 				post `rates' (`outindex') (`k') ("`outcome'") ("`grouplabel`k''") (`r(ptime)') (`r(failures)') (`r(rate)') (`r(lb)') (`r(ub)')
@@ -36,11 +33,13 @@ tempname rates
 				post `rates' (`outindex') (`k') ("`outcome'") ("`grouplabel`k''") (.) (.) (.) (.) (.)
 			}					
 		}
-		drop myselect myend delta _st _d _t _t0
+		foreach myvar in myselect myend delta _st _d _t _t0 {
+			capture drop `myvar'
+		}
 	}
 postclose `rates'
 
-use $resultsdir/option3_table2_rates.dta, clear
+use $resultsdir/part2_option1_table2a_rates.dta, clear
 
 **// Labelling
 gen type=""
@@ -82,12 +81,4 @@ drop str
 
 do `mypath'/005_table_edit.do
 
-save $resultsdir/option3_table2_rates.dta, replace
-}
-
-else {
-	clear
-	set obs 0
-	gen empty=.
-	save $resultsdir/option3_table2_rates.dta, replace
-}
+save $resultsdir/part2_option1_table2a_rates.dta, replace

@@ -13,7 +13,7 @@ set more off
 gen myend=(date_censor-date_patient_index)/(365.25/12)
 drop if myend<=0
 gen delta=1
-stset myend, f(delta) id(patient_id)
+capture stset myend, f(delta) id(patient_id)
 
 **// Declare variable names and filename (.dta) to save results to
 
@@ -40,6 +40,9 @@ tempname demographics
 			capture summ cat_`demog'
 			if _rc==0 {
 				local numcat=r(max)
+				if `numcat'==. {
+					local numcat=1
+				}
 				count if cat_`demog'==.
 				if r(N)>0 {
 					local numcat=`numcat'+1

@@ -3,30 +3,20 @@ local mypath="`c(pwd)'/analysis/"
 do `mypath'/000_filepaths.do
 
 
-**// Period-specific hazard ratios - groups 1,2 and 1,3
-**/////////////////////////////////////////////////////
+**// Hazard ratios - groups 1 and 2
+**/////////////////////////////////////////////
 
 set more off
 		
-use $outdir/input_part1_clean.dta, clear
+use $outdir/input_part2_clean.dta, clear
 
 gen expos=(group==1)
 
 local refgroup2="COVID-19 without diabetes"
-local refgroup3="Pneumonia with diabetes"
-
-gen     period=.
-replace period=1 if date_patient_index>=mdy(2,1,2020)  & (group==1 | group==2)
-replace period=2 if date_patient_index>=mdy(6,16,2020) & (group==1 | group==2)
-replace period=3 if date_patient_index>=mdy(3,24,2021) & (group==1 | group==2)
-
-replace period=1 if date_patient_index>=mdy(2,1,2019)  & (group==3)
-replace period=2 if date_patient_index>=mdy(6,16,2019) & (group==3)
-replace period=3 if date_patient_index>=mdy(3,24,2020) & (group==3)
 
 tempname hazardratios
 	postfile `hazardratios' outindex groupindex str30(outcome) str30(refgroup) hr1 hr1_lo hr1_hi hr2 hr2_lo hr2_hi hr3 hr3_lo hr3_hi using ///
-	$resultsdir/option1_table6_periodspecific_hazardratios.dta, replace
+	$resultsdir/part2_option1_table3a_hazardratios.dta, replace
 	local outindex=0
 	foreach outcome in "stroke_thrombotic" "stroke_haemorrhagic" "stroke_tia" "stroke_any" "mi" "dvt_any" "pe_any" "hf" "any_cvd" "aki_any" "liver" ///
 	"anxiety" "depression" "psychosis" "antidepressant" "anxiolytic" "antipsychotic"  "mood_stabiliser" "sleep_insomnia" "sleep_hypersomnia" "sleep_apnoea" "fatigue" "death" {	
@@ -35,15 +25,23 @@ tempname hazardratios
 		gen myselect=(myend>0)
 		gen delta=(date_`outcome'==min(date_`outcome', date_censor))
 		capture stset myend, f(delta) id(patient_id)
-		forvalues k=2(1)3 {
-			forvalues m=1(1)3 {
-				count if group==1   & delta==1 & myselect==1 & period==`m'
-				local mycounta=r(N)
-				count if group==`k' & delta==1 & myselect==1 & period==`m'
-				local mycountb=r(N)
-				if `mycounta'>=8 & `mycountb'>=8 {
-					capture stcox expos i.cat_sex i.cat_age i.cat_ethnic i.cat_imd i.cat_hist_cvd i.cat_hist_renal i.cat_smoking i.cat_alcohol i.cat_bmi ///
-					if (group==1 | group==`k') & myselect==1 & period==`m', vce(robust)				
+		forvalues k=2(1)2 {
+			count if group==1 & delta==1 & myselect==1
+			local mycount1=r(N)
+			count if group==`k' & delta==1 & myselect==1
+			local mycount`k'=r(N)
+			if `mycount1'>=8 & `mycount`k''>=8 {
+				forvalues m=1(1)3 {
+					if `m'==1 {
+						capture stcox expos if (group==1 | group==`k') & myselect==1, vce(robust)
+					}
+					if `m'==2 {
+						capture stcox expos i.cat_sex i.cat_age if (group==1 | group==`k') & myselect==1, vce(robust)
+					}
+					if `m'==3 {										
+						capture stcox expos i.cat_sex i.cat_age i.cat_ethnic i.cat_imd i.cat_hist_cvd i.cat_hist_renal i.cat_smoking i.cat_alcohol i.cat_bmi ///
+						if (group==1 | group==`k') & myselect==1, vce(robust)				
+					}
 					if _rc==0 {
 						matrix M1=e(b)
 						matrix M2=e(V)
@@ -57,19 +55,19 @@ tempname hazardratios
 						local hr`m'_hi=999999					
 					}
 				}
-				else {
-					local hr`m'   =.
-					local hr`m'_lo=.
-					local hr`m'_hi=.
-				}
-			}	
-			post `hazardratios' (`outindex') (`k') ("`outcome'") ("`refgroup`k''") (`hr1') (`hr1_lo') (`hr1_hi') (`hr2') (`hr2_lo') (`hr2_hi') (`hr3') (`hr3_lo') (`hr3_hi')
+				post `hazardratios' (`outindex') (`k') ("`outcome'") ("`refgroup`k''") (`hr1') (`hr1_lo') (`hr1_hi') (`hr2') (`hr2_lo') (`hr2_hi') (`hr3') (`hr3_lo') (`hr3_hi')
+			}
+			else {
+				post `hazardratios' (`outindex') (`k') ("`outcome'") ("`refgroup`k''") (.) (.) (.) (.) (.) (.) (.) (.) (.)
+			}
 		}
-		drop myend myselect delta _st _d _t _t0
+		foreach myvar in myend myselect delta _st _d _t _t0 {
+			capture drop `myvar'
+		}
 	}
 postclose `hazardratios'
 
-use $resultsdir/option1_table6_periodspecific_hazardratios.dta, clear
+use $resultsdir/part2_option1_table3a_hazardratios.dta, clear
 
 **// Labelling
 gen type=""
@@ -95,7 +93,7 @@ forvalues m=1(1)3 {
 }
 drop hr*
 forvalues m=1(1)3 {
-	rename new_hr`m' hr_period`m'
+	rename new_hr`m' hr`m'
 }
 
 describe, varlist
@@ -108,4 +106,4 @@ foreach myvar in `r(varlist)' {
 
 do `mypath'/005_table_edit.do
 
-save $resultsdir/option1_table6_periodspecific_hazardratios.dta, replace
+save $resultsdir/part2_option1_table3a_hazardratios.dta, replace

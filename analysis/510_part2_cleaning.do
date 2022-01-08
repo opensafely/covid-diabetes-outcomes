@@ -1,21 +1,13 @@
 clear
 do `c(pwd)'/analysis/000_filepaths.do
 
-local mylist: dir "$outdir" files "*.dta"
-foreach filename of local mylist {
-	erase "$outdir//`filename'"
-}
-local mylist: dir "$outdir/results" files "*.dta"
-foreach filename of local mylist {
-	erase "$outdir/results//`filename'"
-}
-local mylist: dir "$outdir/results" files "*.csv"
-foreach filename of local mylist {
-	erase "$outdir/results//`filename'"
-}
+import delimited $outdir/input_part2.csv
 
-		
-import delimited $outdir/input_part1.csv
+drop date_covid_test date_covid_hospital
+rename date_covid_test_1 date_covid_test
+rename date_covid_hospital_1 date_covid_hospital
+
+drop date_admitted_pneum critical_care_days
 
 gen date_studyend="2021-11-30"
 
@@ -34,30 +26,26 @@ foreach myvar in `r(varlist)' {
 	}
 }
 
-order patient_id practice_id date_discharged_covid date_discharged_pneum date_patient_index has_follow_up date_diabetes_diagnosis date_birth sex region date_deregistered date_death
+order patient_id practice_id date_covid_test date_covid_hospital date_patient_index has_follow_up date_diabetes_diagnosis date_birth sex region date_deregistered date_death
 sort patient_id
 
-replace date_patient_index=min(date_discharged_covid, date_discharged_pneum)
+replace date_patient_index=min(date_covid_test, date_covid_hospital)
+drop if date_patient_index==.
 replace date_diabetes_diagnosis=min(date_t1dm_gp_first, date_t2dm_gp_first, date_unknown_diabetes_gp_first)
 
-drop if (has_follow_up!=1 | min(date_deregistered, date_death)<=date_patient_index)
+drop if (has_follow_up!=1 | min(date_deregistered, date_death, date_studyend)<=date_patient_index)
 drop has_follow_up
 
 **// Exposure group
 gen     group=.
-replace group=1 if date_discharged_covid<=date_discharged_pneum & (date_diabetes_diagnosis<=date_patient_index | min(date_t1dm_hospital_first, date_t2dm_hospital_first)<=date_patient_index)
-replace group=2 if date_discharged_covid<=date_discharged_pneum &  date_diabetes_diagnosis> date_patient_index & min(date_t1dm_hospital_first, date_t2dm_hospital_first)> date_patient_index
-replace group=3 if date_discharged_covid> date_discharged_pneum & (date_diabetes_diagnosis<=date_patient_index | min(date_t1dm_hospital_first, date_t2dm_hospital_first)<=date_patient_index)
-replace group=4 if date_discharged_covid> date_discharged_pneum &  date_diabetes_diagnosis> date_patient_index & min(date_t1dm_hospital_first, date_t2dm_hospital_first)> date_patient_index
-label define grouplab 1 "COVID-19 with diabetes" 2 "COVID-19 without diabetes" 3 "Pneumonia with diabetes" 4 "Pneumonia without diabetes"
+replace group=1 if min(date_diabetes_diagnosis, date_t1dm_hospital_first, date_t2dm_hospital_first)<=date_patient_index
+replace group=2 if min(date_diabetes_diagnosis, date_t1dm_hospital_first, date_t2dm_hospital_first)> date_patient_index
+label define grouplab 1 "COVID-19 with diabetes" 2 "COVID-19 without diabetes"
 label values group grouplab
 
 **// Censoring
-gen date_first_covid=min(date_covid_test, date_covid_hospital)
-gen date_censor=date_admitted_pneum if (group==1 | group==2)
-replace date_censor=date_first_covid if (group==3 | group==4)
-replace date_censor=min(date_deregistered, date_death, date_studyend) if min(date_deregistered, date_death, date_studyend)<date_censor
-drop date_covid_test date_admitted_pneum date_first_covid date_deregistered
+gen date_censor=min(date_deregistered, date_death, date_studyend)
+drop date_deregistered
 
 **// Type of diabetes
 gen temp1=(min(date_t1dm_gp_first, date_t1dm_hospital_first)<=date_patient_index)
@@ -73,7 +61,6 @@ label values cat_diabetes cat_diablab
 **// Drop Type 1 diabetes
 drop if cat_diabetes==1
 drop temp* date_diabetes* date_t1dm* date_t2dm* date_unknown_diabetes* antidiabetic_lastyear insulin_lastyear cat_diabetes
-
 
 **// Sex
 gen cat_sex=1 if sex=="F"
@@ -111,11 +98,11 @@ capture describe imd
 if _rc==0 {
 	capture egen cat_imd=cut(imd), group(5) icodes
 	if _rc==0 {
-	replace cat_imd=cat_imd+1
-	replace cat_imd=. if imd==-1
-	replace cat_imd=6-cat_imd
-	label define cat_imdlab 1 "1 (least deprived)" 2 "2" 3 "3" 4 "4" 5 "5 (most deprived)" .u "Unknown"
-	label values cat_imd cat_imdlab
+		replace cat_imd=cat_imd+1
+		replace cat_imd=. if imd==-1
+		replace cat_imd=6-cat_imd
+		label define cat_imdlab 1 "1 (least deprived)" 2 "2" 3 "3" 4 "4" 5 "5 (most deprived)" .u "Unknown"
+		label values cat_imd cat_imdlab
 	}
 	if _rc!=0 {
 		gen cat_imd=.
@@ -152,23 +139,13 @@ if _rc==0 {
 	drop gfr_flag ckd_gp ckd_hospital hist_rrt
 }
 
-**// Required critical care (during hospitalisation)
-capture describe critical_care_days
-if _rc==0 {
-	gen cat_critical=1
-	replace cat_critical=2 if critical_care_days>0 & critical_care_days!=.
-}
-label define cat_criticallab 1 "No" 2 "Yes"
-label values cat_critical cat_criticallab
-drop critical_care_days
-
 **// COVID-19 vaccination status (at baseline)
 gen cat_vaccin=1
 capture replace cat_vaccin=2 if date_vaccin_gp_1<date_covid_hospital
 capture replace cat_vaccin=3 if date_vaccin_gp_2<date_covid_hospital
 label define cat_vaccinlab 1 "None" 2 "One dose" 3 "Two doses"
 label value cat_vaccin cat_vaccinlab
-drop date_vaccin_* date_covid_hospital
+drop date_vaccin_*
 
 **// Smoking status
 capture describe latest_smoking ever_smoked
@@ -340,4 +317,6 @@ drop date_fatigue_*
 
 format date_* %td
 
-save $outdir/input_part1_clean.dta, replace
+order group
+
+save $outdir/input_part2_clean.dta, replace

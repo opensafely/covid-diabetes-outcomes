@@ -74,6 +74,55 @@ actions:
       moderately_sensitive:
         table1: output/results/option1_table8_splitfollowup_rates.dta
 
+  analyses_option2_table1a:
+    run: stata-mp:latest analysis/210_analyses_option2_table1a_demographics_groups_1_and_2.do
+    needs: [matching_groups_1_and_2]
+    outputs:
+      moderately_sensitive:
+        table1: output/results/option2_table1a_demographics_groups_1_and_2.dta
+
+  analyses_option2_table1b:
+    run: stata-mp:latest analysis/211_analyses_option2_table1b_demographics_groups_1_and_3.do
+    needs: [matching_groups_1_and_3]
+    outputs:
+      moderately_sensitive:
+        table1: output/results/option2_table1b_demographics_groups_1_and_3.dta
+
+  analyses_option3_table1:
+    run: stata-mp:latest analysis/310_analyses_option3_table1_demographics.do
+    needs: [matching_groups_1_2_and_3]
+    outputs:
+      moderately_sensitive:
+        table1: output/results/option3_table1_demographics.dta
+
+  analyses_option3_table2b:
+    run: stata-mp:latest analysis/321_analyses_option3_table2b_rateratios.do
+    needs: [matching_groups_1_2_and_3]
+    outputs:
+      moderately_sensitive:
+        table1: output/results/option3_table2b_rateratios.dta
+
+  analyses_option3_table4b:
+    run: stata-mp:latest analysis/341_analyses_option3_table4b_stratified_rateratios.do
+    needs: [matching_groups_1_2_and_3]
+    outputs:
+      moderately_sensitive:
+        table1: output/results/option3_table4b_stratified_rateratios.dta
+
+  analyses_option3_table6:
+    run: stata-mp:latest analysis/360_analyses_option3_table6_periodspecific_rates.do
+    needs: [matching_groups_1_2_and_3]
+    outputs:
+      moderately_sensitive:
+        table1: output/results/option3_table6_periodspecific_rates.dta
+
+  analyses_option3_table8:
+    run: stata-mp:latest analysis/380_analyses_option3_table8_splitfollowup_rates.do
+    needs: [matching_groups_1_2_and_3]
+    outputs:
+      moderately_sensitive:
+        table1: output/results/option3_table8_splitfollowup_rates.dta
+
   generate_cohort_2:
     run: cohortextractor:latest generate_cohort --study-definition study_definition_part2
     outputs:

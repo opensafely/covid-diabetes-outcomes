@@ -1,7 +1,7 @@
 version: '3.0'
 
 expectations:
-  population_size: 100000
+  population_size: 1000
 
 actions:
 
@@ -38,6 +38,41 @@ actions:
     outputs:
       highly_sensitive:
         analysis_dataset: output/matched_groups_1_2_and_3.dta
+
+  analyses_option1_table1:
+    run: stata-mp:latest analysis/110_analyses_option1_table1_demographics.do
+    needs: [data_cleaning]
+    outputs:
+      moderately_sensitive:
+        table1: output/results/option1_table1_demographics.dta
+
+  analyses_option1_table2b:
+    run: stata-mp:latest analysis/121_analyses_option1_table2b_rateratios.do
+    needs: [data_cleaning]
+    outputs:
+      moderately_sensitive:
+        table1: output/results/option1_table2b_rateratios.dta
+
+  analyses_option1_table4b:
+    run: stata-mp:latest analysis/141_analyses_option1_table4b_stratified_rateratios.do
+    needs: [data_cleaning]
+    outputs:
+      moderately_sensitive:
+        table1: output/results/option1_table4b_stratified_rateratios.dta
+
+  analyses_option1_table6:
+    run: stata-mp:latest analysis/160_analyses_option1_table6_periodspecific_rates.do
+    needs: [data_cleaning]
+    outputs:
+      moderately_sensitive:
+        table1: output/results/option1_table6_periodspecific_rates.dta
+
+  analyses_option1_table8:
+    run: stata-mp:latest analysis/180_analyses_option1_table8_splitfollowup_rates.do
+    needs: [data_cleaning]
+    outputs:
+      moderately_sensitive:
+        table1: output/results/option1_table8_splitfollowup_rates.dta
 
   generate_cohort_2:
     run: cohortextractor:latest generate_cohort --study-definition study_definition_part2

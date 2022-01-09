@@ -127,7 +127,7 @@ actions:
     run: stata-mp:latest analysis/400_redaction.do
     needs: [analyses_option1_table1, analyses_option1_table2b, analyses_option1_table4b, analyses_option1_table6, analyses_option1_table8, analyses_option2_table1a, analyses_option2_table1b, analyses_option3_table1, analyses_option3_table2b, analyses_option3_table4b, analyses_option3_table6, analyses_option3_table8]
     outputs:
-      moderately sensitive:
+      moderately_sensitive:
         table1: output/results/option1_table1_demographics_redacted.dta
         table2: output/results/option1_table1_demographics_redacted.csv
         table3: output/results/option1_table2b_rateratios_redacted.dta
@@ -247,7 +247,7 @@ actions:
     run: stata-mp:latest analysis/800_part2_redaction.do
     needs: [part2_analyses_option1_table1, part2_analyses_option1_table2b, part2_analyses_option1_table4b, part2_analyses_option1_table6, part2_analyses_option1_table8, part2_analyses_option2_table1, part2_analyses_option2_table2b, part2_analyses_option2_table4b, part2_analyses_option2_table6, part2_analyses_option2_table8]
     outputs:
-      moderately sensitive:
+      moderately_sensitive:
         table1: output/results/part2_option1_table1_demographics_redacted.dta
         table2: output/results/part2_option1_table1_demographics_redacted.csv
         table3: output/results/part2_option1_table2b_rateratios_redacted.dta

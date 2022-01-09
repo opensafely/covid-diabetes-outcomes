@@ -128,30 +128,30 @@ actions:
     needs: [analyses_option1_table1, analyses_option1_table2b, analyses_option1_table4b, analyses_option1_table6, analyses_option1_table8, analyses_option2_table1a, analyses_option2_table1b, analyses_option3_table1, analyses_option3_table2b, analyses_option3_table4b, analyses_option3_table6, analyses_option3_table8]
     outputs:
       moderately sensitive:
-				table1: output/results/option1_table1_demographics_redacted.dta
-				table2: output/results/option1_table1_demographics_redacted.csv
-				table3: output/results/option1_table2b_rateratios_redacted.dta
-				table4: output/results/option1_table2b_rateratios_redacted.csv
-				table5: output/results/option1_table4b_stratified_rateratios_redacted.dta
-				table6: output/results/option1_table4b_stratified_rateratios_redacted.csv
-				table7: output/results/option1_table6_periodspecific_rates_redacted.dta
-				table8: output/results/option1_table6_periodspecific_rates_redacted.csv
-				table9: output/results/option1_table8_splitfollowup_rates_redacted.dta
-				table10: output/results/option1_table8_splitfollowup_rates_redacted.csv
-				table11: output/results/option2_table1a_demographics_groups_1_and_2_redacted.dta
-				table12: output/results/option2_table1a_demographics_groups_1_and_2_redacted.csv
-				table13: output/results/option2_table1b_demographics_groups_1_and_3_redacted.dta
-				table14: output/results/option2_table1b_demographics_groups_1_and_3_redacted.csv
-				table15: output/results/option3_table1_demographics_redacted.dta
-				table16: output/results/option3_table1_demographics_redacted.csv
-				table17: output/results/option3_table2b_rateratios_redacted.dta
-				table18: output/results/option3_table2b_rateratios_redacted.csv
-				table19: output/results/option3_table4b_stratified_rateratios_redacted.dta
-				table20: output/results/option3_table4b_stratified_rateratios_redacted.csv
-				table21: output/results/option3_table6_periodspecific_rates_redacted.dta
-				table22: output/results/option3_table6_periodspecific_rates_redacted.csv
-				table23: output/results/option3_table8_splitfollowup_rates_redacted.dta
-				table24: output/results/option3_table8_splitfollowup_rates_redacted.csv
+        table1: output/results/option1_table1_demographics_redacted.dta
+        table2: output/results/option1_table1_demographics_redacted.csv
+        table3: output/results/option1_table2b_rateratios_redacted.dta
+        table4: output/results/option1_table2b_rateratios_redacted.csv
+        table5: output/results/option1_table4b_stratified_rateratios_redacted.dta
+        table6: output/results/option1_table4b_stratified_rateratios_redacted.csv
+        table7: output/results/option1_table6_periodspecific_rates_redacted.dta
+        table8: output/results/option1_table6_periodspecific_rates_redacted.csv
+        table9: output/results/option1_table8_splitfollowup_rates_redacted.dta
+        table10: output/results/option1_table8_splitfollowup_rates_redacted.csv
+        table11: output/results/option2_table1a_demographics_groups_1_and_2_redacted.dta
+        table12: output/results/option2_table1a_demographics_groups_1_and_2_redacted.csv
+        table13: output/results/option2_table1b_demographics_groups_1_and_3_redacted.dta
+        table14: output/results/option2_table1b_demographics_groups_1_and_3_redacted.csv
+        table15: output/results/option3_table1_demographics_redacted.dta
+        table16: output/results/option3_table1_demographics_redacted.csv
+        table17: output/results/option3_table2b_rateratios_redacted.dta
+        table18: output/results/option3_table2b_rateratios_redacted.csv
+        table19: output/results/option3_table4b_stratified_rateratios_redacted.dta
+        table20: output/results/option3_table4b_stratified_rateratios_redacted.csv
+        table21: output/results/option3_table6_periodspecific_rates_redacted.dta
+        table22: output/results/option3_table6_periodspecific_rates_redacted.csv
+        table23: output/results/option3_table8_splitfollowup_rates_redacted.dta
+        table24: output/results/option3_table8_splitfollowup_rates_redacted.csv
 
   generate_cohort_2:
     run: cohortextractor:latest generate_cohort --study-definition study_definition_part2
@@ -248,23 +248,23 @@ actions:
     needs: [part2_analyses_option1_table1, part2_analyses_option1_table2b, part2_analyses_option1_table4b, part2_analyses_option1_table6, part2_analyses_option1_table8, part2_analyses_option2_table1, part2_analyses_option2_table2b, part2_analyses_option2_table4b, part2_analyses_option2_table6, part2_analyses_option2_table8]
     outputs:
       moderately sensitive:
-				table1: output/results/part2_option1_table1_demographics_redacted.dta
-				table2: output/results/part2_option1_table1_demographics_redacted.csv
-				table3: output/results/part2_option1_table2b_rateratios_redacted.dta
-				table4: output/results/part2_option1_table2b_rateratios_redacted.csv
-				table5: output/results/part2_option1_table4b_stratified_rateratios_redacted.dta
-				table6: output/results/part2_option1_table4b_stratified_rateratios_redacted.csv
-				table7: output/results/part2_option1_table6_periodspecific_rates_redacted.dta
-				table8: output/results/part2_option1_table6_periodspecific_rates_redacted.csv
-				table9: output/results/part2_option1_table8_splitfollowup_rates_redacted.dta
-				table10: output/results/part2_option1_table8_splitfollowup_rates_redacted.csv
-				table11: output/results/part2_option2_table1_demographics_redacted.dta
-				table12: output/results/part2_option2_table1_demographics_redacted.csv
-				table13: output/results/part2_option2_table2b_rateratios_redacted.dta
-				table14: output/results/part2_option2_table2b_rateratios_redacted.csv
-				table15: output/results/part2_option2_table4b_stratified_rateratios_redacted.dta
-				table16: output/results/part2_option2_table4b_stratified_rateratios_redacted.csv
-				table17: output/results/part2_option2_table6_periodspecific_rates_redacted.dta
-				table18: output/results/part2_option2_table6_periodspecific_rates_redacted.csv
-				table19: output/results/part2_option2_table8_splitfollowup_rates_redacted.dta
-				table20: output/results/part2_option2_table8_splitfollowup_rates_redacted.csv
+        table1: output/results/part2_option1_table1_demographics_redacted.dta
+        table2: output/results/part2_option1_table1_demographics_redacted.csv
+        table3: output/results/part2_option1_table2b_rateratios_redacted.dta
+        table4: output/results/part2_option1_table2b_rateratios_redacted.csv
+        table5: output/results/part2_option1_table4b_stratified_rateratios_redacted.dta
+        table6: output/results/part2_option1_table4b_stratified_rateratios_redacted.csv
+        table7: output/results/part2_option1_table6_periodspecific_rates_redacted.dta
+        table8: output/results/part2_option1_table6_periodspecific_rates_redacted.csv
+        table9: output/results/part2_option1_table8_splitfollowup_rates_redacted.dta
+        table10: output/results/part2_option1_table8_splitfollowup_rates_redacted.csv
+        table11: output/results/part2_option2_table1_demographics_redacted.dta
+        table12: output/results/part2_option2_table1_demographics_redacted.csv
+        table13: output/results/part2_option2_table2b_rateratios_redacted.dta
+        table14: output/results/part2_option2_table2b_rateratios_redacted.csv
+        table15: output/results/part2_option2_table4b_stratified_rateratios_redacted.dta
+        table16: output/results/part2_option2_table4b_stratified_rateratios_redacted.csv
+        table17: output/results/part2_option2_table6_periodspecific_rates_redacted.dta
+        table18: output/results/part2_option2_table6_periodspecific_rates_redacted.csv
+        table19: output/results/part2_option2_table8_splitfollowup_rates_redacted.dta
+        table20: output/results/part2_option2_table8_splitfollowup_rates_redacted.csv

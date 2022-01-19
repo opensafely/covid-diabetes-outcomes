@@ -1,7 +1,7 @@
 version: '3.0'
 
 expectations:
-  population_size: 10000
+  population_size: 10
 
 actions:
 
@@ -245,26 +245,10 @@ actions:
 
   part2_redaction:
     run: stata-mp:latest analysis/800_part2_redaction.do
-    needs: [part2_analyses_option1_table1, part2_analyses_option1_table2b, part2_analyses_option1_table4b, part2_analyses_option1_table6, part2_analyses_option1_table8, part2_analyses_option2_table1, part2_analyses_option2_table2b, part2_analyses_option2_table4b, part2_analyses_option2_table6, part2_analyses_option2_table8]
+    needs: [part2_analyses_option1_table1, part2_analyses_option1_table2b]
     outputs:
       moderately_sensitive:
         table1: output/results/part2_option1_table1_demographics_redacted.dta
         table2: output/results/part2_option1_table1_demographics_redacted.csv
         table3: output/results/part2_option1_table2b_rateratios_redacted.dta
         table4: output/results/part2_option1_table2b_rateratios_redacted.csv
-        table5: output/results/part2_option1_table4b_stratified_rateratios_redacted.dta
-        table6: output/results/part2_option1_table4b_stratified_rateratios_redacted.csv
-        table7: output/results/part2_option1_table6_periodspecific_rates_redacted.dta
-        table8: output/results/part2_option1_table6_periodspecific_rates_redacted.csv
-        table9: output/results/part2_option1_table8_splitfollowup_rates_redacted.dta
-        table10: output/results/part2_option1_table8_splitfollowup_rates_redacted.csv
-        table11: output/results/part2_option2_table1_demographics_redacted.dta
-        table12: output/results/part2_option2_table1_demographics_redacted.csv
-        table13: output/results/part2_option2_table2b_rateratios_redacted.dta
-        table14: output/results/part2_option2_table2b_rateratios_redacted.csv
-        table15: output/results/part2_option2_table4b_stratified_rateratios_redacted.dta
-        table16: output/results/part2_option2_table4b_stratified_rateratios_redacted.csv
-        table17: output/results/part2_option2_table6_periodspecific_rates_redacted.dta
-        table18: output/results/part2_option2_table6_periodspecific_rates_redacted.csv
-        table19: output/results/part2_option2_table8_splitfollowup_rates_redacted.dta
-        table20: output/results/part2_option2_table8_splitfollowup_rates_redacted.csv

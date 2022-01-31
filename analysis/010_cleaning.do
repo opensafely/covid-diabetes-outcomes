@@ -1,19 +1,5 @@
 clear
 do `c(pwd)'/analysis/000_filepaths.do
-
-local mylist: dir "$outdir" files "*.dta"
-foreach filename of local mylist {
-	erase "$outdir//`filename'"
-}
-local mylist: dir "$outdir/results" files "*.dta"
-foreach filename of local mylist {
-	erase "$outdir/results//`filename'"
-}
-local mylist: dir "$outdir/results" files "*.csv"
-foreach filename of local mylist {
-	erase "$outdir/results//`filename'"
-}
-
 		
 import delimited $outdir/input_part1.csv
 

@@ -53,6 +53,20 @@ actions:
       moderately_sensitive:
         table1: output/results/option1_table2b_rateratios.dta
 
+  analyses_option1_table3a:
+    run: stata-mp:latest analysis/130_analyses_option1_table3a_hazardratios.do
+    needs: [data_cleaning]
+    outputs:
+      moderately_sensitive:
+        table1: output/results/option1_table3a_hazardratios.dta
+
+  analyses_option1_table3b:
+    run: stata-mp:latest analysis/131_analyses_option1_table3b_hazardratios_v2.do
+    needs: [data_cleaning]
+    outputs:
+      moderately_sensitive:
+        table1: output/results/option1_table3b_hazardratios_v2.dta
+
   analyses_option1_table4b:
     run: stata-mp:latest analysis/141_analyses_option1_table4b_stratified_rateratios.do
     needs: [data_cleaning]
@@ -186,6 +200,20 @@ actions:
     outputs:
       moderately_sensitive:
         table1: output/results/part2_option1_table2b_rateratios.dta
+
+  part2_analyses_option1_table3a:
+    run: stata-mp:latest analysis/630_part2_analyses_option1_table3a_hazardratios.do
+    needs: [part2_data_cleaning]
+    outputs:
+      moderately_sensitive:
+        table1: output/results/part2_option1_table3a_hazardratios.dta
+
+  part2_analyses_option1_table3b:
+    run: stata-mp:latest analysis/631_part2_analyses_option1_table3b_hazardratios_v2.do
+    needs: [part2_data_cleaning]
+    outputs:
+      moderately_sensitive:
+        table1: output/results/part2_option1_table3b_hazardratios_v2.dta
 
   part2_analyses_option1_table4b:
     run: stata-mp:latest analysis/641_part2_analyses_option1_table4b_stratified_rateratios.do

@@ -294,3 +294,23 @@ actions:
         table12: output/results/part2_option1_table6_periodspecific_rates_redacted.csv
         table13: output/results/part2_option1_table8_splitfollowup_rates_redacted.dta
         table14: output/results/part2_option1_table8_splitfollowup_rates_redacted.csv
+
+  file_transfer:
+    run: stata-mp:latest analysis/900_file_transfer.do
+    needs: [redaction, part2_redaction]
+    outputs:
+      moderately_sensitive:
+        table1: release/option1_table1_demographics_redacted.csv
+        table2: release/option1_table2b_rateratios_redacted.csv
+        table3: release/option1_table3a_hazardratios_redacted.csv
+        table4: release/option1_table3b_hazardratios_v2_redacted.csv
+        table5: release/option1_table4b_stratified_rateratios_redacted.csv
+        table6: release/option1_table6_periodspecific_rates_redacted.csv
+        table7: release/option1_table8_splitfollowup_rates_redacted.csv
+        table8: release/part2_option1_table1_demographics_redacted.csv
+        table9: release/part2_option1_table2b_rateratios_redacted.csv
+        table10: release/part2_option1_table3a_hazardratios_redacted.csv
+        table11: release/part2_option1_table3b_hazardratios_v2_redacted.csv
+        table12: release/part2_option1_table4b_stratified_rateratios_redacted.csv
+        table13: release/part2_option1_table6_periodspecific_rates_redacted.csv
+        table14: release/part2_option1_table8_splitfollowup_rates_redacted.csv

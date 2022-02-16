@@ -146,10 +146,10 @@ actions:
         table2: output/results/option1_table1_demographics_redacted.csv
         table3: output/results/option1_table2b_rateratios_redacted.dta
         table4: output/results/option1_table2b_rateratios_redacted.csv
-        table5: output/results/option1_table3a_hazardratios.dta
-        table6: output/results/option1_table3a_hazardratios.csv
-        table7: output/results/option1_table3b_hazardratios.dta
-        table8: output/results/option1_table3b_hazardratios.csv
+        table5: output/results/option1_table3a_hazardratios_redacted.dta
+        table6: output/results/option1_table3a_hazardratios_redacted.csv
+        table7: output/results/option1_table3b_hazardratios_redacted.dta
+        table8: output/results/option1_table3b_hazardratios_redacted.csv
         table9: output/results/option1_table4b_stratified_rateratios_redacted.dta
         table10: output/results/option1_table4b_stratified_rateratios_redacted.csv
         table11: output/results/option1_table6_periodspecific_rates_redacted.dta

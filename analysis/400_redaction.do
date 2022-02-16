@@ -17,6 +17,10 @@ if _rc==0 {
 		}
 		drop *_pmonths
 	}
+	describe, varlist
+	foreach myvar in `r(varlist)' {
+		capture replace `myvar'="-" if `myvar'=="-0"
+	}
 	save $resultsdir/option1_table1_demographics_redacted.dta, replace
 	export delimited using $resultsdir/option1_table1_demographics_redacted.csv, replace
 }
@@ -39,6 +43,10 @@ if _rc==0 {
 		replace numevents=round(numevents,5)
 		tostring numevents, replace force u
 		replace numevents="[REDACTED]" if numevents=="."
+	}
+	describe, varlist
+	foreach myvar in `r(varlist)' {
+		capture replace `myvar'="-" if `myvar'=="-0"
 	}
 	save $resultsdir/option1_table2a_rates_redacted.dta, replace
 	export delimited using $resultsdir/option1_table2a_rates_redacted.csv, replace
@@ -70,6 +78,10 @@ if _rc==0 {
 		tostring numevents, replace force u
 		replace numevents="[REDACTED]" if numevents=="."
 	}
+	describe, varlist
+	foreach myvar in `r(varlist)' {
+		capture replace `myvar'="-" if `myvar'=="-0"
+	}
 	save $resultsdir/option1_table2b_rateratios_redacted.dta, replace
 	export delimited using $resultsdir/option1_table2b_rateratios_redacted.csv, replace
 }
@@ -83,6 +95,10 @@ if _rc==0{
 			replace hr`k'="[FAILED]" if hr`k'=="999999.00 (999999.00, 999999.00)"
 		}
 	}
+	describe, varlist
+	foreach myvar in `r(varlist)' {
+		capture replace `myvar'="-" if `myvar'=="-0"
+	}
 	save $resultsdir/option1_table3a_hazardratios_redacted.dta, replace
 	export delimited using $resultsdir/option1_table3a_hazardratios_redacted.csv, replace
 }
@@ -95,6 +111,10 @@ if _rc==0 {
 			replace hr`k'="[REDACTED]" if hr`k'==". (., .)"
 			replace hr`k'="[FAILED]" if hr`k'=="999999.00 (999999.00, 999999.00)"
 		}
+	}
+	describe, varlist
+	foreach myvar in `r(varlist)' {
+		capture replace `myvar'="-" if `myvar'=="-0"
 	}
 	save $resultsdir/option1_table3b_hazardratios_v2_redacted.dta, replace
 	export delimited using $resultsdir/option1_table3b_hazardratios_v2_redacted.csv, replace
@@ -124,6 +144,10 @@ if _rc==0 {
 			local myname=substr("`myvar'",1,strpos("`myvar'","_rate")-1)
 			replace `myvar'="[REDACTED]" if `myname'_events=="[REDACTED]"
 		}
+	}
+	describe, varlist
+	foreach myvar in `r(varlist)' {
+		capture replace `myvar'="-" if `myvar'=="-0"
 	}
 	save $resultsdir/option1_table4a_stratified_rates_redacted.dta, replace
 	export delimited using $resultsdir/option1_table4a_stratified_rates_redacted.csv, replace
@@ -163,6 +187,10 @@ if _rc==0 {
 			}
 		}
 	}
+	describe, varlist
+	foreach myvar in `r(varlist)' {
+		capture replace `myvar'="-" if `myvar'=="-0"
+	}
 	save $resultsdir/option1_table4b_stratified_rateratios_redacted.dta, replace
 	export delimited using $resultsdir/option1_table4b_stratified_rateratios_redacted.csv, replace
 }
@@ -178,6 +206,10 @@ if _rc==0 {
 				replace `myvar'="[FAILED]" if `myvar'=="999999.00 (999999.00, 999999.00)"
 			}
 		}
+	}
+	describe, varlist
+	foreach myvar in `r(varlist)' {
+		capture replace `myvar'="-" if `myvar'=="-0"
 	}
 	save $resultsdir/option1_table5a_stratified_hazardratios_redacted.dta, replace
 	export delimited using $resultsdir/option1_table5a_stratified_hazardratios_redacted.csv, replace
@@ -195,6 +227,10 @@ if _rc==0 {
 				replace `myvar'="[OMITTED]" if `myvar'=="888888.00 (888888.00, 888888.00)"
 			}
 		}
+	}
+	describe, varlist
+	foreach myvar in `r(varlist)' {
+		capture replace `myvar'="-" if `myvar'=="-0"
 	}
 	save $resultsdir/option1_table5b_stratified_hazardratios_v2_redacted.dta, replace
 	export delimited using $resultsdir/option1_table5b_stratified_hazardratios_v2_redacted.csv, replace
@@ -220,6 +256,10 @@ if _rc==0 {
 			replace numevents`k'="[REDACTED]" if numevents`k'=="."
 		}
 	}
+	describe, varlist
+	foreach myvar in `r(varlist)' {
+		capture replace `myvar'="-" if `myvar'=="-0"
+	}
 	save $resultsdir/option1_table6_periodspecific_rates_redacted.dta, replace
 	export delimited using $resultsdir/option1_table6_periodspecific_rates_redacted.csv, replace
 }
@@ -233,6 +273,10 @@ if _rc==0 {
 			replace `myvar'="[REDACTED]" if (`myvar'==". (., .)" | `myvar'=="-" | `myvar'==".")
 			replace `myvar'="[FAILED]" if `myvar'=="999999.00 (999999.00, 999999.00)"
 		}
+	}
+	describe, varlist
+	foreach myvar in `r(varlist)' {
+		capture replace `myvar'="-" if `myvar'=="-0"
 	}
 	save $resultsdir/option1_table7_periodspecific_hazardratios_redacted.dta, replace
 	export delimited using $resultsdir/option1_table7_periodspecific_hazardratios_redacted.csv, replace
@@ -258,6 +302,10 @@ if _rc==0 {
 			replace numevents`k'="[REDACTED]" if numevents`k'=="."
 		}
 	}
+	describe, varlist
+	foreach myvar in `r(varlist)' {
+		capture replace `myvar'="-" if `myvar'=="-0"
+	}
 	save $resultsdir/option1_table8_splitfollowup_rates_redacted.dta, replace
 	export delimited using $resultsdir/option1_table8_splitfollowup_rates_redacted.csv, replace
 }
@@ -271,6 +319,10 @@ if _rc==0 {
 			replace `myvar'="[REDACTED]" if (`myvar'==". (., .)" | `myvar'=="-" | `myvar'==".")
 			replace `myvar'="[FAILED]" if `myvar'=="999999.00 (999999.00, 999999.00)"
 		}
+	}
+	describe, varlist
+	foreach myvar in `r(varlist)' {
+		capture replace `myvar'="-" if `myvar'=="-0"
 	}
 	save $resultsdir/option1_table9_splitfollowup_hazardratios_redacted.dta, replace
 	export delimited using $resultsdir/option1_table9_splitfollowup_hazardratios_redacted.csv, replace
@@ -291,6 +343,10 @@ if _rc==0 {
 		}
 		drop *_pmonths		
 	}
+	describe, varlist
+	foreach myvar in `r(varlist)' {
+		capture replace `myvar'="-" if `myvar'=="-0"
+	}
 	save $resultsdir/option2_table1a_demographics_groups_1_and_2_redacted.dta, replace
 	export delimited using $resultsdir/option2_table1a_demographics_groups_1_and_2_redacted.csv, replace
 }
@@ -306,6 +362,10 @@ if _rc==0 {
 			replace `myvar'="[REDACTED]" if (`myvar'=="." | `myvar'=="0" | `myvar'=="5")
 		}
 		drop *_pmonths
+	}
+	describe, varlist
+	foreach myvar in `r(varlist)' {
+		capture replace `myvar'="-" if `myvar'=="-0"
 	}
 	save $resultsdir/option2_table1b_demographics_groups_1_and_3_redacted.dta, replace
 	export delimited using $resultsdir/option2_table1b_demographics_groups_1_and_3_redacted.csv, replace
@@ -326,6 +386,10 @@ if _rc==0 {
 			replace `myvar'="[REDACTED]" if `myvar'=="."
 		}
 		drop *_pmonths
+	}
+	describe, varlist
+	foreach myvar in `r(varlist)' {
+		capture replace `myvar'="-" if `myvar'=="-0"
 	}
 	save $resultsdir/option3_table1_demographics_redacted.dta, replace
 	export delimited using $resultsdir/option3_table1_demographics_redacted.csv, replace
@@ -348,6 +412,10 @@ if _rc==0 {
 		replace numevents=round(numevents,5)
 		tostring numevents, replace force u
 		replace numevents="[REDACTED]" if numevents=="."
+	}
+	describe, varlist
+	foreach myvar in `r(varlist)' {
+		capture replace `myvar'="-" if `myvar'=="-0"
 	}
 	save $resultsdir/option3_table2a_rates_redacted.dta, replace
 	export delimited using $resultsdir/option3_table2a_rates_redacted.csv, replace
@@ -378,6 +446,10 @@ if _rc==0 {
 		tostring numevents, replace force u
 		replace numevents="[REDACTED]" if numevents=="."
 	}
+	describe, varlist
+	foreach myvar in `r(varlist)' {
+		capture replace `myvar'="-" if `myvar'=="-0"
+	}
 	save $resultsdir/option3_table2b_rateratios_redacted.dta, replace
 	export delimited using $resultsdir/option3_table2b_rateratios_redacted.csv, replace
 }
@@ -391,6 +463,10 @@ if _rc==0{
 			replace hr`k'="[FAILED]" if hr`k'=="999999.00 (999999.00, 999999.00)"
 		}
 	}
+	describe, varlist
+	foreach myvar in `r(varlist)' {
+		capture replace `myvar'="-" if `myvar'=="-0"
+	}
 	save $resultsdir/option3_table3a_hazardratios_redacted.dta, replace
 	export delimited using $resultsdir/option3_table3a_hazardratios_redacted.csv, replace
 }
@@ -403,6 +479,10 @@ if _rc==0 {
 			replace hr`k'="[REDACTED]" if hr`k'==". (., .)"
 			replace hr`k'="[FAILED]" if hr`k'=="999999.00 (999999.00, 999999.00)"
 		}
+	}
+	describe, varlist
+	foreach myvar in `r(varlist)' {
+		capture replace `myvar'="-" if `myvar'=="-0"
 	}
 	save $resultsdir/option3_table3b_hazardratios_v2_redacted.dta, replace
 	export delimited using $resultsdir/option3_table3b_hazardratios_v2_redacted.csv, replace
@@ -432,6 +512,10 @@ if _rc==0 {
 			local myname=substr("`myvar'",1,strpos("`myvar'","_rate")-1)
 			replace `myvar'="[REDACTED]" if `myname'_events=="[REDACTED]"
 		}
+	}
+	describe, varlist
+	foreach myvar in `r(varlist)' {
+		capture replace `myvar'="-" if `myvar'=="-0"
 	}
 	save $resultsdir/option3_table4a_stratified_rates_redacted.dta, replace
 	export delimited using $resultsdir/option3_table4a_stratified_rates_redacted.csv, replace
@@ -471,6 +555,10 @@ if _rc==0 {
 			}
 		}
 	}
+	describe, varlist
+	foreach myvar in `r(varlist)' {
+		capture replace `myvar'="-" if `myvar'=="-0"
+	}
 	save $resultsdir/option3_table4b_stratified_rateratios_redacted.dta, replace
 	export delimited using $resultsdir/option3_table4b_stratified_rateratios_redacted.csv, replace
 }
@@ -486,6 +574,10 @@ if _rc==0 {
 				replace `myvar'="[FAILED]" if `myvar'=="999999.00 (999999.00, 999999.00)"
 			}
 		}
+	}
+	describe, varlist
+	foreach myvar in `r(varlist)' {
+		capture replace `myvar'="-" if `myvar'=="-0"
 	}
 	save $resultsdir/option3_table5a_stratified_hazardratios_redacted.dta, replace
 	export delimited using $resultsdir/option3_table5a_stratified_hazardratios_redacted.csv, replace
@@ -503,6 +595,10 @@ if _rc==0 {
 				replace `myvar'="[OMITTED]" if `myvar'=="888888.00 (888888.00, 888888.00)"
 			}
 		}
+	}
+	describe, varlist
+	foreach myvar in `r(varlist)' {
+		capture replace `myvar'="-" if `myvar'=="-0"
 	}
 	save $resultsdir/option3_table5b_stratified_hazardratios_v2_redacted.dta, replace
 	export delimited using $resultsdir/option3_table5b_stratified_hazardratios_v2_redacted.csv, replace
@@ -528,6 +624,10 @@ if _rc==0 {
 			replace numevents`k'="[REDACTED]" if numevents`k'=="."
 		}
 	}
+	describe, varlist
+	foreach myvar in `r(varlist)' {
+		capture replace `myvar'="-" if `myvar'=="-0"
+	}
 	save $resultsdir/option3_table6_periodspecific_rates_redacted.dta, replace
 	export delimited using $resultsdir/option3_table6_periodspecific_rates_redacted.csv, replace
 }
@@ -541,6 +641,10 @@ if _rc==0 {
 			replace `myvar'="[REDACTED]" if (`myvar'==". (., .)" | `myvar'=="-" | `myvar'==".")
 			replace `myvar'="[FAILED]" if `myvar'=="999999.00 (999999.00, 999999.00)"
 		}
+	}
+	describe, varlist
+	foreach myvar in `r(varlist)' {
+		capture replace `myvar'="-" if `myvar'=="-0"
 	}
 	save $resultsdir/option3_table7_periodspecific_hazardratios_redacted.dta, replace
 	export delimited using $resultsdir/option3_table7_periodspecific_hazardratios_redacted.csv, replace
@@ -566,6 +670,10 @@ if _rc==0 {
 			replace numevents`k'="[REDACTED]" if numevents`k'=="."
 		}
 	}
+	describe, varlist
+	foreach myvar in `r(varlist)' {
+		capture replace `myvar'="-" if `myvar'=="-0"
+	}
 	save $resultsdir/option3_table8_splitfollowup_rates_redacted.dta, replace
 	export delimited using $resultsdir/option3_table8_splitfollowup_rates_redacted.csv, replace
 }
@@ -579,6 +687,10 @@ if _rc==0 {
 			replace `myvar'="[REDACTED]" if (`myvar'==". (., .)" | `myvar'=="-" | `myvar'==".")
 			replace `myvar'="[FAILED]" if `myvar'=="999999.00 (999999.00, 999999.00)"
 		}
+	}
+	describe, varlist
+	foreach myvar in `r(varlist)' {
+		capture replace `myvar'="-" if `myvar'=="-0"
 	}
 	save $resultsdir/option3_table9_splitfollowup_hazardratios_redacted.dta, replace
 	export delimited using $resultsdir/option3_table9_splitfollowup_hazardratios_redacted.csv, replace

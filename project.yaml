@@ -148,8 +148,8 @@ actions:
         table4: output/results/option1_table2b_rateratios_redacted.csv
         table5: output/results/option1_table3a_hazardratios_redacted.dta
         table6: output/results/option1_table3a_hazardratios_redacted.csv
-        table7: output/results/option1_table3b_hazardratios_redacted.dta
-        table8: output/results/option1_table3b_hazardratios_redacted.csv
+        table7: output/results/option1_table3b_hazardratios_v2_redacted.dta
+        table8: output/results/option1_table3b_hazardratios_v2_redacted.csv
         table9: output/results/option1_table4b_stratified_rateratios_redacted.dta
         table10: output/results/option1_table4b_stratified_rateratios_redacted.csv
         table11: output/results/option1_table6_periodspecific_rates_redacted.dta

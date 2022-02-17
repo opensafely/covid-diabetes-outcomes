@@ -62,7 +62,7 @@ if _rc==0 {
 		replace rate="[REDACTED]" if numevents==.
 
 		foreach myvar in "rateratio" "adj_rateratio" "fulladj_rateratio" "ipw_rateratio" "sipw_rateratio" {
-			replace `myvar'="-" if group=="COVID-19 with diabetes"
+			replace `myvar'="Ref." if group=="COVID-19 with diabetes"
 			replace `myvar'="[REDACTED]" if (numevents==. | numevents[_n-1]==.) & group=="COVID-19 without diabetes"
 			replace `myvar'="[FAILED]" if (`myvar'==". (., .)" | `myvar'=="0.00 (0.00, 0.00)") & group!="COVID-19 with diabetes"
 		}
@@ -178,7 +178,7 @@ if _rc==0 {
 		foreach mytype in "rr" "adj_rr" "fuladj_rr" "ipw_rr" "sipw_rr" {
 			describe *_`mytype', varlist
 			foreach myvar in `r(varlist)' {
-				replace `myvar'="-" if group=="COVID-19 with diabetes"
+				replace `myvar'="Ref." if group=="COVID-19 with diabetes"
 				local myname=substr("`myvar'",1,strpos("`myvar'","_`mytype'")-1)
 				capture replace `myvar'="[REDACTED]" if (`myname'_events=="[REDACTED]" | `myname'_events[_n-1]=="[REDACTED]") & group=="COVID-19 without diabetes"
 			}
@@ -385,7 +385,7 @@ if _rc==0 {
 		replace rate="[REDACTED]" if numevents==.
 
 		foreach myvar in "rateratio" "adj_rateratio" "fulladj_rateratio" "ipw_rateratio" "sipw_rateratio" {
-			replace `myvar'="-" if group=="COVID-19 with diabetes"
+			replace `myvar'="Ref." if group=="COVID-19 with diabetes"
 			replace `myvar'="[REDACTED]" if (numevents==. | numevents[_n-1]==.) & group=="COVID-19 without diabetes"
 			replace `myvar'="[FAILED]" if (`myvar'==". (., .)" | `myvar'=="0.00 (0.00, 0.00)") & group!="COVID-19 with diabetes"
 		}
@@ -501,7 +501,7 @@ if _rc==0 {
 		foreach mytype in "rr" "adj_rr" "fuladj_rr" "ipw_rr" "sipw_rr" {
 			describe *_`mytype', varlist
 			foreach myvar in `r(varlist)' {
-				replace `myvar'="-" if group=="COVID-19 with diabetes"
+				replace `myvar'="Ref." if group=="COVID-19 with diabetes"
 				local myname=substr("`myvar'",1,strpos("`myvar'","_`mytype'")-1)
 				capture replace `myvar'="[REDACTED]" if (`myname'_events=="[REDACTED]" | `myname'_events[_n-1]=="[REDACTED]") & group=="COVID-19 without diabetes"
 			}

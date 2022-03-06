@@ -314,3 +314,11 @@ actions:
         table12: release/part2_option1_table4b_stratified_rateratios_redacted.csv
         table13: release/part2_option1_table6_periodspecific_rates_redacted.csv
         table14: release/part2_option1_table8_splitfollowup_rates_redacted.csv
+
+  checks:
+    run: stata-mp:latest analysis/910_checks_ethnicity.do
+    needs: [generate_cohort]
+    outputs:
+      moderately_sensitive:
+        table1: output/checks/ethnicity.dta
+        table2: output/checks/ethnicity.csv

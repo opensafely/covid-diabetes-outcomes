@@ -141,8 +141,8 @@ if _rc==0 {
 
 **// COVID-19 vaccination status (at baseline)
 gen cat_vaccin=1
-capture replace cat_vaccin=2 if date_vaccin_gp_1<date_covid_hospital
-capture replace cat_vaccin=3 if date_vaccin_gp_2<date_covid_hospital
+capture replace cat_vaccin=2 if date_vaccin_gp_1<date_patient_index
+capture replace cat_vaccin=3 if date_vaccin_gp_2<date_patient_index
 label define cat_vaccinlab 1 "None" 2 "One dose" 3 "Two doses"
 label value cat_vaccin cat_vaccinlab
 drop date_vaccin_*
@@ -171,7 +171,8 @@ if _rc==0 {
 **// BMI
 capture describe bmi
 if _rc==0 {
-	drop if (bmi==. | bmi<0)
+	*drop if (bmi==. | bmi<0)
+	replace bmi=. if bmi<=0
 	gen    cat_bmi=.
 	recode cat_bmi .=1 if bmi<18.5
 	recode cat_bmi .=2 if bmi<25
@@ -188,16 +189,16 @@ capture describe hba1c
 if _rc==0 {
 	gen cat_hba1c=.
 	recode cat_hba1c .=1 if hba1c>0 & hba1c<42
-	recode cat_hba1c .=2 if hba1c<48
-	recode cat_hba1c .=3 if hba1c!=.
+	recode cat_hba1c .=2 if hba1c>=42 & hba1c<48
+	recode cat_hba1c .=3 if hba1c>=48 & hba1c!=.
 	recode cat_hba1c .=4
 }
 capture describe hba1c_percent
 if _rc==0 {
 	gen cat_hba1c_percent=.
 	recode cat_hba1c_percent .=1 if hba1c_percent>0 & hba1c_percent<6
-	recode cat_hba1c_percent .=2 if hba1c_percent<6.5
-	recode cat_hba1c_percent .=3 if hba1c_percent!=.
+	recode cat_hba1c_percent .=2 if hba1c_percent>=6 & hba1c_percent<6.5
+	recode cat_hba1c_percent .=3 if hba1c_percent>=6.5 & hba1c_percent!=.
 	recode cat_hba1c_percent .=4
 }
 capture replace cat_hba1c=cat_hba1c_percent if date_hba1c_percent>date_hba1c & date_hba1c_percent!=. & cat_hba1c_percent<4

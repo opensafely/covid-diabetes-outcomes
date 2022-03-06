@@ -171,8 +171,8 @@ if _rc==0 {
 **// BMI
 capture describe bmi
 if _rc==0 {
-	*drop if (bmi==. | bmi<0)
-	replace bmi=. if bmi<=0
+	drop if (bmi==. | bmi<0)
+	*replace bmi=. if bmi<=0
 	gen    cat_bmi=.
 	recode cat_bmi .=1 if bmi<18.5
 	recode cat_bmi .=2 if bmi<25

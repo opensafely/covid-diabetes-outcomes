@@ -69,7 +69,7 @@ replace category="Obese" if strpos(lower(demographic),"bmi")!=0 & category=="4"
 replace category="Unknown" if strpos(lower(demographic),"bmi")!=0 & (category=="5" | category==".")
 
 **// HbA1c
-replace category="Normal" if strpos(lower(demographic),"hba1c")!=0 & category=="1"
-replace category="Prediabetes" if strpos(lower(demographic),"hba1c")!=0 & category=="2"
-replace category="Diabetes" if strpos(lower(demographic),"hba1c")!=0 & category=="3"
+replace category="< 42 mmol/mol" if strpos(lower(demographic),"hba1c")!=0 & category=="1"
+replace category="42 to 47" if strpos(lower(demographic),"hba1c")!=0 & category=="2"
+replace category=">= 48" if strpos(lower(demographic),"hba1c")!=0 & category=="3"
 replace category="Unknown" if strpos(lower(demographic),"hba1c")!=0 & (category=="4" | category==".")

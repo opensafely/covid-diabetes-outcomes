@@ -1,7 +1,7 @@
 version: '3.0'
 
 expectations:
-  population_size: 10
+  population_size: 100
 
 actions:
 
@@ -11,165 +11,165 @@ actions:
       highly_sensitive:
         cohort: output/input_part1.csv
 
-  data_cleaning:
-    run: stata-mp:latest analysis/010_cleaning.do
-    needs: [generate_cohort]
-    outputs:
-      highly_sensitive:
-        analysis_dataset: output/input_part1_clean.dta
+  #data_cleaning:
+    #run: stata-mp:latest analysis/010_cleaning.do
+    #needs: [generate_cohort]
+    #outputs:
+      #highly_sensitive:
+        #analysis_dataset: output/input_part1_clean.dta
 
-  matching_groups_1_and_2:
-    run: stata-mp:latest analysis/021_matching_groups_1_and_2.do
-    needs: [data_cleaning]
-    outputs:
-      highly_sensitive:
-        analysis_dataset: output/matched_groups_1_and_2.dta
+  #matching_groups_1_and_2:
+    #run: stata-mp:latest analysis/021_matching_groups_1_and_2.do
+    #needs: [data_cleaning]
+    #outputs:
+      #highly_sensitive:
+        #analysis_dataset: output/matched_groups_1_and_2.dta
 
-  matching_groups_1_and_3:
-    run: stata-mp:latest analysis/022_matching_groups_1_and_3.do
-    needs: [data_cleaning]
-    outputs:
-      highly_sensitive:
-        analysis_dataset: output/matched_groups_1_and_3.dta
+  #matching_groups_1_and_3:
+    #run: stata-mp:latest analysis/022_matching_groups_1_and_3.do
+    #needs: [data_cleaning]
+    #outputs:
+      #highly_sensitive:
+        #analysis_dataset: output/matched_groups_1_and_3.dta
 
-  matching_groups_1_2_and_3:
-    run: stata-mp:latest analysis/023_matching_groups_1_2_and_3.do
-    needs: [matching_groups_1_and_2, matching_groups_1_and_3]
-    outputs:
-      highly_sensitive:
-        analysis_dataset: output/matched_groups_1_2_and_3.dta
+  #matching_groups_1_2_and_3:
+    #run: stata-mp:latest analysis/023_matching_groups_1_2_and_3.do
+    #needs: [matching_groups_1_and_2, matching_groups_1_and_3]
+    #outputs:
+      #highly_sensitive:
+        #analysis_dataset: output/matched_groups_1_2_and_3.dta
 
-  analyses_option1_table1:
-    run: stata-mp:latest analysis/110_analyses_option1_table1_demographics.do
-    needs: [data_cleaning]
-    outputs:
-      moderately_sensitive:
-        table1: output/results/option1_table1_demographics.dta
+  #analyses_option1_table1:
+    #run: stata-mp:latest analysis/110_analyses_option1_table1_demographics.do
+    #needs: [data_cleaning]
+    #outputs:
+      #moderately_sensitive:
+        #table1: output/results/option1_table1_demographics.dta
 
-  analyses_option1_table2b:
-    run: stata-mp:latest analysis/121_analyses_option1_table2b_rateratios.do
-    needs: [data_cleaning]
-    outputs:
-      moderately_sensitive:
-        table1: output/results/option1_table2b_rateratios.dta
+  #analyses_option1_table2b:
+    #run: stata-mp:latest analysis/121_analyses_option1_table2b_rateratios.do
+    #needs: [data_cleaning]
+    #outputs:
+      #moderately_sensitive:
+        #table1: output/results/option1_table2b_rateratios.dta
 
-  analyses_option1_table3a:
-    run: stata-mp:latest analysis/130_analyses_option1_table3a_hazardratios.do
-    needs: [data_cleaning]
-    outputs:
-      moderately_sensitive:
-        table1: output/results/option1_table3a_hazardratios.dta
+  #analyses_option1_table3a:
+    #run: stata-mp:latest analysis/130_analyses_option1_table3a_hazardratios.do
+    #needs: [data_cleaning]
+    #outputs:
+      #moderately_sensitive:
+        #table1: output/results/option1_table3a_hazardratios.dta
 
-  analyses_option1_table3b:
-    run: stata-mp:latest analysis/131_analyses_option1_table3b_hazardratios_v2.do
-    needs: [data_cleaning]
-    outputs:
-      moderately_sensitive:
-        table1: output/results/option1_table3b_hazardratios_v2.dta
+  #analyses_option1_table3b:
+    #run: stata-mp:latest analysis/131_analyses_option1_table3b_hazardratios_v2.do
+    #needs: [data_cleaning]
+    #outputs:
+      #moderately_sensitive:
+        #table1: output/results/option1_table3b_hazardratios_v2.dta
 
-  analyses_option1_table4b:
-    run: stata-mp:latest analysis/141_analyses_option1_table4b_stratified_rateratios.do
-    needs: [data_cleaning]
-    outputs:
-      moderately_sensitive:
-        table1: output/results/option1_table4b_stratified_rateratios.dta
+  #analyses_option1_table4b:
+    #run: stata-mp:latest analysis/141_analyses_option1_table4b_stratified_rateratios.do
+    #needs: [data_cleaning]
+    #outputs:
+      #moderately_sensitive:
+        #table1: output/results/option1_table4b_stratified_rateratios.dta
 
-  analyses_option1_table6:
-    run: stata-mp:latest analysis/160_analyses_option1_table6_periodspecific_rates.do
-    needs: [data_cleaning]
-    outputs:
-      moderately_sensitive:
-        table1: output/results/option1_table6_periodspecific_rates.dta
+  #analyses_option1_table6:
+    #run: stata-mp:latest analysis/160_analyses_option1_table6_periodspecific_rates.do
+    #needs: [data_cleaning]
+    #outputs:
+      #moderately_sensitive:
+        #table1: output/results/option1_table6_periodspecific_rates.dta
 
-  analyses_option1_table8:
-    run: stata-mp:latest analysis/180_analyses_option1_table8_splitfollowup_rates.do
-    needs: [data_cleaning]
-    outputs:
-      moderately_sensitive:
-        table1: output/results/option1_table8_splitfollowup_rates.dta
+  #analyses_option1_table8:
+    #run: stata-mp:latest analysis/180_analyses_option1_table8_splitfollowup_rates.do
+    #needs: [data_cleaning]
+    #outputs:
+      #moderately_sensitive:
+        #table1: output/results/option1_table8_splitfollowup_rates.dta
 
-  analyses_option2_table1a:
-    run: stata-mp:latest analysis/210_analyses_option2_table1a_demographics_groups_1_and_2.do
-    needs: [matching_groups_1_and_2]
-    outputs:
-      moderately_sensitive:
-        table1: output/results/option2_table1a_demographics_groups_1_and_2.dta
+  #analyses_option2_table1a:
+    #run: stata-mp:latest analysis/210_analyses_option2_table1a_demographics_groups_1_and_2.do
+    #needs: [matching_groups_1_and_2]
+    #outputs:
+      #moderately_sensitive:
+        #table1: output/results/option2_table1a_demographics_groups_1_and_2.dta
 
-  analyses_option2_table1b:
-    run: stata-mp:latest analysis/211_analyses_option2_table1b_demographics_groups_1_and_3.do
-    needs: [matching_groups_1_and_3]
-    outputs:
-      moderately_sensitive:
-        table1: output/results/option2_table1b_demographics_groups_1_and_3.dta
+  #analyses_option2_table1b:
+    #run: stata-mp:latest analysis/211_analyses_option2_table1b_demographics_groups_1_and_3.do
+    #needs: [matching_groups_1_and_3]
+    #outputs:
+      #moderately_sensitive:
+        #table1: output/results/option2_table1b_demographics_groups_1_and_3.dta
 
-  analyses_option3_table1:
-    run: stata-mp:latest analysis/310_analyses_option3_table1_demographics.do
-    needs: [matching_groups_1_2_and_3]
-    outputs:
-      moderately_sensitive:
-        table1: output/results/option3_table1_demographics.dta
+  #analyses_option3_table1:
+    #run: stata-mp:latest analysis/310_analyses_option3_table1_demographics.do
+    #needs: [matching_groups_1_2_and_3]
+    #outputs:
+      #moderately_sensitive:
+        #table1: output/results/option3_table1_demographics.dta
 
-  analyses_option3_table2b:
-    run: stata-mp:latest analysis/321_analyses_option3_table2b_rateratios.do
-    needs: [matching_groups_1_2_and_3]
-    outputs:
-      moderately_sensitive:
-        table1: output/results/option3_table2b_rateratios.dta
+  #analyses_option3_table2b:
+    #run: stata-mp:latest analysis/321_analyses_option3_table2b_rateratios.do
+    #needs: [matching_groups_1_2_and_3]
+    #outputs:
+      #moderately_sensitive:
+        #table1: output/results/option3_table2b_rateratios.dta
 
-  analyses_option3_table4b:
-    run: stata-mp:latest analysis/341_analyses_option3_table4b_stratified_rateratios.do
-    needs: [matching_groups_1_2_and_3]
-    outputs:
-      moderately_sensitive:
-        table1: output/results/option3_table4b_stratified_rateratios.dta
+  #analyses_option3_table4b:
+    #run: stata-mp:latest analysis/341_analyses_option3_table4b_stratified_rateratios.do
+    #needs: [matching_groups_1_2_and_3]
+    #outputs:
+      #moderately_sensitive:
+        #table1: output/results/option3_table4b_stratified_rateratios.dta
 
-  analyses_option3_table6:
-    run: stata-mp:latest analysis/360_analyses_option3_table6_periodspecific_rates.do
-    needs: [matching_groups_1_2_and_3]
-    outputs:
-      moderately_sensitive:
-        table1: output/results/option3_table6_periodspecific_rates.dta
+  #analyses_option3_table6:
+    #run: stata-mp:latest analysis/360_analyses_option3_table6_periodspecific_rates.do
+    #needs: [matching_groups_1_2_and_3]
+    #outputs:
+      #moderately_sensitive:
+        #table1: output/results/option3_table6_periodspecific_rates.dta
 
-  analyses_option3_table8:
-    run: stata-mp:latest analysis/380_analyses_option3_table8_splitfollowup_rates.do
-    needs: [matching_groups_1_2_and_3]
-    outputs:
-      moderately_sensitive:
-        table1: output/results/option3_table8_splitfollowup_rates.dta
+  #analyses_option3_table8:
+    #run: stata-mp:latest analysis/380_analyses_option3_table8_splitfollowup_rates.do
+    #needs: [matching_groups_1_2_and_3]
+    #outputs:
+      #moderately_sensitive:
+        #table1: output/results/option3_table8_splitfollowup_rates.dta
   
-  redaction:
-    run: stata-mp:latest analysis/400_redaction.do
-    needs: [analyses_option1_table1, analyses_option1_table2b, analyses_option1_table3a, analyses_option1_table3b, analyses_option1_table4b, analyses_option1_table6, analyses_option1_table8, analyses_option2_table1a, analyses_option2_table1b, analyses_option3_table1, analyses_option3_table2b, analyses_option3_table4b, analyses_option3_table6, analyses_option3_table8]
-    outputs:
-      moderately_sensitive:
-        table1: output/results/option1_table1_demographics_redacted.dta
-        table2: output/results/option1_table1_demographics_redacted.csv
-        table3: output/results/option1_table2b_rateratios_redacted.dta
-        table4: output/results/option1_table2b_rateratios_redacted.csv
-        table5: output/results/option1_table3a_hazardratios_redacted.dta
-        table6: output/results/option1_table3a_hazardratios_redacted.csv
-        table7: output/results/option1_table3b_hazardratios_v2_redacted.dta
-        table8: output/results/option1_table3b_hazardratios_v2_redacted.csv
-        table9: output/results/option1_table4b_stratified_rateratios_redacted.dta
-        table10: output/results/option1_table4b_stratified_rateratios_redacted.csv
-        table11: output/results/option1_table6_periodspecific_rates_redacted.dta
-        table12: output/results/option1_table6_periodspecific_rates_redacted.csv
-        table13: output/results/option1_table8_splitfollowup_rates_redacted.dta
-        table14: output/results/option1_table8_splitfollowup_rates_redacted.csv
-        table15: output/results/option2_table1a_demographics_groups_1_and_2_redacted.dta
-        table16: output/results/option2_table1a_demographics_groups_1_and_2_redacted.csv
-        table17: output/results/option2_table1b_demographics_groups_1_and_3_redacted.dta
-        table18: output/results/option2_table1b_demographics_groups_1_and_3_redacted.csv
-        table19: output/results/option3_table1_demographics_redacted.dta
-        table20: output/results/option3_table1_demographics_redacted.csv
-        table21: output/results/option3_table2b_rateratios_redacted.dta
-        table22: output/results/option3_table2b_rateratios_redacted.csv
-        table23: output/results/option3_table4b_stratified_rateratios_redacted.dta
-        table24: output/results/option3_table4b_stratified_rateratios_redacted.csv
-        table25: output/results/option3_table6_periodspecific_rates_redacted.dta
-        table26: output/results/option3_table6_periodspecific_rates_redacted.csv
-        table27: output/results/option3_table8_splitfollowup_rates_redacted.dta
-        table28: output/results/option3_table8_splitfollowup_rates_redacted.csv
+  #redaction:
+    #run: stata-mp:latest analysis/400_redaction.do
+    #needs: [analyses_option1_table1, analyses_option1_table2b, analyses_option1_table3a, analyses_option1_table3b, analyses_option1_table4b, analyses_option1_table6, analyses_option1_table8, analyses_option2_table1a, analyses_option2_table1b, analyses_option3_table1, analyses_option3_table2b, analyses_option3_table4b, analyses_option3_table6, analyses_option3_table8]
+    #outputs:
+      #moderately_sensitive:
+        #table1: output/results/option1_table1_demographics_redacted.dta
+        #table2: output/results/option1_table1_demographics_redacted.csv
+        #table3: output/results/option1_table2b_rateratios_redacted.dta
+        #table4: output/results/option1_table2b_rateratios_redacted.csv
+        #table5: output/results/option1_table3a_hazardratios_redacted.dta
+        #table6: output/results/option1_table3a_hazardratios_redacted.csv
+        #table7: output/results/option1_table3b_hazardratios_v2_redacted.dta
+        #table8: output/results/option1_table3b_hazardratios_v2_redacted.csv
+        #table9: output/results/option1_table4b_stratified_rateratios_redacted.dta
+        #table10: output/results/option1_table4b_stratified_rateratios_redacted.csv
+        #table11: output/results/option1_table6_periodspecific_rates_redacted.dta
+        #table12: output/results/option1_table6_periodspecific_rates_redacted.csv
+        #table13: output/results/option1_table8_splitfollowup_rates_redacted.dta
+        #table14: output/results/option1_table8_splitfollowup_rates_redacted.csv
+        #table15: output/results/option2_table1a_demographics_groups_1_and_2_redacted.dta
+        #table16: output/results/option2_table1a_demographics_groups_1_and_2_redacted.csv
+        #table17: output/results/option2_table1b_demographics_groups_1_and_3_redacted.dta
+        #table18: output/results/option2_table1b_demographics_groups_1_and_3_redacted.csv
+        #table19: output/results/option3_table1_demographics_redacted.dta
+        #table20: output/results/option3_table1_demographics_redacted.csv
+        #table21: output/results/option3_table2b_rateratios_redacted.dta
+        #table22: output/results/option3_table2b_rateratios_redacted.csv
+        #table23: output/results/option3_table4b_stratified_rateratios_redacted.dta
+        #table24: output/results/option3_table4b_stratified_rateratios_redacted.csv
+        #table25: output/results/option3_table6_periodspecific_rates_redacted.dta
+        #table26: output/results/option3_table6_periodspecific_rates_redacted.csv
+        #table27: output/results/option3_table8_splitfollowup_rates_redacted.dta
+        #table28: output/results/option3_table8_splitfollowup_rates_redacted.csv
 
   generate_cohort_2:
     run: cohortextractor:latest generate_cohort --study-definition study_definition_part2
@@ -177,148 +177,240 @@ actions:
       highly_sensitive:
         cohort: output/input_part2.csv
 
-  part2_data_cleaning:
-    run: stata-mp:latest analysis/510_part2_cleaning.do
+  #part2_data_cleaning:
+    #run: stata-mp:latest analysis/510_part2_cleaning.do
+    #needs: [generate_cohort_2]
+    #outputs:
+      #highly_sensitive:
+        #analysis_dataset: output/input_part2_clean.dta
+
+  #part2_matching_groups_1_and_2:
+    #run: stata-mp:latest analysis/521_part2_matching_groups_1_and_2.do
+    #needs: [part2_data_cleaning]
+    #outputs:
+      #highly_sensitive:
+        #analysis_dataset: output/matched_part2_groups_1_and_2.dta
+
+  #part2_analyses_option1_table1:
+    #run: stata-mp:latest analysis/610_part2_analyses_option1_table1_demographics.do
+    #needs: [part2_data_cleaning]
+    #outputs:
+      #moderately_sensitive:
+        #table1: output/results/part2_option1_table1_demographics.dta
+
+  #part2_analyses_option1_table2b:
+    #run: stata-mp:latest analysis/621_part2_analyses_option1_table2b_rateratios.do
+    #needs: [part2_data_cleaning]
+    #outputs:
+      #moderately_sensitive:
+        #table1: output/results/part2_option1_table2b_rateratios.dta
+
+  #part2_analyses_option1_table3a:
+    #run: stata-mp:latest analysis/630_part2_analyses_option1_table3a_hazardratios.do
+    #needs: [part2_data_cleaning]
+    #outputs:
+      #moderately_sensitive:
+        #table1: output/results/part2_option1_table3a_hazardratios.dta
+
+  #part2_analyses_option1_table3b:
+    #run: stata-mp:latest analysis/631_part2_analyses_option1_table3b_hazardratios_v2.do
+    #needs: [part2_data_cleaning]
+    #outputs:
+      #moderately_sensitive:
+        #table1: output/results/part2_option1_table3b_hazardratios_v2.dta
+
+  #part2_analyses_option1_table4b:
+    #run: stata-mp:latest analysis/641_part2_analyses_option1_table4b_stratified_rateratios.do
+    #needs: [part2_data_cleaning]
+    #outputs:
+      #moderately_sensitive:
+        #table1: output/results/part2_option1_table4b_stratified_rateratios.dta
+
+  #part2_analyses_option1_table6:
+    #run: stata-mp:latest analysis/660_part2_analyses_option1_table6_periodspecific_rates.do
+    #needs: [part2_data_cleaning]
+    #outputs:
+      #moderately_sensitive:
+        #table1: output/results/part2_option1_table6_periodspecific_rates.dta
+
+  #part2_analyses_option1_table8:
+    #run: stata-mp:latest analysis/680_part2_analyses_option1_table8_splitfollowup_rates.do
+    #needs: [part2_data_cleaning]
+    #outputs:
+      #moderately_sensitive:
+        #table1: output/results/part2_option1_table8_splitfollowup_rates.dta
+
+  #part2_analyses_option2_table1:
+    #run: stata-mp:latest analysis/710_part2_analyses_option2_table1_demographics.do
+    #needs: [part2_matching_groups_1_and_2]
+    #outputs:
+      #moderately_sensitive:
+        #table1: output/results/part2_option2_table1_demographics.dta
+
+  #part2_analyses_option2_table2b:
+    #run: stata-mp:latest analysis/721_part2_analyses_option2_table2b_rateratios.do
+    #needs: [part2_matching_groups_1_and_2]
+    #outputs:
+      #moderately_sensitive:
+        #table1: output/results/part2_option2_table2b_rateratios.dta
+
+  #part2_analyses_option2_table4b:
+    #run: stata-mp:latest analysis/741_part2_analyses_option2_table4b_stratified_rateratios.do
+    #needs: [part2_matching_groups_1_and_2]
+    #outputs:
+      #moderately_sensitive:
+        #table1: output/results/part2_option2_table4b_stratified_rateratios.dta
+
+  #part2_analyses_option2_table6:
+    #run: stata-mp:latest analysis/760_part2_analyses_option2_table6_periodspecific_rates.do
+    #needs: [part2_matching_groups_1_and_2]
+    #outputs:
+      #moderately_sensitive:
+        #table1: output/results/part2_option2_table6_periodspecific_rates.dta
+
+  #part2_analyses_option2_table8:
+    #run: stata-mp:latest analysis/780_part2_analyses_option2_table8_splitfollowup_rates.do
+    #needs: [part2_matching_groups_1_and_2]
+    #outputs:
+      #moderately_sensitive:
+        #table1: output/results/part2_option2_table8_splitfollowup_rates.dta
+
+  #part2_redaction:
+    #run: stata-mp:latest analysis/800_part2_redaction.do
+    #needs: [part2_analyses_option1_table1, part2_analyses_option1_table2b, part2_analyses_option1_table3a, part2_analyses_option1_table3b, part2_analyses_option1_table4b, part2_analyses_option1_table6, part2_analyses_option1_table8]
+    #outputs:
+      #moderately_sensitive:
+        #table1: output/results/part2_option1_table1_demographics_redacted.dta
+        #table2: output/results/part2_option1_table1_demographics_redacted.csv
+        #table3: output/results/part2_option1_table2b_rateratios_redacted.dta
+        #table4: output/results/part2_option1_table2b_rateratios_redacted.csv
+        #table5: output/results/part2_option1_table3a_hazardratios_redacted.dta
+        #table6: output/results/part2_option1_table3a_hazardratios_redacted.csv
+        #table7: output/results/part2_option1_table3b_hazardratios_v2_redacted.dta
+        #table8: output/results/part2_option1_table3b_hazardratios_v2_redacted.csv
+        #table9: output/results/part2_option1_table4b_stratified_rateratios_redacted.dta
+        #table10: output/results/part2_option1_table4b_stratified_rateratios_redacted.csv
+        #table11: output/results/part2_option1_table6_periodspecific_rates_redacted.dta
+        #table12: output/results/part2_option1_table6_periodspecific_rates_redacted.csv
+        #table13: output/results/part2_option1_table8_splitfollowup_rates_redacted.dta
+        #table14: output/results/part2_option1_table8_splitfollowup_rates_redacted.csv
+
+  #file_transfer:
+    #run: stata-mp:latest analysis/900_file_transfer.do
+    #needs: [redaction, part2_redaction]
+    #outputs:
+      #moderately_sensitive:
+        #table1: release/option1_table1_demographics_redacted.csv
+        #table2: release/option1_table2b_rateratios_redacted.csv
+        #table3: release/option1_table3a_hazardratios_redacted.csv
+        #table4: release/option1_table3b_hazardratios_v2_redacted.csv
+        #table5: release/option1_table4b_stratified_rateratios_redacted.csv
+        #table6: release/option1_table6_periodspecific_rates_redacted.csv
+        #table7: release/option1_table8_splitfollowup_rates_redacted.csv
+        #table8: release/part2_option1_table1_demographics_redacted.csv
+        #table9: release/part2_option1_table2b_rateratios_redacted.csv
+        #table10: release/part2_option1_table3a_hazardratios_redacted.csv
+        #table11: release/part2_option1_table3b_hazardratios_v2_redacted.csv
+        #table12: release/part2_option1_table4b_stratified_rateratios_redacted.csv
+        #table13: release/part2_option1_table6_periodspecific_rates_redacted.csv
+        #table14: release/part2_option1_table8_splitfollowup_rates_redacted.csv
+
+  #checks:
+    #run: stata-mp:latest analysis/910_checks_ethnicity.do
+    #needs: [generate_cohort]
+    #outputs:
+      #moderately_sensitive:
+        #table1: output/checks/ethnicity.dta
+        #table2: output/checks/ethnicity.csv
+
+  revised_data_cleaning:
+    run: stata-mp:latest analysis/revised_010_cleaning.do
+    needs: [generate_cohort]
+    outputs:
+      highly_sensitive:
+        analysis_dataset: output/input_part1_clean.dta
+
+  revised_analyses_option1_table1:
+    run: stata-mp:latest analysis/revised_110_analyses_option1_table1_demographics.do
+    needs: [revised_data_cleaning]
+    outputs:
+      moderately_sensitive:
+        table1: output/revised_results/revised_option1_table1_demographics.dta
+
+  revised_analyses_option1_table2b:
+    run: stata-mp:latest analysis/revised_121_analyses_option1_table2b_rateratios.do
+    needs: [revised_data_cleaning]
+    outputs:
+      moderately_sensitive:
+        table1: output/revised_results/revised_option1_table2b_rateratios.dta
+
+  revised_analyses_option1_table4b:
+    run: stata-mp:latest analysis/revised_141_analyses_option1_table4b_stratified_rateratios.do
+    needs: [revised_data_cleaning]
+    outputs:
+      moderately_sensitive:
+        table1: output/revised_results/revised_option1_table4b_stratified_rateratios.dta
+
+  revised_redaction:
+    run: stata-mp:latest analysis/revised_400_redaction.do
+    needs: [revised_analyses_option1_table1, revised_analyses_option1_table2b, revised_analyses_option1_table4b]
+    outputs:
+      moderately_sensitive:
+        table1: output/revised_results/revised_option1_table1_demographics_redacted.dta
+        table2: output/revised_results/revised_option1_table1_demographics_redacted.csv
+        table3: output/revised_results/revised_option1_table2b_rateratios_redacted.dta
+        table4: output/revised_results/revised_option1_table2b_rateratios_redacted.csv
+        table5: output/revised_results/revised_option1_table4b_stratified_rateratios_redacted.dta
+        table6: output/revised_results/revised_option1_table4b_stratified_rateratios_redacted.csv
+
+  revised_part2_data_cleaning:
+    run: stata-mp:latest analysis/revised_510_part2_cleaning.do
     needs: [generate_cohort_2]
     outputs:
       highly_sensitive:
         analysis_dataset: output/input_part2_clean.dta
 
-  part2_matching_groups_1_and_2:
-    run: stata-mp:latest analysis/521_part2_matching_groups_1_and_2.do
-    needs: [part2_data_cleaning]
-    outputs:
-      highly_sensitive:
-        analysis_dataset: output/matched_part2_groups_1_and_2.dta
-
-  part2_analyses_option1_table1:
-    run: stata-mp:latest analysis/610_part2_analyses_option1_table1_demographics.do
-    needs: [part2_data_cleaning]
+  revised_part2_analyses_option1_table1:
+    run: stata-mp:latest analysis/revised_610_part2_analyses_option1_table1_demographics.do
+    needs: [revised_part2_data_cleaning]
     outputs:
       moderately_sensitive:
-        table1: output/results/part2_option1_table1_demographics.dta
+        table1: output/revised_results/revised_part2_option1_table1_demographics.dta
 
-  part2_analyses_option1_table2b:
-    run: stata-mp:latest analysis/621_part2_analyses_option1_table2b_rateratios.do
-    needs: [part2_data_cleaning]
+  revised_part2_analyses_option1_table2b:
+    run: stata-mp:latest analysis/revised_621_part2_analyses_option1_table2b_rateratios.do
+    needs: [revised_part2_data_cleaning]
     outputs:
       moderately_sensitive:
-        table1: output/results/part2_option1_table2b_rateratios.dta
+        table1: output/revised_results/revised_part2_option1_table2b_rateratios.dta
 
-  part2_analyses_option1_table3a:
-    run: stata-mp:latest analysis/630_part2_analyses_option1_table3a_hazardratios.do
-    needs: [part2_data_cleaning]
+  revised_part2_analyses_option1_table4b:
+    run: stata-mp:latest analysis/revised_641_part2_analyses_option1_table4b_stratified_rateratios.do
+    needs: [revised_part2_data_cleaning]
     outputs:
       moderately_sensitive:
-        table1: output/results/part2_option1_table3a_hazardratios.dta
+        table1: output/revised_results/revised_part2_option1_table4b_stratified_rateratios.dta
 
-  part2_analyses_option1_table3b:
-    run: stata-mp:latest analysis/631_part2_analyses_option1_table3b_hazardratios_v2.do
-    needs: [part2_data_cleaning]
+  revised_part2_redaction:
+    run: stata-mp:latest analysis/revised_800_part2_redaction.do
+    needs: [revised_part2_analyses_option1_table1, revised_part2_analyses_option1_table2b, revised_part2_analyses_option1_table4b]
     outputs:
       moderately_sensitive:
-        table1: output/results/part2_option1_table3b_hazardratios_v2.dta
+        table1: output/revised_results/revised_part2_option1_table1_demographics_redacted.dta
+        table2: output/revised_results/revised_part2_option1_table1_demographics_redacted.csv
+        table3: output/revised_results/revised_part2_option1_table2b_rateratios_redacted.dta
+        table4: output/revised_results/revised_part2_option1_table2b_rateratios_redacted.csv
+        table5: output/revised_results/revised_part2_option1_table4b_stratified_rateratios_redacted.dta
+        table6: output/revised_results/revised_part2_option1_table4b_stratified_rateratios_redacted.csv
 
-  part2_analyses_option1_table4b:
-    run: stata-mp:latest analysis/641_part2_analyses_option1_table4b_stratified_rateratios.do
-    needs: [part2_data_cleaning]
+  revised_file_transfer:
+    run: stata-mp:latest analysis/revised_900_file_transfer.do
+    needs: [revised_redaction, revised_part2_redaction]
     outputs:
       moderately_sensitive:
-        table1: output/results/part2_option1_table4b_stratified_rateratios.dta
-
-  part2_analyses_option1_table6:
-    run: stata-mp:latest analysis/660_part2_analyses_option1_table6_periodspecific_rates.do
-    needs: [part2_data_cleaning]
-    outputs:
-      moderately_sensitive:
-        table1: output/results/part2_option1_table6_periodspecific_rates.dta
-
-  part2_analyses_option1_table8:
-    run: stata-mp:latest analysis/680_part2_analyses_option1_table8_splitfollowup_rates.do
-    needs: [part2_data_cleaning]
-    outputs:
-      moderately_sensitive:
-        table1: output/results/part2_option1_table8_splitfollowup_rates.dta
-
-  part2_analyses_option2_table1:
-    run: stata-mp:latest analysis/710_part2_analyses_option2_table1_demographics.do
-    needs: [part2_matching_groups_1_and_2]
-    outputs:
-      moderately_sensitive:
-        table1: output/results/part2_option2_table1_demographics.dta
-
-  part2_analyses_option2_table2b:
-    run: stata-mp:latest analysis/721_part2_analyses_option2_table2b_rateratios.do
-    needs: [part2_matching_groups_1_and_2]
-    outputs:
-      moderately_sensitive:
-        table1: output/results/part2_option2_table2b_rateratios.dta
-
-  part2_analyses_option2_table4b:
-    run: stata-mp:latest analysis/741_part2_analyses_option2_table4b_stratified_rateratios.do
-    needs: [part2_matching_groups_1_and_2]
-    outputs:
-      moderately_sensitive:
-        table1: output/results/part2_option2_table4b_stratified_rateratios.dta
-
-  part2_analyses_option2_table6:
-    run: stata-mp:latest analysis/760_part2_analyses_option2_table6_periodspecific_rates.do
-    needs: [part2_matching_groups_1_and_2]
-    outputs:
-      moderately_sensitive:
-        table1: output/results/part2_option2_table6_periodspecific_rates.dta
-
-  part2_analyses_option2_table8:
-    run: stata-mp:latest analysis/780_part2_analyses_option2_table8_splitfollowup_rates.do
-    needs: [part2_matching_groups_1_and_2]
-    outputs:
-      moderately_sensitive:
-        table1: output/results/part2_option2_table8_splitfollowup_rates.dta
-
-  part2_redaction:
-    run: stata-mp:latest analysis/800_part2_redaction.do
-    needs: [part2_analyses_option1_table1, part2_analyses_option1_table2b, part2_analyses_option1_table3a, part2_analyses_option1_table3b, part2_analyses_option1_table4b, part2_analyses_option1_table6, part2_analyses_option1_table8]
-    outputs:
-      moderately_sensitive:
-        table1: output/results/part2_option1_table1_demographics_redacted.dta
-        table2: output/results/part2_option1_table1_demographics_redacted.csv
-        table3: output/results/part2_option1_table2b_rateratios_redacted.dta
-        table4: output/results/part2_option1_table2b_rateratios_redacted.csv
-        table5: output/results/part2_option1_table3a_hazardratios_redacted.dta
-        table6: output/results/part2_option1_table3a_hazardratios_redacted.csv
-        table7: output/results/part2_option1_table3b_hazardratios_v2_redacted.dta
-        table8: output/results/part2_option1_table3b_hazardratios_v2_redacted.csv
-        table9: output/results/part2_option1_table4b_stratified_rateratios_redacted.dta
-        table10: output/results/part2_option1_table4b_stratified_rateratios_redacted.csv
-        table11: output/results/part2_option1_table6_periodspecific_rates_redacted.dta
-        table12: output/results/part2_option1_table6_periodspecific_rates_redacted.csv
-        table13: output/results/part2_option1_table8_splitfollowup_rates_redacted.dta
-        table14: output/results/part2_option1_table8_splitfollowup_rates_redacted.csv
-
-  file_transfer:
-    run: stata-mp:latest analysis/900_file_transfer.do
-    needs: [redaction, part2_redaction]
-    outputs:
-      moderately_sensitive:
-        table1: release/option1_table1_demographics_redacted.csv
-        table2: release/option1_table2b_rateratios_redacted.csv
-        table3: release/option1_table3a_hazardratios_redacted.csv
-        table4: release/option1_table3b_hazardratios_v2_redacted.csv
-        table5: release/option1_table4b_stratified_rateratios_redacted.csv
-        table6: release/option1_table6_periodspecific_rates_redacted.csv
-        table7: release/option1_table8_splitfollowup_rates_redacted.csv
-        table8: release/part2_option1_table1_demographics_redacted.csv
-        table9: release/part2_option1_table2b_rateratios_redacted.csv
-        table10: release/part2_option1_table3a_hazardratios_redacted.csv
-        table11: release/part2_option1_table3b_hazardratios_v2_redacted.csv
-        table12: release/part2_option1_table4b_stratified_rateratios_redacted.csv
-        table13: release/part2_option1_table6_periodspecific_rates_redacted.csv
-        table14: release/part2_option1_table8_splitfollowup_rates_redacted.csv
-
-  checks:
-    run: stata-mp:latest analysis/910_checks_ethnicity.do
-    needs: [generate_cohort]
-    outputs:
-      moderately_sensitive:
-        table1: output/checks/ethnicity.dta
-        table2: output/checks/ethnicity.csv
+        table1: revised_release/revised_option1_table1_demographics_redacted.csv
+        table2: revised_release/revised_option1_table2b_rateratios_redacted.csv
+        table3: revised_release/revised_option1_table4b_stratified_rateratios_redacted.csv
+        table4: revised_release/revised_part2_option1_table1_demographics_redacted.csv
+        table5: revised_release/revised_part2_option1_table2b_rateratios_redacted.csv
+        table6: revised_release/revised_part2_option1_table4b_stratified_rateratios_redacted.csv

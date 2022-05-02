@@ -20,11 +20,11 @@ study = StudyDefinition(
     },
     population=patients.satisfying(
         """
-            date_covid_test_1
-        OR date_covid_hospital_1
+            date_covid_test_pos
+        OR date_covid_test_neg
         """,    
     ),
-    date_covid_test_1=patients.with_test_result_in_sgss(
+    date_covid_test_pos=patients.with_test_result_in_sgss(
         pathogen="SARS-CoV-2",
         test_result="positive",
         find_first_match_in_period=True,
@@ -32,14 +32,15 @@ study = StudyDefinition(
         date_format="YYYY-MM-DD",
         return_expectations={"date": {"earliest": "2020-02-01"}},
     ),
-    date_covid_hospital_1=patients.admitted_to_hospital(
-	        with_these_diagnoses=covid_codelist,
-	        find_first_match_in_period=True,
-	        returning="date_admitted",
-	        date_format="YYYY-MM-DD",
-	        return_expectations={"date": {"earliest": "2020-02-01"}},
+    date_covid_test_neg=patients.with_test_result_in_sgss(
+        pathogen="SARS-CoV-2",
+        test_result="negative",
+        find_first_match_in_period=True,
+        returning="date",
+        date_format="YYYY-MM-DD",
+        return_expectations={"date": {"earliest": "2020-02-01"}},
     ),
-    date_patient_index=patients.minimum_of("date_covid_test_1", "date_covid_hospital_1"),
-    has_follow_up_=patients.registered_with_one_practice_between("date_patient_index - 1 year", "date_patient_index"),
+    date_patient_index=patients.minimum_of("date_covid_test_pos", "date_covid_test_neg"),
+    has_follow_up=patients.registered_with_one_practice_between("date_patient_index - 1 year", "date_patient_index"),
     **study_variables
 )

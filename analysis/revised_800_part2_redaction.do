@@ -35,7 +35,7 @@ if _rc==0 {
 		
 		replace rate="[REDACTED]" if numevents==.
 
-		foreach myvar in "ipw_rateratio" "check" {
+		foreach myvar in "ipw_rateratio" {
 			replace `myvar'="Ref." if group=="COVID-19 with diabetes"
 			replace `myvar'="[REDACTED]" if (numevents==. | numevents[_n-1]==.) & group=="COVID-19 without diabetes"
 			replace `myvar'="[REDACTED]" if (numevents==. | numevents[_n-2]==.) & group=="No COVID-19 with diabetes"
@@ -83,7 +83,7 @@ if _rc==0 {
 			local myname=substr("`myvar'",1,strpos("`myvar'","_rate")-1)
 			replace `myvar'="[REDACTED]" if `myname'_events=="[REDACTED]"
 		}	
-		foreach mytype in "ipw_rr" "check" {
+		foreach mytype in "ipw_rr" {
 			describe *_`mytype', varlist
 			foreach myvar in `r(varlist)' {
 				replace `myvar'="Ref." if group=="COVID-19 with diabetes"

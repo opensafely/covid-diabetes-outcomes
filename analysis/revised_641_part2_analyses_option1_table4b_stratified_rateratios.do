@@ -43,17 +43,14 @@ foreach outcome in "stroke_thrombotic" "stroke_haemorrhagic" "stroke_tia" "strok
 			tempname rates
 				postfile `rates' demogindex catindex groupindex str20(demographic) str25(group) `outcome'_ptime `outcome'_events `outcome'_rate `outcome'_rate_lo `outcome'_rate_hi ///
 				`outcome'_ipw_rr `outcome'_ipw_rr_lo `outcome'_ipw_rr_hi ///
-				`outcome'_check `outcome'_check_lo `outcome'_check_hi ///			
 				using $revisedresultsdir/rates_`outcome'_`demog'_`catindex'.dta, replace		
 				**// Loop over exposure groups
 				capture stptime if group==1 & myselect==1, title(person-months) per(10000)
 				if _rc==0 {
-					post `rates' (`demogindex') (`catindex') (1) ("`demog'") ("`grouplabel1'") (`r(ptime)') (`r(failures)') (`r(rate)') (`r(lb)') (`r(ub)') ///
-					(.) (.) (.) (.) (.) (.)
+					post `rates' (`demogindex') (`catindex') (1) ("`demog'") ("`grouplabel1'") (`r(ptime)') (`r(failures)') (`r(rate)') (`r(lb)') (`r(ub)') (.) (.) (.)
 				}
 				if _rc!=0 {
-					post `rates' (`demogindex') (`catindex') (1) ("`demog'") ("`grouplabel1'") (.) (.) (.) (.) (.) ///
-					(.) (.) (.) (.) (.) (.)
+					post `rates' (`demogindex') (`catindex') (1) ("`demog'") ("`grouplabel1'") (.) (.) (.) (.) (.) (.) (.) (.)
 				}
 				forvalues k=2(1)3 {
 					replace myselect=(myend>0)
@@ -73,7 +70,7 @@ foreach outcome in "stroke_thrombotic" "stroke_haemorrhagic" "stroke_tia" "strok
 						local rate_hi=.
 					}	
 					**// Loop over model specifications (comparing group 1 and group k)
-					forvalues m=1(1)2 {
+					forvalues m=1(1)1 {
 						**// IPW rate ratio
 						if `m'==1 {
 							capture logit expos i.cat_sex i.cat_age i.cat_ethnic i.cat_imd i.cat_hist_cvd i.cat_hist_renal i.cat_smoking i.cat_alcohol i.cat_bmi ///
@@ -82,10 +79,6 @@ foreach outcome in "stroke_thrombotic" "stroke_haemorrhagic" "stroke_tia" "strok
 								predict propensity
 								gen ipw=(expos/propensity)+((1-expos)/(1-propensity))
 							}
-							capture nbreg delta expos if (group==1 | group==`k') & myselect==1 [pweight=ipw], offset(ln_myend) vce(robust)
-						}
-						**// Check
-						if `m'==2 {
 							capture nbreg delta expos if (group==1 | group==`k') & myselect==1 [pweight=ipw], offset(ln_myend) vce(robust) nonrtolerance
 						}
 						if _rc==0 {
@@ -101,9 +94,7 @@ foreach outcome in "stroke_thrombotic" "stroke_haemorrhagic" "stroke_tia" "strok
 							local rr`m'_hi=.
 						}
 					}
-					post `rates' (`demogindex') (`catindex') (`k') ("`demog'") ("`grouplabel`k''") (`person_time') (`numevents') (`rate') (`rate_lo') (`rate_hi') ///
-					(`rr1') (`rr1_lo') (`rr1_hi') ///
-					(`rr2') (`rr2_lo') (`rr2_hi') 
+					post `rates' (`demogindex') (`catindex') (`k') ("`demog'") ("`grouplabel`k''") (`person_time') (`numevents') (`rate') (`rate_lo') (`rate_hi') (`rr1') (`rr1_lo') (`rr1_hi')
 					foreach myvar in propensity ipw sipw {
 						capture drop `myvar'
 					}
@@ -153,7 +144,7 @@ foreach outcome in "stroke_thrombotic" "stroke_haemorrhagic" "stroke_tia" "strok
 	drop `outcome'_rate*
 	rename newvar `outcome'_rate
 	**// Tidy presentation of rate ratios
-	foreach mytype in "ipw_rr" "check" {
+	foreach mytype in "ipw_rr" {
 		format `outcome'_`mytype' `outcome'_`mytype'_lo `outcome'_`mytype'_hi %12.2f
 		tostring `outcome'_`mytype', replace force usedisplayformat
 		tostring `outcome'_`mytype'_lo, replace force usedisplayformat

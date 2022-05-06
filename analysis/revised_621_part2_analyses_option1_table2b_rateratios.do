@@ -21,7 +21,6 @@ set more off
 tempname rates
 	postfile `rates' outindex groupindex str30(outcome) str30(group) person_time numevents rate rate_lo rate_hi ///
 	ipw_rateratio ipw_rateratio_lo ipw_rateratio_hi ///
-	check check_lo check_hi ///
 	using $revisedresultsdir/revised_part2_option1_table2b_rateratios.dta, replace
 	**// Loop over outcomes
 	local outindex=0
@@ -36,10 +35,10 @@ tempname rates
 		**// Loop over exposure groups
 		capture stptime if group==1 & myselect==1, title(person-months) per(10000)		
 		if _rc==0 {
-			post `rates' (`outindex') (1) ("`outcome'") ("`grouplabel1'") (`r(ptime)') (`r(failures)') (`r(rate)') (`r(lb)') (`r(ub)') (.) (.) (.) (.) (.) (.)
+			post `rates' (`outindex') (1) ("`outcome'") ("`grouplabel1'") (`r(ptime)') (`r(failures)') (`r(rate)') (`r(lb)') (`r(ub)') (.) (.) (.)
 		}
 		if _rc!=0 {
-			post `rates' (`outindex') (1) ("`outcome'") ("`grouplabel1'") (.) (.) (.) (.) (.) (.) (.) (.) (.) (.) (.)
+			post `rates' (`outindex') (1) ("`outcome'") ("`grouplabel1'") (.) (.) (.) (.) (.) (.) (.) (.)
 		}
 		forvalues k=2(1)3 {
 			replace myselect=(myend>0)
@@ -59,7 +58,7 @@ tempname rates
 				local rate_hi=.
 			}	
 			**// Loop over model specifications (comparing group 1 and group k)
-			forvalues m=1(1)2 {
+			forvalues m=1(1)1 {
 				**// IPW rate ratio
 				if `m'==1 {
 					capture logit expos i.cat_sex i.cat_age i.cat_ethnic i.cat_imd i.cat_hist_cvd i.cat_hist_renal i.cat_smoking i.cat_alcohol i.cat_bmi if (group==1 | group==`k') & myselect==1
@@ -67,10 +66,6 @@ tempname rates
 						predict propensity
 						gen ipw=(expos/propensity)+((1-expos)/(1-propensity))
 					}
-					capture nbreg delta expos if (group==1 | group==`k') & myselect==1 [pweight=ipw], offset(ln_myend) vce(robust) 
-				}
-				**// Check
-				if `m'==2 {
 					capture nbreg delta expos if (group==1 | group==`k') & myselect==1 [pweight=ipw], offset(ln_myend) vce(robust) nonrtolerance
 				}
 				if _rc==0 {
@@ -87,8 +82,7 @@ tempname rates
 				}
 			}
 			post `rates' (`outindex') (`k') ("`outcome'") ("`grouplabel`k''") (`person_time') (`numevents') (`rate') (`rate_lo') (`rate_hi') ///
-			(`rateratio1') (`rateratio1_lo') (`rateratio1_hi') ///
-			(`rateratio2') (`rateratio2_lo') (`rateratio2_hi')
+			(`rateratio1') (`rateratio1_lo') (`rateratio1_hi')
 			foreach myvar in propensity ipw {
 				capture drop `myvar'
 			}
@@ -136,7 +130,7 @@ drop rate rate_lo rate_hi temp*
 rename rate_ci rate
 
 **// Format rate ratios 
-foreach myvar in "ipw_rateratio" "check" {
+foreach myvar in "ipw_rateratio" {
 	format `myvar' `myvar'_lo `myvar'_hi %12.2fc
 	tostring `myvar',    gen(temp1) force usedisplayformat
 	tostring `myvar'_lo, gen(temp2) force usedisplayformat

@@ -79,7 +79,7 @@ foreach outcome in "stroke_thrombotic" "stroke_haemorrhagic" "stroke_tia" "strok
 								predict propensity
 								gen ipw=(expos/propensity)+((1-expos)/(1-propensity))
 							}
-							capture nbreg delta expos if (group==1 | group==`k') & myselect==1 [pweight=ipw], offset(ln_myend) vce(robust) nonrtolerance
+							capture nbreg delta expos if (group==1 | group==`k') & myselect==1 [pweight=ipw], offset(ln_myend) vce(robust)
 						}
 						if _rc==0 {
 							matrix M1=e(b)

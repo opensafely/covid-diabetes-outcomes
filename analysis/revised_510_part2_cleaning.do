@@ -11,7 +11,7 @@ capture drop date_covid_hospital
 
 drop date_admitted_pneum critical_care_days
 
-gen date_studyend="2022-03-010"
+gen date_studyend="2022-03-01"
 
 replace date_birth=date_birth+"-15"
 rename hba1c_date date_hba1c

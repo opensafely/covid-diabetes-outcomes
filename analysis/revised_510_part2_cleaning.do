@@ -57,6 +57,8 @@ if min(date_diabetes_diagnosis, date_t1dm_hospital_first, date_t2dm_hospital_fir
 **// Group 3 (censor at subsequent positive test)
 replace date_censor=date_covid_test_pos if date_covid_test_pos<date_censor & group==3
 
+keep if group>=1 & group<=3
+
 drop date_deregistered
 
 **// Type of diabetes

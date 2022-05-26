@@ -404,13 +404,10 @@ actions:
         table6: output/revised_results/revised_part2_option1_table4b_stratified_rateratios_redacted.csv
 
   revised_file_transfer:
-    run: stata-mp:latest analysis/revised_900_file_transfer.do
-    needs: [revised_redaction, revised_part2_redaction]
+    run: stata-mp:latest analysis/revised_900_file_transfer_corrected.do
+    needs: [revised_part2_redaction]
     outputs:
       moderately_sensitive:
-        table1: revised_release/revised_option1_table1_demographics_redacted.csv
-        table2: revised_release/revised_option1_table2b_rateratios_redacted.csv
-        table3: revised_release/revised_option1_table4b_stratified_rateratios_redacted.csv
-        table4: revised_release/revised_part2_option1_table1_demographics_redacted.csv
-        table5: revised_release/revised_part2_option1_table2b_rateratios_redacted.csv
-        table6: revised_release/revised_part2_option1_table4b_stratified_rateratios_redacted.csv
+        table1: revised_release_corrected/revised_part2_option1_table1_demographics_redacted.csv
+        table2: revised_release_corrected/revised_part2_option1_table2b_rateratios_redacted.csv
+        table3: revised_release_corrected/revised_part2_option1_table4b_stratified_rateratios_redacted.csv

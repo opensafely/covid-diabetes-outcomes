@@ -430,3 +430,33 @@ actions:
         table4: output/temp_results/revised_part2_option1_table2b_rateratios_redacted.csv
         table5: output/temp_results/revised_part2_option1_table4b_reduc_redacted.dta
         table6: output/temp_results/revised_part2_option1_table4b_reduc_redacted.csv
+
+  revised2_analyses_option1_table2b:
+    run: stata-mp:latest analysis/revised2_121_analyses_option1_table2b_rateratios.do
+    needs: [revised_data_cleaning]
+    outputs:
+      moderately_sensitive:
+        table1: output/revised_results/revised2_option1_table2b_rateratios.dta
+
+  revised2_redaction:
+    run: stata-mp:latest analysis/revised2_400_redaction.do
+    needs: [revised2_analyses_option1_table2b]
+    outputs:
+      moderately_sensitive:
+        table3: output/revised_results/revised2_option1_table2b_rateratios_redacted.dta
+        table4: output/revised_results/revised2_option1_table2b_rateratios_redacted.csv
+
+  revised2_part2_analyses_option1_table2b:
+    run: stata-mp:latest analysis/revised2_621_part2_analyses_option1_table2b_rateratios.do
+    needs: [revised_part2_data_cleaning]
+    outputs:
+      moderately_sensitive:
+        table1: output/revised_results/revised2_part2_option1_table2b_rateratios.dta
+
+  revised2_part2_redaction:
+    run: stata-mp:latest analysis/revised2_800_part2_redaction.do
+    needs: [revised2_part2_analyses_option1_table2b]
+    outputs:
+      moderately_sensitive:
+        table1: output/revised_results/revised2_part2_option1_table2b_rateratios_redacted.dta
+        table2: output/revised_results/revised2_part2_option1_table2b_rateratios_redacted.csv
